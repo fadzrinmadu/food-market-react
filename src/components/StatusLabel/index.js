@@ -28,6 +28,11 @@ export default function StatusLabel({status}){
       return <Badge color="green">
         Pesanan diterima
       </Badge>
+    
+    case 'cancelled':
+      return <Badge color="red">
+        Pesanan dibatalkan
+      </Badge>
 
     default:
       return <div/>
