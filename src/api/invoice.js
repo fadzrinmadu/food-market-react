@@ -7,7 +7,7 @@ export async function getInvoiceByOrderId(order_id){
      ? JSON.parse(localStorage.getItem('auth')) : {};
 
   return await axios
-    .get(`${config.api_host}/api/invoices/${order_id}`, {
+    .get(`${config.api_host}/api/v1/invoices/${order_id}`, {
       headers: {
         authorization: `Bearer ${token}`
       }

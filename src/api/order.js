@@ -10,7 +10,7 @@ export async function getOrders(params){
   let skip = (page * limit) - limit; 
 
   return await axios 
-    .get(`${config.api_host}/api/orders`, {
+    .get(`${config.api_host}/api/v1/orders`, {
       params: {
         skip, 
         limit
@@ -26,7 +26,7 @@ export async function createOrder(payload){
   let { token } = localStorage.getItem('auth')
 			? JSON.parse(localStorage.getItem('auth')) : {};
 
-  return await axios.post(`${config.api_host}/api/orders`, payload, {
+  return await axios.post(`${config.api_host}/api/v1/orders`, payload, {
     headers: {
       authorization: `Bearer ${token}`
     }

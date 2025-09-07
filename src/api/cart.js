@@ -4,7 +4,7 @@ import store from '../app/store';
 import {setItems} from '../features/Cart/actions';
 
 export async function saveCart(token, cart){
-  return await axios.put(`${config.api_host}/api/carts`, {items: cart}, {
+  return await axios.put(`${config.api_host}/api/v1/carts`, {items: cart}, {
     headers: {
       authorization: `Bearer ${token}`
     }
@@ -19,7 +19,7 @@ export async function getCart(){
   if(!token) return;
 
   let { data } = await axios
-    .get(`${config.api_host}/api/carts`, {
+    .get(`${config.api_host}/api/v1/carts`, {
        headers: {
          authorization: `Bearer ${token}`
        }

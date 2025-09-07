@@ -2,11 +2,11 @@ import axios from 'axios';
 import { config } from '../config';
 
 export async function registerUser(data){
-  return await axios.post(`${config.api_host}/auth/register`, data);
+  return await axios.post(`${config.api_host}/api/v1/auth/register`, data);
 }
 
 export async function login(email, password){
-  return await axios.post(`${config.api_host}/auth/login`, {email, password});
+  return await axios.post(`${config.api_host}/api/v1/auth/login`, {email, password});
 }
 
 export async function logout(){
@@ -15,7 +15,7 @@ export async function logout(){
      ? JSON.parse(localStorage.getItem('auth')) : {};
 
 
-  return await axios.post(`${config.api_host}/auth/logout`, null, {
+  return await axios.post(`${config.api_host}/api/v1/auth/logout`, null, {
     headers: {
       authorization: `Bearer ${token}`
     }

@@ -109,8 +109,8 @@ export default function Checkout(){
 
    async function handleCreateOrder(){
       let payload = {
-         delivery_fee: config.global_ongkir, 
-         delivery_address: selectedAddress._id,
+        delivery_fee: config.global_ongkir, 
+        delivery_address: selectedAddress._id,
       }
 
       let { data } = await createOrder(payload); 

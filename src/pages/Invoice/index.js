@@ -57,7 +57,7 @@ export default function Invoice(){
     setInitiating(true);
 
     let {data: {token}} = await Axios
-      .get(`${config.api_host}/api/invoices/${params?.order_id}/initiate-payment`);
+      .get(`${config.api_host}/api/v1/invoices/${params?.order_id}/initiate-payment`);
 
     if(!token){
       setRequestError(true);

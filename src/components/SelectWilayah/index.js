@@ -15,7 +15,7 @@ export default function SelectWilayah({tingkat, kodeInduk, onChange, value}){
       setIsFetching(true);
 
       axios
-       .get(`${config.api_host}/api/wilayah/${tingkat}?kode_induk=${kodeInduk}`)
+       .get(`${config.api_host}/api/v1/wilayah/${tingkat}?kode_induk=${kodeInduk}`)
        .then(({data}) => {
 			    if(!data.error){
 						setData(data)
