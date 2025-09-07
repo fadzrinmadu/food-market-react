@@ -10,18 +10,15 @@ export async function login(email, password){
 }
 
 export async function logout(){
-
   let { token } = localStorage.getItem('auth')
-     ? JSON.parse(localStorage.getItem('auth')) : {};
-
+    ? JSON.parse(localStorage.getItem('auth')) : {};
 
   return await axios.post(`${config.api_host}/api/v1/auth/logout`, null, {
     headers: {
       authorization: `Bearer ${token}`
     }
-  })
-  .then(response => {
+  }).then(response => {
     localStorage.removeItem('auth');
     return response;
-  })
+  });
 }

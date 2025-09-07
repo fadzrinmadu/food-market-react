@@ -22,5 +22,4 @@ const rules = {
   }
 }
 
-
 export { rules };

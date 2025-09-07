@@ -1,4 +1,3 @@
-
 const rules = {
   email: {
     required: {value: true, message: 'Email tidak boleh kosong.'}, 
@@ -13,4 +12,3 @@ const rules = {
 export {
   rules
 }
-

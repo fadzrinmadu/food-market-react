@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Badge } from 'upkit';
 import { string } from 'prop-types';
 
-export default function StatusLabel({status}){
-  switch(status){
+export default function StatusLabel({ status }) {
+  switch(status) {
     case 'waiting_payment':
       return <Badge color="orange">
         Menunggu pembayaran
@@ -39,9 +39,7 @@ export default function StatusLabel({status}){
   }
 }
 
-StatusLabel.defaultProps = {
-   
-}
+StatusLabel.defaultProps = {}
 
 StatusLabel.propTypes = {
   status: string.isRequired

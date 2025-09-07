@@ -18,9 +18,7 @@ import { getProducts } from '../../api/product';
 let debouncedFetchProducts = debounce(getProducts, 1000);
 
 export const fetchProducts = () => {
-
   return  async (dispatch, getState) => {
-
     dispatch(startFetchingProducts());
 
     let perPage = getState().products.perPage || 9;
@@ -37,13 +35,12 @@ export const fetchProducts = () => {
       category
     }
 
-    try{
+    try {
       let { data: {data, count} } = await debouncedFetchProducts(params);
       dispatch(successFetchingProducts({data, count}));
     } catch(err) {
       dispatch(errorFetchingProducts());
     }
-
   }
 }
 
@@ -111,8 +108,8 @@ export const clearTags = () => {
 }
 
 export const toggleTag = tag => {
-   return {
-     type: TOGGLE_TAG, 
-     tag
-   };
+  return {
+    type: TOGGLE_TAG, 
+    tag
+  };
 }

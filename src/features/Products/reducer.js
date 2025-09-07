@@ -29,10 +29,8 @@ const initialState = {
   status: statuslist.idle
 };
 
-export default function reducer(state = initialState, action){
-
-  switch(action.type){
-
+export default function reducer(state = initialState, action) {
+  switch(action.type) {
     case START_FETCHING_PRODUCT:
       return {...state, status: statuslist.process, data: []}
 
@@ -55,7 +53,7 @@ export default function reducer(state = initialState, action){
       return {...state, tags: action.tags}
 
     case TOGGLE_TAG:
-      if(!state.tags.includes(action.tag)){
+      if (!state.tags.includes(action.tag)) {
         return {...state, currentPage: 1, tags: [...state.tags, action.tag]}
       } else {
         return {...state, currentPage: 1, tags: state.tags.filter(tag => tag !== action.tag)}
@@ -69,7 +67,5 @@ export default function reducer(state = initialState, action){
 
     default:
       return state;
-
   }
 }
-

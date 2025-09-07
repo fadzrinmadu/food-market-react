@@ -12,14 +12,10 @@ import { config } from '../../config';
 import { sumPrice } from '../../utils/sum-price';
 import { formatRupiah } from '../../utils/format-rupiah';
 
-
-export default function Cart({items, onItemInc, onItemDec, onCheckout}){
- 
-	  let total = sumPrice(items);
-	 
-   return (
-     <div>
-
+export default function Cart({ items, onItemInc, onItemDec, onCheckout }) {
+	let total = sumPrice(items);
+	return (
+		<div>
 			<div className="px-2 border-b mt-5 pb-5">
 				<div className="text-3xl flex items-center text-red-700">
 					<FaCartPlus/>
@@ -55,17 +51,16 @@ export default function Cart({items, onItemInc, onItemDec, onCheckout}){
 					</div>
 				})}
 			</div>
-
-     </div>
-   )
+		</div>
+	)
 }
 
 Cart.propTypes = {
   items: arrayOf(shape({
-	    _id: string.isRequired,
-	    name: string.isRequired, 
-	    qty: oneOfType([string, number]).isRequired, 
-	  })),
+		_id: string.isRequired,
+		name: string.isRequired, 
+		qty: oneOfType([string, number]).isRequired, 
+	})),
   onItemInc: func, 
   onItemDec: func,
 	onCheckout: func,

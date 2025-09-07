@@ -1,7 +1,7 @@
 import axios from 'axios'; 
-import {config} from '../config';
+import { config } from '../config';
 import store from '../app/store';
-import {setItems} from '../features/Cart/actions';
+import { setItems } from '../features/Cart/actions';
 
 export async function saveCart(token, cart){
   return await axios.put(`${config.api_host}/api/v1/carts`, {items: cart}, {
@@ -12,21 +12,18 @@ export async function saveCart(token, cart){
 }
 
 export async function getCart(){
-
   let { token } = localStorage.getItem('auth')
-			? JSON.parse(localStorage.getItem('auth')) : {};
+    ? JSON.parse(localStorage.getItem('auth')) : {};
 
-  if(!token) return;
+  if (!token) return;
 
-  let { data } = await axios
-    .get(`${config.api_host}/api/v1/carts`, {
-       headers: {
-         authorization: `Bearer ${token}`
-       }
-    });
+  let { data } = await axios.get(`${config.api_host}/api/v1/carts`, {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
 
-  if(!data.error){
+  if (!data.error){
     store.dispatch(setItems(data));
   }
-
 }

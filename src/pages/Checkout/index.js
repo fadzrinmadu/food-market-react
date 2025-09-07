@@ -26,7 +26,7 @@ import { createOrder } from '../../api/order';
 
 const IconWrapper = ({children}) => {
   return <div className="text-3xl flex justify-center">
-   {children}
+    {children}
   </div>
 }
 
@@ -66,9 +66,9 @@ const columns = [
     Header: 'Harga total', 
     id: 'subtotal', 
     accessor: item => {
-    return <div>
-      { formatRupiah(item.price * item.qty)}
-    </div>
+      return <div>
+        { formatRupiah(item.price * item.qty)}
+      </div>
     }
   }
 ];
@@ -88,186 +88,176 @@ const addressColumns = [
   }
 ];
 
-export default function Checkout(){
+export default function Checkout() {
+  let [ activeStep, setActiveStep ] = React.useState(0);
+  let cart = useSelector(state => state.cart);
+  let [ selectedAddress, setSelectedAddress ] = React.useState(null);
 
-   let [ activeStep, setActiveStep ] = React.useState(0);
-   let cart = useSelector(state => state.cart);
-   let [ selectedAddress, setSelectedAddress ] = React.useState(null);
+  let {
+    data, 
+    status,
+    limit, 
+    page, 
+    count, 
+    setPage
+  } = useAddressData(); 
+
+  let history = useHistory(); 
+  let dispatch = useDispatch();
+
+  async function handleCreateOrder() {
+    let payload = {
+      delivery_fee: config.global_ongkir, 
+      delivery_address: selectedAddress._id,
+    }
+
+    let { data } = await createOrder(payload); 
   
-   let {
-     data, 
-     status,
-     limit, 
-     page, 
-     count, 
-     setPage
-   } = useAddressData(); 
+    if (data?.error) return; 
 
+    history.push(`/invoice/${data._id}`);
+    dispatch(clearItems());
+  }
 
-   let history = useHistory(); 
-   let dispatch = useDispatch();
+  if (!cart.length) {
+    return <Redirect to="/" />
+  }
 
-   async function handleCreateOrder(){
-      let payload = {
-        delivery_fee: config.global_ongkir, 
-        delivery_address: selectedAddress._id,
-      }
+  return <LayoutOne>
+    <TopBar/>
+    <Text as="h3"> Checkout </Text> 
 
-      let { data } = await createOrder(payload); 
-   
-      if(data?.error) return; 
+    <Steps
+      steps={steps}
+      active={activeStep} 
+    />
 
-      history.push(`/invoice/${data._id}`);
-      dispatch(clearItems());
-      
-   }
-
-
-   if(!cart.length) {
-      return <Redirect to="/" />
-   }
-
-   return <LayoutOne>
-      <TopBar/>
-      <Text as="h3"> Checkout </Text> 
-
-      <Steps
-         steps={steps}
-         active={activeStep} 
-      />
-
-      {activeStep === 0 ?
-        <div>
-          <br/> <br/>
-          <Table 
-            items={cart}
-            columns={columns}
-            perPage={cart.length}
-            showPagination={false}
-          />
-
-          {/* siap-siap untuk menampilkan informasi sub total dan tombol selanjutnya */}
-          <br/>
-          <div className="text-right">
-					 <Text as="h4">
-						 Subtotal: {formatRupiah(sumPrice(cart))}
-					 </Text> 
-
-					 <br/>
-					 <Button 
-						 onClick={_ => setActiveStep(activeStep + 1)}
-						 color="red"
-						 iconAfter={<FaArrowRight/>}
-					 > Selanjutnya </Button>
-          </div>
-
-        </div>
-      : null }
-
-			{activeStep === 1 ?
-				<div>
-         <br/><br/>
-				 <Table
-					items={data}
-					columns={addressColumns}
-					perPage={limit}
-					page={page}
-					onPageChange={page => setPage(page)}
-					totalItems={count}
-					isLoading={status === 'process'}
-					selectable
-					primaryKey={'_id'}
-					selectedRow={selectedAddress}
-					onSelectRow={ item => setSelectedAddress(item)}
-				 />
-
-				{!data.length && status === 'success' ? 
-					<div className="text-center my-10">
-						<Link to="/alamat-pengiriman/tambah">
-							Kamu belum memiliki alamat pengiriman <br/> <br />
-							<Button> Tambah alamat </Button>
-						</Link>
-					</div>
-				: null}
-
+    {activeStep === 0 ?
+      <div>
         <br/> <br/>
-				<Responsive desktop={2} tablet={2} mobile={2}>
+        <Table 
+          items={cart}
+          columns={columns}
+          perPage={cart.length}
+          showPagination={false}
+        />
 
-					<div>
-						<Button 
-							onClick={_ =>  setActiveStep(activeStep - 1)} 
-							color="gray" 
-							iconBefore={<FaArrowLeft/>}>
+        <br/>
+        <div className="text-right">
+          <Text as="h4">
+            Subtotal: {formatRupiah(sumPrice(cart))}
+          </Text> 
 
-							Sebelumnya
-						</Button>
-					</div>
+          <br/>
+          <Button 
+            onClick={_ => setActiveStep(activeStep + 1)}
+            color="red"
+            iconAfter={<FaArrowRight/>}
+          > Selanjutnya </Button>
+        </div>
+      </div>
+    : null }
 
-					<div className="text-right">
-					 <Button 
-						 onClick={_ => setActiveStep(activeStep + 1)} 
-						 disabled={!selectedAddress}
-						 color="red" 
-						 iconAfter={<FaArrowRight/>}>
-							Selanjutnya
-					 </Button>
-					</div>
+    {activeStep === 1 ?
+      <div>
+        <br/><br/>
+        <Table
+        items={data}
+        columns={addressColumns}
+        perPage={limit}
+        page={page}
+        onPageChange={page => setPage(page)}
+        totalItems={count}
+        isLoading={status === 'process'}
+        selectable
+        primaryKey={'_id'}
+        selectedRow={selectedAddress}
+        onSelectRow={ item => setSelectedAddress(item)}
+        />
 
-				</Responsive>
+      {!data.length && status === 'success' ? 
+        <div className="text-center my-10">
+          <Link to="/alamat-pengiriman/tambah">
+            Kamu belum memiliki alamat pengiriman <br/> <br />
+            <Button> Tambah alamat </Button>
+          </Link>
+        </div>
+      : null}
 
-				</div>
-			: null }
+      <br/> <br/>
+      <Responsive desktop={2} tablet={2} mobile={2}>
+        <div>
+          <Button 
+            onClick={_ =>  setActiveStep(activeStep - 1)} 
+            color="gray" 
+            iconBefore={<FaArrowLeft/>}>
 
-			{ activeStep === 2 ?
-				<div>
-				 <Table
-					 columns={[
-						 {
-							 Header: '', 
-							 accessor: 'label',
-						 },
-						 {
-							 Header: '',
-							 accessor: 'value'
-						 }
-					 ]}
-					 items={[
-						 {label: 'Alamat', value: <div>
-							{selectedAddress.nama} <br/> 
-							{selectedAddress.provinsi}, {selectedAddress.kabupaten}, {selectedAddress.kecamatan}, {selectedAddress.kelurahan} <br/> 
-							{selectedAddress.detail}
+            Sebelumnya
+          </Button>
+        </div>
 
-						 </div>},
-						 {label: 'Subtotal', value: formatRupiah(sumPrice(cart))}, 
-						 {label: 'Ongkir', value: formatRupiah(config.global_ongkir)}, 
-						 {label: 'Total', value: <b>{formatRupiah(sumPrice(cart) + parseInt(config.global_ongkir))}</b>}, 
-					 ]}
-					 showPagination={false}
-				 />
-				<br />
-				<Responsive desktop={2} tablet={2} mobile={2}>
-				 <div>
-					 <Button 
-						 onClick={_ =>  setActiveStep(activeStep - 1)} 
-						 color="gray" 
-						 iconBefore={<FaArrowLeft/>}>
-						 Sebelumnya
-					 </Button>
-				 </div>
-				 <div className="text-right">
-					 <Button 
-             onClick={handleCreateOrder}
-						 color="red"
-						 size="large"
-						 iconBefore={<FaRegCheckCircle/>}
-					 >
-							Bayar
-					 </Button>
-				 </div>
-				</Responsive>
-				</div>
-			: null}  
+        <div className="text-right">
+          <Button 
+            onClick={_ => setActiveStep(activeStep + 1)} 
+            disabled={!selectedAddress}
+            color="red" 
+            iconAfter={<FaArrowRight/>}>
+            Selanjutnya
+          </Button>
+        </div>
+      </Responsive>
+      </div>
+    : null }
 
-      
-   </LayoutOne>
+    { activeStep === 2 ?
+      <div>
+        <Table
+          columns={[
+            {
+              Header: '', 
+              accessor: 'label',
+            },
+            {
+              Header: '',
+              accessor: 'value'
+            }
+          ]}
+          items={[
+            {label: 'Alamat', value: <div>
+            {selectedAddress.nama} <br/> 
+            {selectedAddress.provinsi}, {selectedAddress.kabupaten}, {selectedAddress.kecamatan}, {selectedAddress.kelurahan} <br/> 
+            {selectedAddress.detail}
+
+            </div>},
+            {label: 'Subtotal', value: formatRupiah(sumPrice(cart))}, 
+            {label: 'Ongkir', value: formatRupiah(config.global_ongkir)}, 
+            {label: 'Total', value: <b>{formatRupiah(sumPrice(cart) + parseInt(config.global_ongkir))}</b>}, 
+          ]}
+          showPagination={false}
+        />
+      <br />
+      <Responsive desktop={2} tablet={2} mobile={2}>
+        <div>
+          <Button 
+            onClick={_ =>  setActiveStep(activeStep - 1)} 
+            color="gray" 
+            iconBefore={<FaArrowLeft/>}>
+            Sebelumnya
+          </Button>
+        </div>
+        <div className="text-right">
+          <Button 
+            onClick={handleCreateOrder}
+            color="red"
+            size="large"
+            iconBefore={<FaRegCheckCircle/>}
+          >
+            Bayar
+          </Button>
+        </div>
+      </Responsive>
+      </div>
+    : null}  
+
+  </LayoutOne>
 }

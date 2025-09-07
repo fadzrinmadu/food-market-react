@@ -54,7 +54,7 @@ const columns = [
   }
 ];
 
-export default function UserOrders(){
+export default function UserOrders() {
   let [pesanan, setPesanan] = React.useState([]);
   let [count, setCount] = React.useState(0);
   let [status, setStatus] = React.useState('idle');
@@ -66,7 +66,7 @@ export default function UserOrders(){
 
     let { data } = await getOrders({limit, page});
 
-    if(data.error){
+    if (data.error) {
       setStatus('error');
       return;
     }
@@ -74,26 +74,26 @@ export default function UserOrders(){
     setStatus('success');
     setPesanan(data.data);
     setCount(data.count);
-
   }, [page, limit]);
 
   React.useEffect(() => {
     fetchPesanan();
   }, [fetchPesanan]);
 
-	return <LayoutOne>
-	 <TopBar/>
-	 <Text as="h3"> Pesanan Anda </Text>
-	 <br />
+	return (
+    <LayoutOne>
+      <TopBar/>
+      <Text as="h3"> Pesanan Anda </Text>
+      <br />
 
-	 <Table
-		 items={pesanan}
-		 totalItems={count}
-		 columns={columns}
-		 onPageChange={ page => setPage(page)}
-		 page={page}
-		 isLoading={status === 'process'}
-	 />
-		
-	</LayoutOne>
+      <Table
+        items={pesanan}
+        totalItems={count}
+        columns={columns}
+        onPageChange={ page => setPage(page)}
+        page={page}
+        isLoading={status === 'process'}
+      />
+    </LayoutOne>
+  )
 }
