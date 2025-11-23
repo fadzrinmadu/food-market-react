@@ -1,5 +1,6 @@
 import * as React from 'react'; 
-import { InputText, InputPassword, Button, FormControl, Card, LayoutOne } from 'upkit';
+import { InputText, InputPassword, FormControl, Card, LayoutOne } from 'upkit';
+import { Button } from '../../components/ui';
 import { useForm } from 'react-hook-form';
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

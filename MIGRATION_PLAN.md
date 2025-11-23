@@ -151,7 +151,7 @@ kompleks. Setiap baris = satu commit.
 | 0 | Fondasi (helper warna + `classNames`) | — | ✅ Selesai |
 | 1 | `Text` | — | ✅ Selesai |
 | 2 | `Badge` | — | ✅ Selesai |
-| 3 | `Button` | — | ⬜ Belum |
+| 3 | `Button` | — | ✅ Selesai |
 | 4 | `ButtonCircle` | — | ⬜ Belum |
 | 5 | `Card` | — | ⬜ Belum |
 | 6 | `LayoutOne` | — | ⬜ Belum |
@@ -203,6 +203,17 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   mereset `h1`–`h6` menjadi `font-size: inherit; font-weight: inherit; margin: 0`,
   sehingga heading merender identik dengan `<div>`. Yang berubah hanya struktur
   dokumen agar pembaca layar dan SEO mendapat hierarki judul yang benar.
+
+### `Button`
+
+- Atribut `type` **sengaja tidak di-set** (sama seperti `upkit`). Beberapa form
+  (Login, Register, UserAddressAdd) mengandalkan perilaku bawaan `<button>` di
+  dalam `<form>` yang otomatis men-submit. Menambahkan `type="button"` akan
+  merusak form tersebut.
+- Ikon (`iconBefore`/`iconAfter`) diberi `aria-hidden="true"` karena hanya
+  dekorasi di samping label teks. Tidak ada perubahan tampilan.
+- Props sisa diteruskan ke elemen `<button>` (`...props`) supaya atribut seperti
+  `aria-label` bisa ditambahkan tanpa mengubah komponen.
 
 ## 9. Komponen yang Ditahan
 

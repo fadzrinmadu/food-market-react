@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import { arrayOf, string, shape, oneOfType, number, func } from 'prop-types';
-import { CardItem, Button } from 'upkit';
-import { Text } from '../ui';
+import { CardItem } from 'upkit';
+import { Button, Text } from '../ui';
 import FaArrowRight from '@meronex/icons/fa/FaArrowRight'
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 
