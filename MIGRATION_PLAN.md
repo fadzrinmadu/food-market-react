@@ -149,7 +149,7 @@ kompleks. Setiap baris = satu commit.
 | # | Komponen | Bergantung pada | Status |
 | --- | --- | --- | --- |
 | 0 | Fondasi (helper warna + `classNames`) | — | ✅ Selesai |
-| 1 | `Text` | — | ⬜ Belum |
+| 1 | `Text` | — | ✅ Selesai |
 | 2 | `Badge` | — | ⬜ Belum |
 | 3 | `Button` | — | ⬜ Belum |
 | 4 | `ButtonCircle` | — | ⬜ Belum |
@@ -191,9 +191,18 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
 | R10 | Node lokal (v24) tidak cocok dengan `engines` project (Node 16) sehingga webpack 4 gagal karena OpenSSL 3 | Verifikasi build dijalankan dengan `NODE_OPTIONS=--openssl-legacy-provider`. **Tidak ada file project yang diubah** untuk ini. |
 | R11 | `src/styles/tailwind.css` adalah file hasil generate yang ikut di-commit, dan `npm run build` **tidak** meregenerasinya | Semua class Tailwind yang dipakai komponen internal sudah diverifikasi ada di `src/styles/tailwind.css` (file itu build penuh tanpa purge). Jadi file ini **tidak perlu** diregenerasi. |
 
-## 8. Perbedaan yang Disengaja (akan diisi selama migrasi)
+## 8. Perbedaan yang Disengaja
 
-Dicatat per komponen saat komponen tersebut dimigrasikan.
+
+### `Text`
+
+- `upkit` selalu merender `<div>` apa pun nilai `as`. Komponen internal merender
+  tag heading asli (`<h1>`..`<h6>`) untuk varian heading, dan tetap `<div>` untuk
+  varian lain (`body`, `small`, `info`, `warning`, `error`).
+- **Tampilan tidak berubah**: Tailwind preflight yang sudah aktif di project
+  mereset `h1`–`h6` menjadi `font-size: inherit; font-weight: inherit; margin: 0`,
+  sehingga heading merender identik dengan `<div>`. Yang berubah hanya struktur
+  dokumen agar pembaca layar dan SEO mendapat hierarki judul yang benar.
 
 ## 9. Komponen yang Ditahan
 
