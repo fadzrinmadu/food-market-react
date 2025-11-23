@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import { Badge } from 'upkit';
+import { Badge } from '../ui';
 import { string } from 'prop-types';
 
 export default function StatusLabel({ status }) {

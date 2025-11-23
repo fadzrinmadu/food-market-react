@@ -150,7 +150,7 @@ kompleks. Setiap baris = satu commit.
 | --- | --- | --- | --- |
 | 0 | Fondasi (helper warna + `classNames`) | — | ✅ Selesai |
 | 1 | `Text` | — | ✅ Selesai |
-| 2 | `Badge` | — | ⬜ Belum |
+| 2 | `Badge` | — | ✅ Selesai |
 | 3 | `Button` | — | ⬜ Belum |
 | 4 | `ButtonCircle` | — | ⬜ Belum |
 | 5 | `Card` | — | ⬜ Belum |
