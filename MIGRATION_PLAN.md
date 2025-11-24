@@ -152,7 +152,7 @@ kompleks. Setiap baris = satu commit.
 | 1 | `Text` | — | ✅ Selesai |
 | 2 | `Badge` | — | ✅ Selesai |
 | 3 | `Button` | — | ✅ Selesai |
-| 4 | `ButtonCircle` | — | ⬜ Belum |
+| 4 | `ButtonCircle` | — | ✅ Selesai |
 | 5 | `Card` | — | ⬜ Belum |
 | 6 | `LayoutOne` | — | ⬜ Belum |
 | 7 | `LayoutSidebar` | — | ⬜ Belum |
@@ -214,6 +214,13 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   dekorasi di samping label teks. Tidak ada perubahan tampilan.
 - Props sisa diteruskan ke elemen `<button>` (`...props`) supaya atribut seperti
   `aria-label` bisa ditambahkan tanpa mengubah komponen.
+
+### `ButtonCircle`
+
+- Sama seperti `Button`, atribut `type` tidak di-set agar perilaku identik dengan
+  `upkit`.
+- Props sisa diteruskan ke `<button>` sehingga `aria-label` bisa ditambahkan di
+  tempat pemakaian bila dibutuhkan (tombol ini isinya hanya ikon).
 
 ## 9. Komponen yang Ditahan
 
