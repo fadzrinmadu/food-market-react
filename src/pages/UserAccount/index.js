@@ -3,8 +3,8 @@ import FaHome from '@meronex/icons/fa/FaHome';
 import FaAddressBook from '@meronex/icons/fa/FaAddressBook';
 import FaArrowRight from '@meronex/icons/fa/FaArrowRight';
 import FaFileInvoice from '@meronex/icons/fa/FaFileInvoice';
-import { LayoutOne, Card, Responsive } from 'upkit';
-import { Text } from '../../components/ui';
+import { LayoutOne, Responsive } from 'upkit';
+import { Card, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';

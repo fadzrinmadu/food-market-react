@@ -1,6 +1,6 @@
 import * as React from 'react'; 
-import { LayoutOne, Card, FormControl, InputText, InputPassword } from 'upkit';
-import { Button } from '../../components/ui';
+import { LayoutOne, FormControl, InputText, InputPassword } from 'upkit';
+import { Button, Card } from '../../components/ui';
 import { useForm } from 'react-hook-form';
 import { useHistory, Link } from 'react-router-dom';
 

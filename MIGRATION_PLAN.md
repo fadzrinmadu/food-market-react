@@ -153,7 +153,7 @@ kompleks. Setiap baris = satu commit.
 | 2 | `Badge` | — | ✅ Selesai |
 | 3 | `Button` | — | ✅ Selesai |
 | 4 | `ButtonCircle` | — | ✅ Selesai |
-| 5 | `Card` | — | ⬜ Belum |
+| 5 | `Card` | — | ✅ Selesai |
 | 6 | `LayoutOne` | — | ⬜ Belum |
 | 7 | `LayoutSidebar` | — | ⬜ Belum |
 | 8 | `Responsive` | — | ⬜ Belum |
@@ -221,6 +221,14 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   `upkit`.
 - Props sisa diteruskan ke `<button>` sehingga `aria-label` bisa ditambahkan di
   tempat pemakaian bila dibutuhkan (tombol ini isinya hanya ikon).
+
+### `Card`
+
+- Jika `onClick` diberikan, kartu kini mendapat `role="button"`, `tabIndex={0}`,
+  dan bisa diaktifkan dengan tombol Enter/Spasi. `upkit` hanya memasang `onClick`
+  pada `<div>` biasa sehingga tidak bisa dijangkau keyboard.
+- Elemen tetap `<div>` (bukan `<button>`) agar kotak dan spasi render persis sama
+  dengan sebelumnya. Tanpa `onClick`, tidak ada atribut tambahan sama sekali.
 
 ## 9. Komponen yang Ditahan
 
