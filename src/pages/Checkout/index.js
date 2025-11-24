@@ -1,6 +1,6 @@
 import * as React from 'react'; 
-import { Steps, Table, Responsive } from 'upkit';
-import { Button, LayoutOne, Text } from '../../components/ui';
+import { Steps, Table } from 'upkit';
+import { Button, LayoutOne, Responsive, Text } from '../../components/ui';
 import { useSelector, useDispatch } from 'react-redux';
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 import FaAddressCard from '@meronex/icons/fa/FaAddressCard';

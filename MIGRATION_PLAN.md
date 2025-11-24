@@ -156,7 +156,7 @@ kompleks. Setiap baris = satu commit.
 | 5 | `Card` | — | ✅ Selesai |
 | 6 | `LayoutOne` | — | ✅ Selesai |
 | 7 | `LayoutSidebar` | — | ✅ Selesai |
-| 8 | `Responsive` | — | ⬜ Belum |
+| 8 | `Responsive` | — | ✅ Selesai |
 | 9 | `Pill` | — | ⬜ Belum |
 | 10 | `Steps` | — | ⬜ Belum |
 | 11 | `SideNav` | — | ⬜ Belum |
@@ -236,6 +236,20 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   ada di Tailwind v1 (yang tersedia hanya `justify-start`/`end`/`center`/
   `between`/`around`), sudah diverifikasi tidak ada di `src/styles/tailwind.css`,
   jadi selama ini tidak menghasilkan style apa pun. Tampilan tidak berubah.
+
+### `Responsive`
+
+- Perilaku aneh `upkit` **sengaja dipertahankan**: hanya kata `flex` yang diberi
+  prefix breakpoint, sementara `flex-wrap` tidak (`"md:" + "flex flex-wrap"` →
+  `"md:flex flex-wrap"`). Layout halaman yang ada bergantung pada hasil ini, jadi
+  tidak diperbaiki.
+- Class mati `"md:"`/`"lg:"` (saat breakpoint = 1) dan `"justify-"` (saat
+  `justify` kosong) tidak lagi ikut dirender karena tidak menghasilkan style apa
+  pun.
+- Deteksi jumlah anak memakai `React.Children.toArray` (bukan `children.length`
+  seperti `upkit`, yang keliru untuk anak berupa string). Sudah dicek: untuk semua
+  pemakaian di project ini — termasuk daftar produk kosong dan daftar berisi satu
+  item — DOM yang dihasilkan identik.
 
 ## 9. Komponen yang Ditahan
 
