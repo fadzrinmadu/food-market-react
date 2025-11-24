@@ -1,7 +1,6 @@
 import * as React from 'react'; 
 import { Link } from 'react-router-dom';
-import { LayoutOne } from 'upkit';
-import { Button, Card, Text } from '../../components/ui';
+import { Button, Card, LayoutOne, Text } from '../../components/ui';
 
 export default function RegisterSuccess() {
   return (
