@@ -155,7 +155,7 @@ kompleks. Setiap baris = satu commit.
 | 4 | `ButtonCircle` | — | ✅ Selesai |
 | 5 | `Card` | — | ✅ Selesai |
 | 6 | `LayoutOne` | — | ✅ Selesai |
-| 7 | `LayoutSidebar` | — | ⬜ Belum |
+| 7 | `LayoutSidebar` | — | ✅ Selesai |
 | 8 | `Responsive` | — | ⬜ Belum |
 | 9 | `Pill` | — | ⬜ Belum |
 | 10 | `Steps` | — | ⬜ Belum |
@@ -229,6 +229,13 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   pada `<div>` biasa sehingga tidak bisa dijangkau keyboard.
 - Elemen tetap `<div>` (bukan `<button>`) agar kotak dan spasi render persis sama
   dengan sebelumnya. Tanpa `onClick`, tidak ada atribut tambahan sama sekali.
+
+### `LayoutSidebar`
+
+- Class `justify-stretch` yang dipasang `upkit` **tidak dibawa**. Class itu tidak
+  ada di Tailwind v1 (yang tersedia hanya `justify-start`/`end`/`center`/
+  `between`/`around`), sudah diverifikasi tidak ada di `src/styles/tailwind.css`,
+  jadi selama ini tidak menghasilkan style apa pun. Tampilan tidak berubah.
 
 ## 9. Komponen yang Ditahan
 

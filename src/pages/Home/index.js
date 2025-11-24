@@ -1,14 +1,7 @@
 import * as React from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { 
-  SideNav, 
-  LayoutSidebar,
-  Responsive, 
-  CardProduct,
-  Pagination,
-  InputText,
-  Pill 
-} from 'upkit';
+import { SideNav, Responsive, CardProduct, Pagination, InputText, Pill } from 'upkit';
+import { LayoutSidebar } from '../../components/ui';
 import BounceLoader from 'react-spinners/BounceLoader';
 import { useHistory } from 'react-router-dom';
 
