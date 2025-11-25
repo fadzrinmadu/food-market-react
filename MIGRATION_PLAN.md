@@ -159,7 +159,7 @@ kompleks. Setiap baris = satu commit.
 | 8 | `Responsive` | — | ✅ Selesai |
 | 9 | `Pill` | — | ✅ Selesai |
 | 10 | `Steps` | — | ✅ Selesai |
-| 11 | `SideNav` | — | ⬜ Belum |
+| 11 | `SideNav` | — | ✅ Selesai |
 | 12 | `InputText` + `InputPassword` | — | ⬜ Belum |
 | 13 | `Textarea` | — | ⬜ Belum |
 | 14 | `FormControl` | — | ⬜ Belum |
@@ -269,6 +269,19 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
 - Langkah aktif diberi `aria-current="step"`; ikon diberi `aria-hidden="true"`
   karena label teks sudah ada di bawahnya.
 - Class `cursor-pointer` tetap dipertahankan agar tampilan tidak berubah.
+
+### `SideNav`
+
+- Elemen pembungkus berubah dari `<div>` menjadi `<nav>` (tetap `display:flex`
+  karena class `flex`, jadi tampilan identik) agar menu kategori dikenali sebagai
+  navigasi.
+- Item menu mendapat `role="button"`, `tabIndex`, dukungan Enter/Spasi, dan
+  `aria-current="page"` untuk item aktif.
+- Ikon gambar kini punya `alt=""` (dekoratif) karena label teksnya sudah dirender
+  tepat di bawahnya; sebelumnya `<img>` tanpa `alt` sama sekali.
+- `upkit` menyisipkan literal `"false"` ke daftar class item yang tidak aktif
+  (hasil `[...classes, false].join(" ")`). Class itu tidak berarti apa-apa dan
+  tidak dibawa.
 
 ## 9. Komponen yang Ditahan
 
