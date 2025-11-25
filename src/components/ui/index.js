@@ -17,3 +17,4 @@ export { default as Responsive } from './Responsive';
 export { default as SideNav } from './SideNav';
 export { default as Steps } from './Steps';
 export { default as Text } from './Text';
+export { default as Textarea } from './Textarea';

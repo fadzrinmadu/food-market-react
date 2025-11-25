@@ -161,7 +161,7 @@ kompleks. Setiap baris = satu commit.
 | 10 | `Steps` | — | ✅ Selesai |
 | 11 | `SideNav` | — | ✅ Selesai |
 | 12 | `InputText` + `InputPassword` | — | ✅ Selesai |
-| 13 | `Textarea` | — | ⬜ Belum |
+| 13 | `Textarea` | — | ✅ Selesai |
 | 14 | `FormControl` | — | ⬜ Belum |
 | 15 | `InputNumber` | `ButtonCircle` | ⬜ Belum |
 | 16 | `CardItem` | `InputNumber` | ⬜ Belum |

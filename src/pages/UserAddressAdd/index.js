@@ -1,6 +1,6 @@
 import * as React from 'react'; 
-import { FormControl, Textarea } from 'upkit';
-import { Button, InputText, LayoutOne } from '../../components/ui';
+import { FormControl } from 'upkit';
+import { Button, InputText, LayoutOne, Textarea } from '../../components/ui';
 import {useForm} from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
