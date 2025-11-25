@@ -12,4 +12,5 @@ export { default as LayoutOne } from './LayoutOne';
 export { default as LayoutSidebar } from './LayoutSidebar';
 export { default as Pill } from './Pill';
 export { default as Responsive } from './Responsive';
+export { default as Steps } from './Steps';
 export { default as Text } from './Text';

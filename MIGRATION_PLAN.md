@@ -158,7 +158,7 @@ kompleks. Setiap baris = satu commit.
 | 7 | `LayoutSidebar` | — | ✅ Selesai |
 | 8 | `Responsive` | — | ✅ Selesai |
 | 9 | `Pill` | — | ✅ Selesai |
-| 10 | `Steps` | — | ⬜ Belum |
+| 10 | `Steps` | — | ✅ Selesai |
 | 11 | `SideNav` | — | ⬜ Belum |
 | 12 | `InputText` + `InputPassword` | — | ⬜ Belum |
 | 13 | `Textarea` | — | ⬜ Belum |
@@ -257,6 +257,18 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
 - Pill kini punya `role="button"`, `tabIndex={0}`, dukungan Enter/Spasi, dan
   `aria-pressed` yang mencerminkan status filter aktif. Sebelumnya hanya `<div>`
   dengan `onClick`. Elemen tetap `<div>` agar tampilan identik.
+
+### `Steps`
+
+- `upkit` selalu memasang `onClick` (default-nya fungsi kosong) sehingga langkah
+  terlihat bisa diklik padahal tidak melakukan apa-apa. Komponen internal hanya
+  memasang handler + `role="button"`/`tabIndex`/keyboard **jika `onChange` benar-
+  benar diberikan**. Di halaman Checkout `onChange` tidak diberikan, jadi
+  perilakunya tetap sama persis (klik tidak melakukan apa pun), tapi elemen tidak
+  lagi mengumumkan diri sebagai tombol palsu ke pembaca layar.
+- Langkah aktif diberi `aria-current="step"`; ikon diberi `aria-hidden="true"`
+  karena label teks sudah ada di bawahnya.
+- Class `cursor-pointer` tetap dipertahankan agar tampilan tidak berubah.
 
 ## 9. Komponen yang Ditahan
 
