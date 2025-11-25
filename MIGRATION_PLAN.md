@@ -157,7 +157,7 @@ kompleks. Setiap baris = satu commit.
 | 6 | `LayoutOne` | — | ✅ Selesai |
 | 7 | `LayoutSidebar` | — | ✅ Selesai |
 | 8 | `Responsive` | — | ✅ Selesai |
-| 9 | `Pill` | — | ⬜ Belum |
+| 9 | `Pill` | — | ✅ Selesai |
 | 10 | `Steps` | — | ⬜ Belum |
 | 11 | `SideNav` | — | ⬜ Belum |
 | 12 | `InputText` + `InputPassword` | — | ⬜ Belum |
@@ -250,6 +250,13 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   seperti `upkit`, yang keliru untuk anak berupa string). Sudah dicek: untuk semua
   pemakaian di project ini — termasuk daftar produk kosong dan daftar berisi satu
   item — DOM yang dihasilkan identik.
+
+### `Pill`
+
+- Class mati `border-full` (tidak ada di Tailwind) tidak dibawa.
+- Pill kini punya `role="button"`, `tabIndex={0}`, dukungan Enter/Spasi, dan
+  `aria-pressed` yang mencerminkan status filter aktif. Sebelumnya hanya `<div>`
+  dengan `onClick`. Elemen tetap `<div>` agar tampilan identik.
 
 ## 9. Komponen yang Ditahan
 
