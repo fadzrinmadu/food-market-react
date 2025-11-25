@@ -8,6 +8,8 @@ export { default as Badge } from './Badge';
 export { default as Button } from './Button';
 export { default as ButtonCircle } from './ButtonCircle';
 export { default as Card } from './Card';
+export { default as InputPassword } from './InputPassword';
+export { default as InputText } from './InputText';
 export { default as LayoutOne } from './LayoutOne';
 export { default as LayoutSidebar } from './LayoutSidebar';
 export { default as Pill } from './Pill';

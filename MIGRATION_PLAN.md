@@ -160,7 +160,7 @@ kompleks. Setiap baris = satu commit.
 | 9 | `Pill` | — | ✅ Selesai |
 | 10 | `Steps` | — | ✅ Selesai |
 | 11 | `SideNav` | — | ✅ Selesai |
-| 12 | `InputText` + `InputPassword` | — | ⬜ Belum |
+| 12 | `InputText` + `InputPassword` | — | ✅ Selesai |
 | 13 | `Textarea` | — | ⬜ Belum |
 | 14 | `FormControl` | — | ⬜ Belum |
 | 15 | `InputNumber` | `ButtonCircle` | ⬜ Belum |
@@ -282,6 +282,16 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
 - `upkit` menyisipkan literal `"false"` ke daftar class item yang tidak aktif
   (hasil `[...classes, false].join(" ")`). Class itu tidak berarti apa-apa dan
   tidak dibawa.
+
+### `InputText` & `InputPassword`
+
+- Keduanya memakai `React.forwardRef` ke elemen `<input>` asli — wajib, karena
+  Login, Register, dan UserAddressAdd memakai `ref={register(...)}` dari
+  react-hook-form.
+- Pembungkus ikon diberi `aria-hidden="true"` (ikon hanya dekorasi). Pembungkus
+  ini tetap dirender walau kosong (dengan class `hidden`), persis seperti `upkit`.
+- `InputPassword` tetap punya default `onChange` berupa fungsi kosong seperti
+  `upkit`, agar input tanpa `onChange` di Register berperilaku sama.
 
 ## 9. Komponen yang Ditahan
 
