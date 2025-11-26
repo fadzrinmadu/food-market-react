@@ -16,6 +16,7 @@ export { default as InputPassword } from './InputPassword';
 export { default as InputText } from './InputText';
 export { default as LayoutOne } from './LayoutOne';
 export { default as LayoutSidebar } from './LayoutSidebar';
+export { default as Pagination } from './Pagination';
 export { default as Pill } from './Pill';
 export { default as Responsive } from './Responsive';
 export { default as SideNav } from './SideNav';

@@ -166,7 +166,7 @@ kompleks. Setiap baris = satu commit.
 | 15 | `InputNumber` | `ButtonCircle` | ✅ Selesai |
 | 16 | `CardItem` | `InputNumber` | ✅ Selesai |
 | 17 | `CardProduct` | `Card`, `Text` | ✅ Selesai |
-| 18 | `Pagination` | — | ⬜ Belum |
+| 18 | `Pagination` | — | ✅ Selesai |
 | 19 | `Table` | `Pagination` | ⬜ Belum |
 | 20 | `Select` | — | 🟥 **DITAHAN — butuh keputusan** |
 | 21 | Pembersihan `upkit` | seluruhnya | ⬜ Belum |
@@ -331,6 +331,21 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
 - Tombol tambah ke keranjang mendapat `role="button"`, `tabIndex`, dukungan
   Enter/Spasi, dan `aria-label` berisi nama produk. Sebelumnya hanya `<div>`
   berisi ikon tanpa teks sama sekali.
+
+### `Pagination`
+
+- Class mati tidak dibawa: `border-3` (tidak ada di Tailwind) dan
+  `hover:text-grey-300` (salah tulis — Tailwind memakai `gray`, bukan `grey`).
+- Urutan class `bg-*` sengaja dipertahankan persis seperti `upkit`
+  (`bg-red-600 ... bg-gray-100`). Yang menentukan warna akhir adalah urutan aturan
+  di `tailwind.css`, bukan urutan di atribut `class`, jadi menghapus salah satunya
+  berisiko mengubah warna.
+- Tombol angka/panah kini punya `role="button"`, `tabIndex`, dukungan Enter/Spasi,
+  `aria-label` ("Halaman 3", "Halaman berikutnya", ...), `aria-current="page"`
+  untuk halaman aktif, dan `aria-disabled` untuk panah yang mati. Wadahnya diberi
+  `role="navigation"` + `aria-label="Paginasi"`.
+- Tombol "First" tetap memanggil `onChange(1)` walau sedang di halaman pertama —
+  sama seperti `upkit`, tidak diubah.
 
 ## 9. Komponen yang Ditahan
 
