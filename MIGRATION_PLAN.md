@@ -165,7 +165,7 @@ kompleks. Setiap baris = satu commit.
 | 14 | `FormControl` | — | ✅ Selesai |
 | 15 | `InputNumber` | `ButtonCircle` | ✅ Selesai |
 | 16 | `CardItem` | `InputNumber` | ✅ Selesai |
-| 17 | `CardProduct` | `Card`, `Text` | ⬜ Belum |
+| 17 | `CardProduct` | `Card`, `Text` | ✅ Selesai |
 | 18 | `Pagination` | — | ⬜ Belum |
 | 19 | `Table` | `Pagination` | ⬜ Belum |
 | 20 | `Select` | — | 🟥 **DITAHAN — butuh keputusan** |
@@ -315,6 +315,22 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   langsung di kolom jumlah keranjang akan melempar `TypeError`**. Dengan default
   ini, mengetik langsung tidak melakukan apa-apa (nilai tetap dikendalikan Redux)
   — perilaku yang memang dituju, tanpa crash. Perbedaan yang disengaja.
+
+### `CardProduct`
+
+- Hanya props yang benar-benar dipakai halaman Home yang didukung: `title`,
+  `imgUrl`, `price`, `color`, `onAddToCart`. Props `upkit` yang tidak pernah
+  dipakai (`subText`, `imgOverflow`, `onClick`, `withFavorite`,
+  `onFavoriteClick`) tidak dibawa — termasuk ikon `FaHeart` yang menyertainya.
+- Dua elemen kosong **tetap dirender**: slot tombol favorit dan baris `subText`.
+  Slot favorit wajib ada karena barisnya memakai `justify-between` — tanpa elemen
+  kosong itu gambar produk akan pindah ke kiri.
+- Harga tetap diformat dengan `maximumSignificantDigits: 3` (fungsi `toRupiah`
+  lokal), **bukan** `formatRupiah` project yang memakai `2`, supaya angka di
+  katalog persis sama seperti sebelumnya.
+- Tombol tambah ke keranjang mendapat `role="button"`, `tabIndex`, dukungan
+  Enter/Spasi, dan `aria-label` berisi nama produk. Sebelumnya hanya `<div>`
+  berisi ikon tanpa teks sama sekali.
 
 ## 9. Komponen yang Ditahan
 
