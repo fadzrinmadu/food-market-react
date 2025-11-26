@@ -163,7 +163,7 @@ kompleks. Setiap baris = satu commit.
 | 12 | `InputText` + `InputPassword` | — | ✅ Selesai |
 | 13 | `Textarea` | — | ✅ Selesai |
 | 14 | `FormControl` | — | ✅ Selesai |
-| 15 | `InputNumber` | `ButtonCircle` | ⬜ Belum |
+| 15 | `InputNumber` | `ButtonCircle` | ✅ Selesai |
 | 16 | `CardItem` | `InputNumber` | ⬜ Belum |
 | 17 | `CardProduct` | `Card`, `Text` | ⬜ Belum |
 | 18 | `Pagination` | — | ⬜ Belum |
@@ -305,6 +305,16 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   terhadap perilaku. Dicatat sebagai perbaikan lanjutan.
 - Ikon peringatan masih diambil dari `@meronex/icons/fa`, sama seperti `upkit`.
   Penggantiannya masuk siklus 3.
+
+### `InputNumber`
+
+- Tombol `+` dan `-` kini punya `aria-label` ("Tambah jumlah" / "Kurangi
+  jumlah"). Sebelumnya isinya hanya karakter `+`/`-` tanpa konteks.
+- `onSetValue` sekarang punya default berupa fungsi kosong. Pada `upkit` prop ini
+  wajib tapi `CardItem` tidak pernah mengirimnya, sehingga **mengetik angka
+  langsung di kolom jumlah keranjang akan melempar `TypeError`**. Dengan default
+  ini, mengetik langsung tidak melakukan apa-apa (nilai tetap dikendalikan Redux)
+  — perilaku yang memang dituju, tanpa crash. Perbedaan yang disengaja.
 
 ## 9. Komponen yang Ditahan
 
