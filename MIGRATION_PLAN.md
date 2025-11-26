@@ -164,7 +164,7 @@ kompleks. Setiap baris = satu commit.
 | 13 | `Textarea` | — | ✅ Selesai |
 | 14 | `FormControl` | — | ✅ Selesai |
 | 15 | `InputNumber` | `ButtonCircle` | ✅ Selesai |
-| 16 | `CardItem` | `InputNumber` | ⬜ Belum |
+| 16 | `CardItem` | `InputNumber` | ✅ Selesai |
 | 17 | `CardProduct` | `Card`, `Text` | ⬜ Belum |
 | 18 | `Pagination` | — | ⬜ Belum |
 | 19 | `Table` | `Pagination` | ⬜ Belum |
