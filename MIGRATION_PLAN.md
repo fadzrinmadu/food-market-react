@@ -162,7 +162,7 @@ kompleks. Setiap baris = satu commit.
 | 11 | `SideNav` | — | ✅ Selesai |
 | 12 | `InputText` + `InputPassword` | — | ✅ Selesai |
 | 13 | `Textarea` | — | ✅ Selesai |
-| 14 | `FormControl` | — | ⬜ Belum |
+| 14 | `FormControl` | — | ✅ Selesai |
 | 15 | `InputNumber` | `ButtonCircle` | ⬜ Belum |
 | 16 | `CardItem` | `InputNumber` | ⬜ Belum |
 | 17 | `CardProduct` | `Card`, `Text` | ⬜ Belum |
@@ -292,6 +292,19 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   ini tetap dirender walau kosong (dengan class `hidden`), persis seperti `upkit`.
 - `InputPassword` tetap punya default `onChange` berupa fungsi kosong seperti
   `upkit`, agar input tanpa `onChange` di Register berperilaku sama.
+
+### `FormControl`
+
+- Area pesan error diberi `role="alert"` supaya pembaca layar mengumumkan error
+  validasi saat muncul. Saat tidak ada error, area itu tetap memakai class
+  `invisible` (`visibility: hidden`) seperti sebelumnya, sehingga juga tidak
+  terbaca pembaca layar — tinggi 8 tetap dipesan agar layout tidak melompat.
+- `<label>` masih **tidak** terhubung ke input lewat `htmlFor`/`id`, sama seperti
+  `upkit`. Menghubungkannya butuh perubahan struktur/kontrak komponen yang
+  menyentuh juga `SelectWilayah`, jadi ditunda agar migrasi ini tetap netral
+  terhadap perilaku. Dicatat sebagai perbaikan lanjutan.
+- Ikon peringatan masih diambil dari `@meronex/icons/fa`, sama seperti `upkit`.
+  Penggantiannya masuk siklus 3.
 
 ## 9. Komponen yang Ditahan
 
