@@ -17,7 +17,7 @@ internal milik project.
 | State | Redux + redux-thunk (`src/features/*`, `src/app/store.js`) |
 | Lint | `eslintConfig: { extends: "react-app" }` (tidak ada script lint terpisah; lint dijalankan oleh `react-scripts`) |
 | Type check | Tidak ada (project JavaScript) |
-| Test | `react-scripts test` (Jest + @testing-library/react 9) |
+| Test | ~~`react-scripts test` (Jest + @testing-library/react 9)~~ — seluruh perkakas dan berkas test dihapus atas permintaan pemilik project setelah migrasi selesai; lihat bagian 11 |
 | Build | `react-scripts build` |
 | Package manager | **npm** (hanya ada `package-lock.json`) |
 
@@ -44,7 +44,7 @@ Script ini **tidak boleh diubah**. Perilakunya:
 | Pengecekan | Hasil awal |
 | --- | --- |
 | `npm run build` | **Berhasil** (butuh `NODE_OPTIONS=--openssl-legacy-provider` karena Node lokal v24 sedangkan `engines` project = Node 16) |
-| `react-scripts test` | **1 test gagal** — `src/App.test.js` masih test bawaan CRA (`renders learn react link`) dan sudah gagal sebelum migrasi. Kegagalan ini **pre-existing**, tidak dihapus, dan tidak dianggap regresi. |
+| `react-scripts test` | **1 test gagal** — `src/App.test.js` masih test bawaan CRA (`renders learn react link`) dan sudah gagal sebelum migrasi. Kegagalan ini **pre-existing**, tidak dihapus selama migrasi, dan tidak dianggap regresi. (Berkas ini akhirnya ikut terhapus di bagian 11.) |
 | Type check | Tidak berlaku |
 
 ## 2. Library UI yang Terdeteksi
@@ -441,7 +441,7 @@ Status: **selesai**. `upkit` sudah tidak ada lagi di codebase maupun di
 
 | Pengecekan | Hasil |
 | --- | --- |
-| `react-scripts test` (seluruh suite) | 100 test lolos; **1 gagal**, yaitu `src/App.test.js` bawaan CRA yang sudah gagal sebelum migrasi (lihat R9). Test itu tetap merender `<App/>` sampai selesai tanpa error, jadi sekaligus jadi uji asap bahwa seluruh halaman merender dengan komponen internal. |
+| `react-scripts test` (seluruh suite) | 100 test lolos; **1 gagal**, yaitu `src/App.test.js` bawaan CRA yang sudah gagal sebelum migrasi (lihat R9). Test itu tetap merender `<App/>` sampai selesai tanpa error, jadi sekaligus jadi uji asap bahwa seluruh halaman merender dengan komponen internal. **Catatan:** seluruh test ini dihapus setelah migrasi selesai — lihat bagian 11. |
 | `npm run build` (dengan `CI=true`, jadi peringatan lint dianggap error) | Berhasil, tanpa peringatan. |
 | Type check | Tidak berlaku (project JavaScript). |
 | Class Tailwind | Seluruh class yang dipakai komponen internal sudah diverifikasi ada di `src/styles/tailwind.css`, jadi file itu tidak perlu diregenerasi. |
@@ -463,3 +463,32 @@ Status: **selesai**. `upkit` sudah tidak ada lagi di codebase maupun di
   `src/components/Cart`, `src/components/TopBar`, `src/pages/Checkout`,
   `src/pages/UserAccount`, `src/pages/UserOrders`, serta di komponen internal
   `FormControl`, `Pagination`, dan `CardProduct`.
+
+## 11. Penghapusan Perkakas Test (setelah migrasi)
+
+Atas permintaan pemilik project, seluruh hal yang berkaitan dengan testing
+dihapus **setelah** siklus 1 selesai dan terverifikasi.
+
+### Yang dihapus
+
+- 23 berkas test komponen internal (`src/components/ui/**/index.test.js` dan
+  `src/components/ui/utils/*.test.js`) — total 100 test yang semuanya lolos pada
+  commit `d36a436`.
+- `src/App.test.js` — test bawaan CRA yang sudah gagal sejak sebelum migrasi
+  (lihat R9).
+- `src/setupTests.js` — berkas setup Jest yang memuat matcher `jest-dom`.
+- Dependensi: `@testing-library/jest-dom`, `@testing-library/react`,
+  `@testing-library/user-event`.
+- Script `"test": "react-scripts test"` di `package.json`.
+
+### Konsekuensi
+
+- **Tidak ada lagi jaring pengaman otomatis** untuk komponen di
+  `src/components/ui/`. Perubahan pada komponen internal tidak akan lagi
+  ketahuan lewat test; verifikasi harus dilakukan manual di aplikasi.
+- Satu-satunya pengecekan otomatis yang tersisa adalah `npm run build`
+  (kompilasi + lint `react-app`).
+- Seluruh test masih tersimpan di riwayat git pada commit `d36a436` dan bisa
+  dikembalikan kapan saja, misalnya dengan
+  `git checkout d36a436 -- src/components/ui src/App.test.js src/setupTests.js`
+  lalu memasang ulang paket `@testing-library/*`.

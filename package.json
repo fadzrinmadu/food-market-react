@@ -4,9 +4,6 @@
   "private": true,
   "dependencies": {
     "@meronex/icons": "^4.0.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "autoprefixer": "^9.8.6",
     "axios": "^0.19.2",
     "debounce-promise": "^3.1.2",
@@ -28,7 +25,6 @@
     "build:styles": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
     "start": "npm run build:styles && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
