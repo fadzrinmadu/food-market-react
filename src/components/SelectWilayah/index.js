@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import axios from 'axios';
 import { oneOf, number, oneOfType, string, func, shape } from 'prop-types';
-import { Select } from 'upkit';
+import { Select } from '../ui';
 import { config } from '../../config';
 
 export default function SelectWilayah({ tingkat, kodeInduk, onChange, value }) { 

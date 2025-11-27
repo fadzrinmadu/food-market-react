@@ -168,7 +168,7 @@ kompleks. Setiap baris = satu commit.
 | 17 | `CardProduct` | `Card`, `Text` | ✅ Selesai |
 | 18 | `Pagination` | — | ✅ Selesai |
 | 19 | `Table` | `Pagination` | ✅ Selesai |
-| 20 | `Select` | — | 🟥 **DITAHAN — butuh keputusan** |
+| 20 | `Select` | — | ✅ Selesai (keputusan: bungkus `react-select`) |
 | 21 | Pembersihan `upkit` | seluruhnya | ⬜ Belum |
 
 `InputText` & `InputPassword` digabung dalam satu commit karena `InputPassword`
@@ -375,6 +375,17 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   melempar error bila tabel dirender tanpa handler. Semua pemakaian di project
   ini sudah mengirimkannya.
 
+### `Select`
+
+- Komponen internal ini **membungkus `react-select`**, sama seperti `upkit` yang
+  juga hanya pembungkus tipis. `react-select` kini menjadi dependensi langsung
+  project, dipin ke versi `3.1.0` — versi yang sama persis dengan yang selama ini
+  ditarik `upkit`, termasuk `react-input-autosize@2.2.2` — supaya tidak ada
+  perubahan tampilan maupun perilaku.
+- `upkit` memakai `require("react-select")` lalu `ReactSelect["default"]` untuk
+  menyiasati bundler CRA. Komponen internal memakai `import` ESM biasa, yang
+  sudah aman di CRA versi project ini.
+
 ## 9. Komponen yang Ditahan
 
 ### `Select` (`src/components/SelectWilayah/index.js`)
@@ -398,5 +409,13 @@ deteksi posisi, navigasi keyboard penuh (panah/Enter/Esc/Tab/Home/End),
 disabled, animasi, serta styling emotion yang khas (tinggi kontrol 38px, warna
 border `#cccccc`/`#2684FF`, indikator separator, dll).
 
-Keputusan ada di pemilik project — lihat opsi di laporan.
+**Keputusan pemilik project: bungkus `react-select`.** `upkit` dicopot, dan
+`react-select` dipasang sebagai dependensi langsung (versi dipin ke `3.1.0`,
+sama persis dengan yang selama ini ditarik `upkit`, agar tidak ada perubahan
+perilaku). Komponen internal `src/components/ui/Select` membungkusnya dengan API
+yang sama seperti `Select` milik `upkit`.
+
+Konsekuensi: tampilan, pencarian ketik, navigasi keyboard, dan aksesibilitas
+combobox tetap persis sama, dan `upkit` tetap bisa dihapus seluruhnya. Yang masih
+tersisa hanyalah satu library fungsional (`react-select`), bukan UI kit.
 

@@ -19,6 +19,7 @@ export { default as LayoutSidebar } from './LayoutSidebar';
 export { default as Pagination } from './Pagination';
 export { default as Pill } from './Pill';
 export { default as Responsive } from './Responsive';
+export { default as Select } from './Select';
 export { default as SideNav } from './SideNav';
 export { default as Steps } from './Steps';
 export { default as Table } from './Table';
