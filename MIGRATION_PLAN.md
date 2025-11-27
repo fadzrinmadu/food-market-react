@@ -167,7 +167,7 @@ kompleks. Setiap baris = satu commit.
 | 16 | `CardItem` | `InputNumber` | ✅ Selesai |
 | 17 | `CardProduct` | `Card`, `Text` | ✅ Selesai |
 | 18 | `Pagination` | — | ✅ Selesai |
-| 19 | `Table` | `Pagination` | ⬜ Belum |
+| 19 | `Table` | `Pagination` | ✅ Selesai |
 | 20 | `Select` | — | 🟥 **DITAHAN — butuh keputusan** |
 | 21 | Pembersihan `upkit` | seluruhnya | ⬜ Belum |
 
@@ -346,6 +346,34 @@ menghasilkan commit yang tidak bisa berdiri sendiri.
   `role="navigation"` + `aria-label="Paginasi"`.
 - Tombol "First" tetap memanggil `onChange(1)` walau sedang di halaman pertama —
   sama seperti `upkit`, tidak diubah.
+
+### `Table`
+
+- `react-table` tidak lagi dipakai; render tabel dibuat langsung dengan elemen
+  `<table>/<thead>/<tbody>/<tfoot>` standar. Detail react-table yang **ditiru
+  persis** karena tampilan bergantung padanya:
+  - resolusi id kolom: `id` → `accessor` (jika string) → `Header` (jika string);
+  - lebar kolom bawaan `150` yang dipasang sebagai `style="width: 150px"` di
+    setiap `<td>`, dan `width: 5` untuk kolom radio;
+  - daftar class yang sama, termasuk `p-4 ... p-2` yang saling menimpa.
+- Atribut `role="table"/"row"/"cell"` yang ditambahkan react-table tidak dibawa.
+  Atribut itu hanya mengulang semantik bawaan elemen tabel HTML, jadi tidak ada
+  yang hilang.
+- `style={{ textAlign: "center !important" }}` pada header kolom radio tidak
+  dibawa: nilai itu ditolak CSSOM sehingga selama ini tidak berefek apa pun.
+- Accessor berupa string hanya mendukung nama field datar (bukan jalur bertitik
+  seperti `a.b`). Seluruh kolom di project ini memakai field datar.
+- Radio pemilih baris kini punya `aria-label` dan benar-benar memanggil
+  `onSelectRow` lewat `onChange`, sehingga baris bisa dipilih dengan keyboard.
+  Sebelumnya radio hanya hiasan (`onClick`/`onChange` di-`preventDefault`) dan
+  pemilihan hanya bisa lewat klik baris. Klik baris tetap berfungsi seperti dulu.
+- Pemanggilan di `src/pages/Checkout/index.js` diubah dari `primaryKey={"_id"}`
+  menjadi `primaryField="_id"`. Prop `primaryKey` tidak pernah dikenali `upkit`;
+  nilainya jatuh ke default `"_id"` — kebetulan sama — jadi perilakunya tidak
+  berubah, hanya prop mati yang dihilangkan.
+- `onPageChange` diberi default fungsi kosong agar tombol paginasi tidak
+  melempar error bila tabel dirender tanpa handler. Semua pemakaian di project
+  ini sudah mengirimkannya.
 
 ## 9. Komponen yang Ditahan
 

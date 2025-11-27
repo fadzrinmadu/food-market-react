@@ -1,6 +1,5 @@
 import * as React from 'react'; 
-import { Table } from 'upkit';
-import { Button, LayoutOne, Text } from '../../components/ui';
+import { Button, LayoutOne, Table, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';

@@ -1,6 +1,5 @@
 import * as React from 'react'; 
-import { Table } from 'upkit';
-import { Button, LayoutOne, Responsive, Steps, Text } from '../../components/ui';
+import { Button, LayoutOne, Responsive, Steps, Table, Text } from '../../components/ui';
 import { useSelector, useDispatch } from 'react-redux';
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 import FaAddressCard from '@meronex/icons/fa/FaAddressCard';
@@ -164,7 +163,7 @@ export default function Checkout() {
         totalItems={count}
         isLoading={status === 'process'}
         selectable
-        primaryKey={'_id'}
+        primaryField="_id"
         selectedRow={selectedAddress}
         onSelectRow={ item => setSelectedAddress(item)}
         />

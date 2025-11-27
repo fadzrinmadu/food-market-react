@@ -1,7 +1,6 @@
 import * as React from 'react'; 
 import { useRouteMatch } from 'react-router-dom';
-import { Table } from 'upkit';
-import { Button, LayoutOne, Text } from '../../components/ui';
+import { Button, LayoutOne, Table, Text } from '../../components/ui';
 import BounceLoader from 'react-spinners/BounceLoader';
 
 import TopBar from '../../components/TopBar';
