@@ -1,6 +1,5 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import 'upkit/dist/style.min.css';
 import Home from './pages/Home';
 import { listen } from './app/listener';
 import { Provider } from 'react-redux';

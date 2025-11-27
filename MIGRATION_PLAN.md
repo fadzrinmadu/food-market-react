@@ -169,7 +169,7 @@ kompleks. Setiap baris = satu commit.
 | 18 | `Pagination` | — | ✅ Selesai |
 | 19 | `Table` | `Pagination` | ✅ Selesai |
 | 20 | `Select` | — | ✅ Selesai (keputusan: bungkus `react-select`) |
-| 21 | Pembersihan `upkit` | seluruhnya | ⬜ Belum |
+| 21 | Pembersihan `upkit` | seluruhnya | ✅ Selesai |
 
 `InputText` & `InputPassword` digabung dalam satu commit karena `InputPassword`
 pada `upkit` hanyalah `InputText` dengan `type="password"` — memisahkannya akan
@@ -419,3 +419,47 @@ Konsekuensi: tampilan, pencarian ketik, navigasi keyboard, dan aksesibilitas
 combobox tetap persis sama, dan `upkit` tetap bisa dihapus seluruhnya. Yang masih
 tersisa hanyalah satu library fungsional (`react-select`), bukan UI kit.
 
+
+## 10. Hasil Siklus 1 (`upkit`)
+
+Status: **selesai**. `upkit` sudah tidak ada lagi di codebase maupun di
+`package.json`/`package-lock.json`.
+
+### Yang dihapus
+
+- Dependensi `upkit@^0.17.10` (via `npm uninstall upkit`).
+- Dependensi transitifnya yang ikut hilang: `react-table` (tidak lagi dipakai
+  sama sekali).
+- Import CSS global `import 'upkit/dist/style.min.css'` di `src/App.js`.
+
+### Yang ditambahkan
+
+- Dependensi langsung `react-select@3.1.0` — versi yang sama persis dengan yang
+  selama ini ditarik `upkit`, sesuai keputusan pemilik project (lihat bagian 9).
+
+### Pengecekan akhir
+
+| Pengecekan | Hasil |
+| --- | --- |
+| `react-scripts test` (seluruh suite) | 100 test lolos; **1 gagal**, yaitu `src/App.test.js` bawaan CRA yang sudah gagal sebelum migrasi (lihat R9). Test itu tetap merender `<App/>` sampai selesai tanpa error, jadi sekaligus jadi uji asap bahwa seluruh halaman merender dengan komponen internal. |
+| `npm run build` (dengan `CI=true`, jadi peringatan lint dianggap error) | Berhasil, tanpa peringatan. |
+| Type check | Tidak berlaku (project JavaScript). |
+| Class Tailwind | Seluruh class yang dipakai komponen internal sudah diverifikasi ada di `src/styles/tailwind.css`, jadi file itu tidak perlu diregenerasi. |
+
+### Dampak ukuran bundle (gzip)
+
+| Berkas | Sebelum | Sesudah |
+| --- | --- | --- |
+| `static/js/2.*.chunk.js` (vendor) | 131,52 KB | 98,43 KB |
+| `static/js/main.*.chunk.js` | 8,85 KB | 12,99 KB |
+| `static/css/2.*.chunk.css` (CSS `upkit`) | 6,76 KB | — (hilang) |
+| **Total** | **147,13 KB** | **111,42 KB** |
+
+### Siklus berikutnya (belum dikerjakan)
+
+- **Siklus 2 — `react-spinners`**: `BounceLoader` dipakai di `src/pages/Home`,
+  `src/pages/Invoice`, `src/pages/Logout`, dan `src/components/ui/Table`.
+- **Siklus 3 — `@meronex/icons`**: 11 ikon Font Awesome dipakai di
+  `src/components/Cart`, `src/components/TopBar`, `src/pages/Checkout`,
+  `src/pages/UserAccount`, `src/pages/UserOrders`, serta di komponen internal
+  `FormControl`, `Pagination`, dan `CardProduct`.
