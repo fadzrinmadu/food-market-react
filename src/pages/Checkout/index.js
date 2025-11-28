@@ -17,25 +17,20 @@ import { getImageUrl } from '../../utils/getImageUrl';
 import { useAddressData } from '../../hooks/address';
 import { clearItems } from '../../features/Cart/actions';
 import { createOrder } from '../../api/order';
-
-const IconWrapper = ({children}) => {
-  return <div className="text-3xl flex justify-center">
-    {children}
-  </div>
-}
+import IconWrapper from '../../components/IconWrapper';
 
 const steps = [
   {
-    label: 'Item', 
-    icon: <IconWrapper><FaCartPlus/></IconWrapper> 
+    label: 'Item',
+    icon: <IconWrapper className="text-3xl flex justify-center"><FaCartPlus/></IconWrapper>
   },
   {
-    label: 'Alamat', 
-    icon: <IconWrapper><FaAddressCard/></IconWrapper> 
-  }, 
+    label: 'Alamat',
+    icon: <IconWrapper className="text-3xl flex justify-center"><FaAddressCard/></IconWrapper>
+  },
   {
-    label: 'Konfirmasi', 
-    icon: <IconWrapper><FaInfoCircle/></IconWrapper> 
+    label: 'Konfirmasi',
+    icon: <IconWrapper className="text-3xl flex justify-center"><FaInfoCircle/></IconWrapper>
   }
 ];
 

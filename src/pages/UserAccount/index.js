@@ -7,18 +7,13 @@ import { Card, LayoutOne, Responsive, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
-
-const IconWrapper = ({children}) => {
-  return <div className="text-white text-5xl flex justify-center mb-5">
-    {children}
-  </div>
-}
+import IconWrapper from '../../components/IconWrapper';
 
 const menus = [
-  {label: 'Beranda', icon: <IconWrapper><FaHome/></IconWrapper>, url: '/'},
-  {label: 'Alamat', icon: <IconWrapper><FaAddressBook/></IconWrapper>, url: '/alamat-pengiriman'}, 
-  {label: 'Pesanan', icon: <IconWrapper><FaFileInvoice/></IconWrapper>, url: '/pesanan'}, 
-  {label: 'Logout', icon: <IconWrapper><FaArrowRight/></IconWrapper>, url: '/logout'}
+  {label: 'Beranda', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaHome/></IconWrapper>, url: '/'},
+  {label: 'Alamat', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaAddressBook/></IconWrapper>, url: '/alamat-pengiriman'},
+  {label: 'Pesanan', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaFileInvoice/></IconWrapper>, url: '/pesanan'},
+  {label: 'Logout', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaArrowRight/></IconWrapper>, url: '/logout'}
 ];
 
 export default function UserAccount() {
