@@ -5,7 +5,7 @@ import BounceLoader from 'react-spinners/BounceLoader';
 
 import TopBar from '../../components/TopBar';
 import { getInvoiceByOrderId } from '../../api/invoice';
-import { formatRupiah } from '../../utils/format-rupiah';
+import { formatRupiah } from '../../utils/formatRupiah';
 import StatusLabel from '../../components/StatusLabel';
 import { config } from '../../config';
 import Axios from 'axios';

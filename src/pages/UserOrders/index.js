@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
 import StatusLabel from '../../components/StatusLabel';
-import { formatRupiah } from '../../utils/format-rupiah';
-import { sumPrice } from '../../utils/sum-price';
+import { formatRupiah } from '../../utils/formatRupiah';
+import { sumPrice } from '../../utils/sumPrice';
 import FaFileInvoiceDollar from '@meronex/icons/fa/FaFileInvoiceDollar';
 import {getOrders} from '../../api/order';
 

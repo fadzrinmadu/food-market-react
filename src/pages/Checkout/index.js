@@ -11,8 +11,8 @@ import { Link, useHistory, Redirect } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
 import { config } from '../../config';
-import { formatRupiah } from '../../utils/format-rupiah';
-import { sumPrice } from '../../utils/sum-price';
+import { formatRupiah } from '../../utils/formatRupiah';
+import { sumPrice } from '../../utils/sumPrice';
 import { useAddressData } from '../../hooks/address';
 import { clearItems } from '../../features/Cart/actions';
 import { createOrder } from '../../api/order';

@@ -5,8 +5,8 @@ import FaArrowRight from '@meronex/icons/fa/FaArrowRight'
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 
 import { config } from '../../config';
-import { sumPrice } from '../../utils/sum-price';
-import { formatRupiah } from '../../utils/format-rupiah';
+import { sumPrice } from '../../utils/sumPrice';
+import { formatRupiah } from '../../utils/formatRupiah';
 
 export default function Cart({ items, onItemInc, onItemDec, onCheckout }) {
 	let total = sumPrice(items);
