@@ -13,6 +13,7 @@ import TopBar from '../../components/TopBar';
 import { config } from '../../config';
 import { formatRupiah } from '../../utils/formatRupiah';
 import { sumPrice } from '../../utils/sumPrice';
+import { getImageUrl } from '../../utils/getImageUrl';
 import { useAddressData } from '../../hooks/address';
 import { clearItems } from '../../features/Cart/actions';
 import { createOrder } from '../../api/order';
@@ -42,7 +43,7 @@ const columns = [
   { 
     Header: 'Nama produk', 
     accessor: item => <div className="flex items-center">
-      <img src={`${config.api_host}/upload/${item.image_url}`} width={48} alt={item.name}/>
+      <img src={getImageUrl(item.image_url)} width={48} alt={item.name}/>
       {item.name}
     </div>
   },
