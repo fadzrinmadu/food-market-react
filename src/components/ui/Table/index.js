@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { any, arrayOf, bool, func, number, oneOfType, shape, string } from 'prop-types';
-import BounceLoader from 'react-spinners/BounceLoader';
 
 import Pagination from '../Pagination';
+import Skeleton from '../Skeleton';
 import { classNames } from '../utils/class-names';
 
 /** Lebar kolom bawaan; nilainya mengikuti `defaultColumn.width` react-table. */
@@ -79,15 +79,6 @@ export default function Table({
 
   return (
     <div className="relative">
-      {isLoading ? (
-        <div className="absolute h-full w-full">
-          <div className="absolute h-full w-full bg-white opacity-75" />
-          <div className="flex items-center justify-center text-center w-full h-full">
-            <BounceLoader color="lightgrey" />
-          </div>
-        </div>
-      ) : null}
-
       <table className={tableClasses}>
         <thead>
           <tr className="bg-red-600 text-white">
@@ -108,19 +99,33 @@ export default function Table({
         </thead>
 
         <tbody>
-          {items.map((item, rowIndex) => (
-            <tr key={rowIndex} className={trClasses} onClick={() => handleRowClick(item)}>
-              {builtColumns.map((column, columnIndex) => (
-                <td
-                  key={resolveColumnId(column, columnIndex)}
-                  className={cellClasses}
-                  style={{ width: column.width || DEFAULT_COLUMN_WIDTH }}
-                >
-                  {resolveCellValue(column, item, rowIndex)}
-                </td>
+          {isLoading
+            ? Array.from({ length: perPage }).map((_, rowIndex) => (
+                <tr key={rowIndex} className={trClasses}>
+                  {builtColumns.map((column, columnIndex) => (
+                    <td
+                      key={resolveColumnId(column, columnIndex)}
+                      className={cellClasses}
+                      style={{ width: column.width || DEFAULT_COLUMN_WIDTH }}
+                    >
+                      <Skeleton height="1rem" />
+                    </td>
+                  ))}
+                </tr>
+              ))
+            : items.map((item, rowIndex) => (
+                <tr key={rowIndex} className={trClasses} onClick={() => handleRowClick(item)}>
+                  {builtColumns.map((column, columnIndex) => (
+                    <td
+                      key={resolveColumnId(column, columnIndex)}
+                      className={cellClasses}
+                      style={{ width: column.width || DEFAULT_COLUMN_WIDTH }}
+                    >
+                      {resolveCellValue(column, item, rowIndex)}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
         </tbody>
 
         {showPagination ? (
