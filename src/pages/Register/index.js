@@ -6,17 +6,11 @@ import { useHistory, Link } from 'react-router-dom';
 import StoreLogo from '../../components/StoreLogo';
 import { rules } from './validation';
 import { registerUser } from '../../api/auth';
-
-const statuslist = {
-  idle: 'idle', 
-  process: 'process', 
-  success: 'success', 
-  error: 'error',
-}
+import { asyncStatus } from '../../constants/asyncStatus';
 
 export default function Register() {
   let { register, handleSubmit, errors, setError } = useForm();
-	let [ status, setStatus ] = React.useState(statuslist.idle);
+	let [ status, setStatus ] = React.useState(asyncStatus.idle);
 	let history = useHistory();
 
   const onSubmit = async formData => {
@@ -25,7 +19,7 @@ export default function Register() {
       return setError('password_confirmation', { type: 'equality', message: 'Konfirmasi password harus sama dengan password'});
 		}
 
-		setStatus(statuslist.process);
+		setStatus(asyncStatus.process);
 
 		let { data } = await registerUser(formData);
 
@@ -36,10 +30,10 @@ export default function Register() {
         setError(field, {type: 'server', message: data.fields[field]?.properties?.message});
       });
 
-      setStatus(statuslist.error)
+      setStatus(asyncStatus.error)
 		}
 
-		setStatus(statuslist.success)
+		setStatus(asyncStatus.success)
 		history.push('/register/berhasil');
   }
 
@@ -89,8 +83,8 @@ export default function Register() {
           <Button
             size="large" 
             fitContainer
-            disabled={status === statuslist.process}
-          > {status === statuslist.process ? "Sedang memproses" : "Mendaftar"} </Button>
+            disabled={status === asyncStatus.process}
+          > {status === asyncStatus.process ? "Sedang memproses" : "Mendaftar"} </Button>
         </form>
         <div className="text-center mt-2">
           Sudah punya akun? <Link to="/login"> <b> Masuk Sekarang. </b> </Link>

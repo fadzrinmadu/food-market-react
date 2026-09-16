@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
 import menus from './menus';
-import { config } from '../../config';
+import { getImageUrl } from '../../utils/getImageUrl';
 import {
   fetchProducts, 
   setPage, 
@@ -82,7 +82,7 @@ export default function Home() {
                   return <div key={index} className="p-2">
                     <CardProduct
                       title={product.name}
-                      imgUrl={`${config.api_host}/upload/${product.image_url}`}
+                      imgUrl={getImageUrl(product.image_url)}
                       price={product.price}
                       onAddToCart={_ => dispatch(addItem(product))}
                     />

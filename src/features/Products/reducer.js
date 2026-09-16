@@ -10,13 +10,7 @@ import {
   PREV_PAGE,
   TOGGLE_TAG
 } from './constants';
-
-const statuslist = {
-  idle: 'idle',
-  process: 'process',
-  success: 'success', 
-  error: 'error',
-}
+import { asyncStatus } from '../../constants/asyncStatus';
 
 const initialState = {
   data: [],
@@ -26,19 +20,19 @@ const initialState = {
   keyword: '',
   category: '',
   tags: [],
-  status: statuslist.idle
+  status: asyncStatus.idle
 };
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case START_FETCHING_PRODUCT:
-      return {...state, status: statuslist.process, data: []}
+      return {...state, status: asyncStatus.process, data: []}
 
     case SUCCESS_FETCHING_PRODUCT:
-      return {...state, data: action.data, totalItems: action.count, status: statuslist.success}
+      return {...state, data: action.data, totalItems: action.count, status: asyncStatus.success}
 
     case ERROR_FETCHING_PRODUCT:
-      return {...state, status: statuslist.error}
+      return {...state, status: asyncStatus.error}
 
     case SET_PAGE:
       return {...state, currentPage: action.currentPage}
