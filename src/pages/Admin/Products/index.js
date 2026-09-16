@@ -59,7 +59,7 @@ export default function AdminProducts() {
               <Button size="small" color="blue">Ubah</Button>
             </Link>
           </div>
-          <Button size="small" color="red" onClick={() => handleDelete(product)}>
+          <Button size="small" color="red" variant="outline" onClick={() => handleDelete(product)}>
             Hapus
           </Button>
         </div>

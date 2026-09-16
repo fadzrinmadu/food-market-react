@@ -54,7 +54,7 @@ export default function UserAddress() {
             </Button>
           </div>
         ) : null}
-        <Button size="small" color="red" onClick={() => handleDelete(alamat)}>
+        <Button size="small" color="red" variant="outline" onClick={() => handleDelete(alamat)}>
           Hapus
         </Button>
       </div>
