@@ -4,14 +4,10 @@ import FaArrowLeft from '@meronex/icons/fa/FaArrowLeft';
 
 import { ButtonCircle } from '../ui';
 
-export default function BackButton({ to }) {
+export default function BackButton({ to = '/' }) {
   return (
     <Link to={to}>
       <ButtonCircle icon={<FaArrowLeft />} aria-label="Kembali" />
     </Link>
   );
 }
-
-BackButton.defaultProps = {
-  to: '/',
-};

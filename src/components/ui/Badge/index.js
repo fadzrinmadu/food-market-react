@@ -4,7 +4,7 @@ import { node, oneOf } from 'prop-types';
 import { classNames } from '../utils/class-names';
 import { colors, getBgColor, getTextColor } from '../utils/colors';
 
-export default function Badge({ color, children }) {
+export default function Badge({ color = 'red', children }) {
   const badgeClasses = classNames(
     getBgColor(color, 200),
     getTextColor(color, 900),
@@ -18,10 +18,6 @@ export default function Badge({ color, children }) {
 
   return <div className={badgeClasses}>{children}</div>;
 }
-
-Badge.defaultProps = {
-  color: 'red',
-};
 
 Badge.propTypes = {
   /** warna badge, mengikuti palet Tailwind project */

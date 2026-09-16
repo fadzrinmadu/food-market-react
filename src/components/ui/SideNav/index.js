@@ -12,7 +12,7 @@ const verticalAlignClasses = {
 
 const baseItemClasses = 'text-center my-2 text-sm text-white cursor-pointer';
 
-export default function SideNav({ items, active, color, verticalAlign, onChange }) {
+export default function SideNav({ items = [], active, color, verticalAlign = 'middle', onChange }) {
   const navClasses = classNames(
     getBgColor(color),
     'h-full',
@@ -65,11 +65,6 @@ export default function SideNav({ items, active, color, verticalAlign, onChange 
     </nav>
   );
 }
-
-SideNav.defaultProps = {
-  items: [],
-  verticalAlign: 'middle',
-};
 
 SideNav.propTypes = {
   /** daftar menu yang ingin ditampilkan */

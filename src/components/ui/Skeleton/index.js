@@ -3,7 +3,7 @@ import { number, oneOfType, string } from 'prop-types';
 
 import { classNames } from '../utils/class-names';
 
-export default function Skeleton({ width, height, rounded, className }) {
+export default function Skeleton({ width = '100%', height = '1rem', rounded = 'rounded', className }) {
   const skeletonClasses = classNames(
     'bg-gray-300 animate-pulse',
     rounded,
@@ -17,12 +17,6 @@ export default function Skeleton({ width, height, rounded, className }) {
     />
   );
 }
-
-Skeleton.defaultProps = {
-  width: '100%',
-  height: '1rem',
-  rounded: 'rounded',
-};
 
 Skeleton.propTypes = {
   /** lebar skeleton, contoh: '100%', '3rem', 120 */

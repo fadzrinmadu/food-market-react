@@ -4,7 +4,7 @@ import { func, node, oneOf } from 'prop-types';
 import { classNames } from '../utils/class-names';
 import { colors, getBgColor } from '../utils/colors';
 
-export default function Card({ header, body, footer, color, onClick, children }) {
+export default function Card({ header, body, footer, color = 'red', onClick, children }) {
   const cardClasses = classNames(
     getBgColor(color),
     onClick && 'cursor-pointer',
@@ -39,10 +39,6 @@ export default function Card({ header, body, footer, color, onClick, children })
     </div>
   );
 }
-
-Card.defaultProps = {
-  color: 'red',
-};
 
 Card.propTypes = {
   /** bagian atas kartu */

@@ -17,8 +17,8 @@ const rules = {
   },
 };
 
-export default function ProductForm({ defaultValues, submitLabel, onSubmit }) {
-  let { handleSubmit, register, errors } = useForm({
+export default function ProductForm({ defaultValues, submitLabel = 'Simpan', onSubmit }) {
+  let { handleSubmit, register, formState: { errors } } = useForm({
     defaultValues: {
       name: defaultValues?.name || '',
       description: defaultValues?.description || '',
@@ -68,16 +68,14 @@ export default function ProductForm({ defaultValues, submitLabel, onSubmit }) {
       <FormControl label="Nama produk" errorMessage={errors.name?.message} color="black">
         <InputText
           fitContainer
-          name="name"
-          ref={register(rules.name)}
+          {...register('name', rules.name)}
         />
       </FormControl>
 
       <FormControl label="Deskripsi" errorMessage={errors.description?.message} color="black">
         <Textarea
           fitContainer
-          name="description"
-          ref={register}
+          {...register('description')}
         />
       </FormControl>
 
@@ -85,8 +83,7 @@ export default function ProductForm({ defaultValues, submitLabel, onSubmit }) {
         <InputText
           type="number"
           fitContainer
-          name="price"
-          ref={register(rules.price)}
+          {...register('price', rules.price)}
         />
       </FormControl>
 
@@ -130,7 +127,3 @@ export default function ProductForm({ defaultValues, submitLabel, onSubmit }) {
     </form>
   );
 }
-
-ProductForm.defaultProps = {
-  submitLabel: 'Simpan',
-};

@@ -13,7 +13,7 @@ import { rules } from '../UserAddressAdd/validation';
 export default function UserAddressEdit() {
   let { id } = useParams();
   let history = useHistory();
-  let { handleSubmit, register, errors, setValue } = useForm();
+  let { handleSubmit, register, formState: { errors }, setValue } = useForm();
   let [status, setStatus] = React.useState(asyncStatus.idle);
   let [alamat, setAlamat] = React.useState(null);
   let [location, setLocation] = React.useState(null);
@@ -102,8 +102,7 @@ export default function UserAddressEdit() {
           <InputText
             placeholder="Nama alamat"
             fitContainer
-            name="nama_alamat"
-            ref={register(rules.nama_alamat)}
+            {...register('nama_alamat', rules.nama_alamat)}
           />
         </FormControl>
 
@@ -116,8 +115,7 @@ export default function UserAddressEdit() {
         <FormControl label="Detail alamat" errorMessage={errors.detail_alamat?.message} color="black">
           <Textarea
             fitContainer
-            name="detail_alamat"
-            ref={register(rules.detail_alamat)}
+            {...register('detail_alamat', rules.detail_alamat)}
           />
         </FormControl>
 

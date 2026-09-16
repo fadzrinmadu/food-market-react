@@ -4,7 +4,7 @@ import { func, oneOfType, number, string } from 'prop-types';
 import InputText from '../InputText';
 
 const InputPassword = React.forwardRef(function InputPassword(
-  { value, onChange, placeholder, ...props },
+  { value, onChange = () => null, placeholder, ...props },
   ref
 ) {
   return (
@@ -18,10 +18,6 @@ const InputPassword = React.forwardRef(function InputPassword(
     />
   );
 });
-
-InputPassword.defaultProps = {
-  onChange: () => null,
-};
 
 InputPassword.propTypes = {
   value: oneOfType([string, number]),

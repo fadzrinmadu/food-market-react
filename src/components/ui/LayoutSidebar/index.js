@@ -6,10 +6,10 @@ import { classNames } from '../utils/class-names';
 export default function LayoutSidebar({
   sidebar,
   content,
-  sidebarSize,
-  sidebarPosition,
-  contentOverflow,
-  hideSidebarOnMobile,
+  sidebarSize = 300,
+  sidebarPosition = 'left',
+  contentOverflow = 'hidden',
+  hideSidebarOnMobile = false,
 }) {
   const baseClasses = classNames(
     'flex',
@@ -29,13 +29,6 @@ export default function LayoutSidebar({
     </div>
   );
 }
-
-LayoutSidebar.defaultProps = {
-  sidebarSize: 300,
-  sidebarPosition: 'left',
-  contentOverflow: 'hidden',
-  hideSidebarOnMobile: false,
-};
 
 LayoutSidebar.propTypes = {
   /** konten sidebar */

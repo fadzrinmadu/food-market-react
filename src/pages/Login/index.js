@@ -11,7 +11,7 @@ import { login } from '../../api/auth';
 import { asyncStatus } from '../../constants/asyncStatus';
 
 export default function Login() {
-  const { register, handleSubmit, errors, setError } = useForm(); 
+  const { register, handleSubmit, formState: { errors }, setError } = useForm();
   const [status, setStatus] = React.useState(asyncStatus.idle);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -46,17 +46,15 @@ export default function Login() {
             <InputText
               placeholder="email"
               fitContainer
-              name="email"
-              ref={register(rules.email)}
+              {...register('email', rules.email)}
             />
           </FormControl>
 
           <FormControl label="Password" errorMessage={errors.password?.message}>
             <InputPassword
               placeholder="password"
-              name="password"
               fitContainer
-              ref={register(rules.password)}
+              {...register('password', rules.password)}
             />
           </FormControl>
 

@@ -5,7 +5,7 @@ import { classNames } from '../utils/class-names';
 import { focusRingClasses } from '../utils/a11y';
 
 const Textarea = React.forwardRef(function Textarea(
-  { value, onChange, placeholder, fullRound, fitContainer, rows, ...props },
+  { value, onChange = () => null, placeholder, fullRound, fitContainer, rows = 4, ...props },
   ref
 ) {
   const textareaClasses = classNames(
@@ -29,11 +29,6 @@ const Textarea = React.forwardRef(function Textarea(
     />
   );
 });
-
-Textarea.defaultProps = {
-  onChange: () => null,
-  rows: 4,
-};
 
 Textarea.propTypes = {
   placeholder: string,

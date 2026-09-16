@@ -4,7 +4,7 @@ import { oneOf, number, oneOfType, string, func, shape } from 'prop-types';
 import { Select } from '../ui';
 import { config } from '../../config';
 
-export default function SelectWilayah({ tingkat, kodeInduk, onChange, value }) { 
+export default function SelectWilayah({ tingkat = 'provinsi', kodeInduk, onChange, value }) {
   let [ data, setData ] = React.useState([]);
   let [ isFetching, setIsFetching ] = React.useState(false);
 
@@ -27,10 +27,6 @@ export default function SelectWilayah({ tingkat, kodeInduk, onChange, value }) {
     isLoading={isFetching}
     isDisabled={isFetching || !data.length}
   />
-}
-
-SelectWilayah.defaultProps = {
-  tingkat: 'provinsi'
 }
 
 SelectWilayah.propTypes = {

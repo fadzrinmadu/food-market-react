@@ -22,7 +22,7 @@ function toRupiah(number) {
   }).format(number);
 }
 
-export default function CardProduct({ title, imgUrl, price, color, onAddToCart }) {
+export default function CardProduct({ title, imgUrl, price, color, onAddToCart = () => null }) {
   const addToCartClasses = classNames(
     'px-2 py-2 ml-2 inline-block self-end rounded',
     getTextColor(color),
@@ -76,10 +76,6 @@ export default function CardProduct({ title, imgUrl, price, color, onAddToCart }
     />
   );
 }
-
-CardProduct.defaultProps = {
-  onAddToCart: () => null,
-};
 
 CardProduct.propTypes = {
   /** nama produk */
