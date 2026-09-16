@@ -35,7 +35,7 @@ export default function Login() {
 
   return (
     <LayoutOne size="small">
-      <br/>
+      <div className="mt-6" />
       <Card color="white">
         <div className="text-center mb-5">
           <StoreLogo/>

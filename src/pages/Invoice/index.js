@@ -42,7 +42,7 @@ export default function Invoice() {
     return (
       <LayoutOne>
         <TopBar/>
-        <Text as="h3"> Terjadi Kesalahan </Text>
+        <Text as="h3" className="mb-6"> Terjadi Kesalahan </Text>
         <ErrorState message={error} onRetry={fetchInvoice} />
       </LayoutOne>
     )
@@ -76,8 +76,7 @@ export default function Invoice() {
   return (
 		<LayoutOne>
       <TopBar/>
-      <Text as="h3"> Invoice </Text>
-      <br/>
+      <Text as="h3" className="mb-6"> Invoice </Text>
 
       <Table
         showPagination={false}

@@ -31,8 +31,7 @@ export default function UserAccount() {
   return (
     <LayoutOne>
       <TopBar/>
-      <Text as="h3"> Akun Anda </Text>
-      <br/>
+      <Text as="h3" className="mb-6"> Akun Anda </Text>
       <Responsive desktop={4} tablet={4} mobile={2}>
         {items.map((menu, index) => {
           return <div key={index} className="px-2 pb-2">

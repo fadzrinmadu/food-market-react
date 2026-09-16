@@ -55,7 +55,6 @@ export default function CardProduct({ title, imgUrl, price, color, onAddToCart }
             <Text as="h5" color="white">
               {title}
             </Text>
-            <Text as="small" color="white" />
           </div>
           <div className="flex items-center">
             <Text as="h6" color="white">

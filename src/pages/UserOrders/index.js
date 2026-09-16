@@ -93,13 +93,12 @@ export default function UserOrders() {
 	return (
     <LayoutOne>
       <TopBar/>
-      <div className="flex items-center">
+      <div className="flex items-center mb-6">
         <BackButton to="/" />
         <div className="ml-3">
           <Text as="h3">Pesanan Anda</Text>
         </div>
       </div>
-      <br />
 
       <div className="flex items-center mb-5">
         <div className="mr-2">

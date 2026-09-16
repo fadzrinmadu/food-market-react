@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { LayoutOne, Text } from '../../../components/ui';
+import { ErrorState, LayoutOne, Skeleton, Text } from '../../../components/ui';
 
 import TopBar from '../../../components/TopBar';
 import BackButton from '../../../components/BackButton';
@@ -14,20 +14,22 @@ export default function AdminProductEdit() {
   let [status, setStatus] = React.useState(asyncStatus.idle);
   let [product, setProduct] = React.useState(null);
 
-  React.useEffect(() => {
-    (async () => {
-      setStatus(asyncStatus.process);
-      let { data } = await getProductById(id);
+  const fetchProduct = React.useCallback(async () => {
+    setStatus(asyncStatus.process);
+    let { data } = await getProductById(id);
 
-      if (data.error || !data.data) {
-        setStatus(asyncStatus.error);
-        return;
-      }
+    if (data.error || !data.data) {
+      setStatus(asyncStatus.error);
+      return;
+    }
 
-      setProduct(data.data);
-      setStatus(asyncStatus.success);
-    })();
+    setProduct(data.data);
+    setStatus(asyncStatus.success);
   }, [id]);
+
+  React.useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
 
   const handleSubmit = async payload => {
     let { data } = await updateProduct(id, payload);
@@ -35,22 +37,42 @@ export default function AdminProductEdit() {
     history.push('/admin/products');
   };
 
+  const header = (
+    <div className="flex items-center mb-6">
+      <BackButton to="/admin/products" />
+      <div className="ml-3">
+        <Text as="h3">Ubah produk</Text>
+      </div>
+    </div>
+  );
+
+  if (status === asyncStatus.error) {
+    return (
+      <LayoutOne>
+        <TopBar/>
+        {header}
+        <ErrorState message="Gagal memuat data produk." onRetry={fetchProduct} />
+      </LayoutOne>
+    );
+  }
+
+  if (status !== asyncStatus.success || !product) {
+    return (
+      <LayoutOne>
+        <TopBar/>
+        {header}
+        <Skeleton height="2.5rem" className="mb-6" />
+        <Skeleton height="6rem" className="mb-6" />
+        <Skeleton height="2.5rem" width="12rem" />
+      </LayoutOne>
+    );
+  }
+
   return (
     <LayoutOne>
       <TopBar/>
-      <div className="flex items-center">
-        <BackButton to="/admin/products" />
-        <div className="ml-3">
-          <Text as="h3">Ubah produk</Text>
-        </div>
-      </div>
-      <br />
-
-      {status === asyncStatus.success && product ? (
-        <ProductForm defaultValues={product} onSubmit={handleSubmit} submitLabel="Simpan perubahan" />
-      ) : (
-        <Text as="body">Memuat data produk...</Text>
-      )}
+      {header}
+      <ProductForm defaultValues={product} onSubmit={handleSubmit} submitLabel="Simpan perubahan" />
     </LayoutOne>
   );
 }
