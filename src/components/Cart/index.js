@@ -1,16 +1,12 @@
 import * as React from 'react'; 
 import { arrayOf, string, shape, oneOfType, number, func } from 'prop-types';
-import {
-  CardItem, 
-	Button,
-	Text,
-} from 'upkit';
+import { Button, CardItem, Text } from '../ui';
 import FaArrowRight from '@meronex/icons/fa/FaArrowRight'
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 
-import { config } from '../../config';
-import { sumPrice } from '../../utils/sum-price';
-import { formatRupiah } from '../../utils/format-rupiah';
+import { sumPrice } from '../../utils/sumPrice';
+import { formatRupiah } from '../../utils/formatRupiah';
+import { getImageUrl } from '../../utils/getImageUrl';
 
 export default function Cart({ items, onItemInc, onItemDec, onCheckout }) {
 	let total = sumPrice(items);
@@ -41,7 +37,7 @@ export default function Cart({ items, onItemInc, onItemDec, onCheckout }) {
 				{items.map((item, index) => {
 					return <div key={index} className="mb-2">
 						<CardItem 
-							imgUrl={`${config.api_host}/upload/${item.image_url}`}
+							imgUrl={getImageUrl(item.image_url)}
 							name={item.name}
 							qty={item.qty}
 							color="orange"

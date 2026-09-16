@@ -1,6 +1,6 @@
 import * as React from 'react'; 
 import { useHistory} from 'react-router-dom';
-import { LayoutOne } from 'upkit';
+import { LayoutOne } from '../../components/ui';
 import { useDispatch } from 'react-redux';
 import BounceLoader from 'react-spinners/BounceLoader';
 import { userLogout } from '../../features/Auth/actions';

@@ -1,30 +1,32 @@
-import "upkit/dist/style.min.css";
+import React from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import { listen } from './app/listener';
+import { Provider } from 'react-redux';
 
-import React, { useEffect } from "react";
-import { Provider } from "react-redux";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import GuestOnlyRoute from './components/GuestOnlyRoute';
+import GuardRoute from './components/GuardRoute';
+import AdminGuardRoute from './components/AdminGuardRoute';
+import Logout from './pages/Logout';
+import UserOrders from './pages/UserOrders';
+import UserAccount from './pages/UserAccount';
+import Invoice from './pages/Invoice';
+import Checkout from './pages/Checkout';
+import UserAddress from './pages/UserAddress';
+import UserAddressAdd from './pages/UserAddressAdd';
+import UserAddressEdit from './pages/UserAddressEdit';
+import Register from './pages/Register';
+import RegisterSuccess from './pages/RegisterSuccess';
+import Login from './pages/Login';
+import AdminProducts from './pages/Admin/Products';
+import AdminProductAdd from './pages/Admin/Products/Add';
+import AdminProductEdit from './pages/Admin/Products/Edit';
+import store from './app/store';
+import {getCart} from './api/cart';
 
-import { listen } from "./app/listener";
+function App() {
 
-import Checkout from "./pages/Checkout";
-import GuardRoute from "./components/GuardRoute";
-import GuestOnlyRoute from "./components/GuestOnlyRoute";
-import Home from "./pages/Home";
-import Invoice from "./pages/Invoice";
-import Login from "./pages/Login";
-import Logout from "./pages/Logout";
-import Product from "./pages/Product";
-import Register from "./pages/Register";
-import RegisterSuccess from "./pages/RegisterSuccess";
-import UserAccount from "./pages/UserAccount";
-import UserAddress from "./pages/UserAddress";
-import UserAddressAdd from "./pages/UserAddressAdd";
-import UserOrders from "./pages/UserOrders";
-import store from "./app/store";
-import { getCart } from "./api/cart";
-
-const App = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     listen();
     getCart();
   }, []);
@@ -35,9 +37,6 @@ const App = () => {
         <Switch>
           <GuardRoute path="/logout">
             <Logout/>
-          </GuardRoute>
-          <GuardRoute path="/product">
-            <Product/>
           </GuardRoute>
           <GuardRoute path="/pesanan">
             <UserOrders/>
@@ -54,9 +53,21 @@ const App = () => {
           <GuardRoute path="/alamat-pengiriman/tambah">
             <UserAddressAdd/>
           </GuardRoute>
+          <GuardRoute path="/alamat-pengiriman/:id/ubah">
+            <UserAddressEdit/>
+          </GuardRoute>
           <GuardRoute path="/alamat-pengiriman">
             <UserAddress/>
           </GuardRoute>
+          <AdminGuardRoute path="/admin/products/tambah">
+            <AdminProductAdd/>
+          </AdminGuardRoute>
+          <AdminGuardRoute path="/admin/products/:id/ubah">
+            <AdminProductEdit/>
+          </AdminGuardRoute>
+          <AdminGuardRoute path="/admin/products">
+            <AdminProducts/>
+          </AdminGuardRoute>
           <GuestOnlyRoute path="/register/berhasil">
             <RegisterSuccess/>
           </GuestOnlyRoute>

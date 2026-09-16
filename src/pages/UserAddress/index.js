@@ -1,34 +1,76 @@
-import * as React from 'react'; 
-import { LayoutOne, Text, Table, Button } from 'upkit';
+import * as React from 'react';
+import { Badge, Button, LayoutOne, Table, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
+import BackButton from '../../components/BackButton';
 import { useAddressData } from '../../hooks/address';
-
-const columns = [
-  {Header: 'Nama', accessor: 'nama'},   
-  {Header: 'Detail', accessor: alamat => {
-    return <div>
-      {alamat.provinsi}, {alamat.kabupaten}, {alamat.kecamatan}, {alamat.kelurahan} <br/>
-      {alamat.detail}
-    </div>
-  }}
-]
+import { deleteAddress, setPrimaryAddress } from '../../api/address';
 
 export default function UserAddress() {
-  let { 
-    data, 
-    limit, 
-    page, 
-    status, 
-    count, 
-    setPage
+  let {
+    data,
+    limit,
+    page,
+    status,
+    count,
+    setPage,
+    refetch,
   } = useAddressData();
+
+  const handleSetPrimary = async alamat => {
+    await setPrimaryAddress(alamat._id);
+    refetch();
+  };
+
+  const handleDelete = async alamat => {
+    if (!window.confirm(`Hapus alamat "${alamat.nama}"?`)) return;
+    await deleteAddress(alamat._id);
+    refetch();
+  };
+
+  const columns = [
+    {Header: 'Nama', accessor: alamat => {
+      return <div>
+        {alamat.nama} {alamat.isPrimary ? <Badge color="green">Utama</Badge> : null}
+      </div>
+    }},
+    {Header: 'Detail', accessor: alamat => {
+      return <div>
+        {alamat.provinsi}, {alamat.kabupaten}, {alamat.kecamatan}, {alamat.kelurahan} <br/>
+        {alamat.detail}
+      </div>
+    }},
+    {Header: 'Aksi', accessor: alamat => {
+      return <div className="flex">
+        <div className="mr-2">
+          <Link to={`/alamat-pengiriman/${alamat._id}/ubah`}>
+            <Button size="small" color="blue">Ubah</Button>
+          </Link>
+        </div>
+        {!alamat.isPrimary ? (
+          <div className="mr-2">
+            <Button size="small" color="green" onClick={() => handleSetPrimary(alamat)}>
+              Jadikan utama
+            </Button>
+          </div>
+        ) : null}
+        <Button size="small" color="red" onClick={() => handleDelete(alamat)}>
+          Hapus
+        </Button>
+      </div>
+    }},
+  ]
 
   return (
     <LayoutOne size="large">
       <div>
         <TopBar/>
-        <Text as="h3"> Alamat pengiriman </Text>
+        <div className="flex items-center">
+          <BackButton to="/" />
+          <div className="ml-3">
+            <Text as="h3"> Alamat pengiriman </Text>
+          </div>
+        </div>
         <br />
 
         <div>

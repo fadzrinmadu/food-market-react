@@ -1,11 +1,11 @@
 import * as React from 'react'; 
 import { useRouteMatch } from 'react-router-dom';
-import { LayoutOne, Text, Table, Button } from 'upkit';
+import { Button, LayoutOne, Table, Text } from '../../components/ui';
 import BounceLoader from 'react-spinners/BounceLoader';
 
 import TopBar from '../../components/TopBar';
 import { getInvoiceByOrderId } from '../../api/invoice';
-import { formatRupiah } from '../../utils/format-rupiah';
+import { formatRupiah } from '../../utils/formatRupiah';
 import StatusLabel from '../../components/StatusLabel';
 import { config } from '../../config';
 import Axios from 'axios';

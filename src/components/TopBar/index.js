@@ -1,6 +1,6 @@
 import * as React from 'react'; 
 import { useSelector } from 'react-redux';
-import { Responsive, ButtonCircle } from 'upkit';
+import { ButtonCircle, Responsive } from '../ui';
 import { Link } from 'react-router-dom';
 import FaUser from '@meronex/icons/fa/FaUser';
 import StoreLogo from '../StoreLogo';

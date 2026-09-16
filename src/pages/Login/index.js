@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import { InputText, InputPassword, Button, FormControl, Card, LayoutOne } from 'upkit';
+import { Button, Card, FormControl, InputPassword, InputText, LayoutOne } from '../../components/ui';
 import { useForm } from 'react-hook-form';
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -8,35 +8,29 @@ import StoreLogo from '../../components/StoreLogo';
 import { userLogin } from '../../features/Auth/actions';
 import { rules } from './validation';
 import { login } from '../../api/auth';
-
-const statuslist = {
-  idle: 'idle', 
-  process: 'process', 
-  success: 'success', 
-  error: 'error',
-}
+import { asyncStatus } from '../../constants/asyncStatus';
 
 export default function Login() {
   const { register, handleSubmit, errors, setError } = useForm(); 
-  const [status, setStatus] = React.useState(statuslist.idle);
+  const [status, setStatus] = React.useState(asyncStatus.idle);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const onSubmit = async ({email, password}) => {
-    setStatus(statuslist.process);
+    setStatus(asyncStatus.process);
 
     let { data } = await login(email, password); 
 
     if (data.error) {
       setError('password', {type: 'invalidCredential', message: data.message});
-      setStatus(statuslist.error);
+      setStatus(asyncStatus.error);
     } else {
       let {user, token} = data;
       dispatch(userLogin(user, token));
       history.push('/');
     }
 
-    setStatus(statuslist.success);
+    setStatus(asyncStatus.success);
   }
 
   return (

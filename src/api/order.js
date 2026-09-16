@@ -5,13 +5,15 @@ export async function getOrders(params){
   let { token } = localStorage.getItem('auth')
     ? JSON.parse(localStorage.getItem('auth')) : {};
 
-  let { limit, page } = params; 
-  let skip = (page * limit) - limit; 
+  let { limit, page, startDate, endDate } = params;
+  let skip = (page * limit) - limit;
 
   return await axios.get(`${config.api_host}/api/v1/orders`, {
     params: {
-      skip, 
-      limit
+      skip,
+      limit,
+      start_date: startDate || undefined,
+      end_date: endDate || undefined,
     },
     headers: {
       authorization: `Bearer ${token}`
