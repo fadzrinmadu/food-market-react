@@ -10,15 +10,11 @@ const widthClasses = {
   small: 'w-full md:w-1/3 max-w-sm',
 };
 
-export default function LayoutOne({ size, children }) {
+export default function LayoutOne({ size = 'large', children }) {
   return (
     <div className={classNames('mx-auto', 'px-2 sm:px-0', widthClasses[size])}>{children}</div>
   );
 }
-
-LayoutOne.defaultProps = {
-  size: 'large',
-};
 
 LayoutOne.propTypes = {
   /** lebar area konten */

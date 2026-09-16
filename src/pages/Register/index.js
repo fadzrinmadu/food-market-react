@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import { Button, Card, FormControl, InputPassword, InputText, LayoutOne } from '../../components/ui';
 import { useForm } from 'react-hook-form';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import StoreLogo from '../../components/StoreLogo';
 import { rules } from './validation';
@@ -9,9 +9,9 @@ import { registerUser } from '../../api/auth';
 import { asyncStatus } from '../../constants/asyncStatus';
 
 export default function Register() {
-  let { register, handleSubmit, errors, setError } = useForm();
+  let { register, handleSubmit, formState: { errors }, setError } = useForm();
 	let [ status, setStatus ] = React.useState(asyncStatus.idle);
-	let history = useHistory();
+	let navigate = useNavigate();
 
   const onSubmit = async formData => {
 		let { password, password_confirmation } = formData; 
@@ -34,7 +34,7 @@ export default function Register() {
 		}
 
 		setStatus(asyncStatus.success)
-		history.push('/register/berhasil');
+		navigate('/register/berhasil');
   }
 
   return (
@@ -46,37 +46,33 @@ export default function Register() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl label="Nama Lengkap" errorMessage={errors.full_name?.message}>
             <InputText
-              name="full_name"
               placeholder="Nama Lengkap"
               fitContainer
-              ref={register(rules.full_name)}
+              {...register('full_name', rules.full_name)}
             />
           </FormControl>
 
           <FormControl label="Email" errorMessage={errors.email?.message}>
             <InputText
-              name="email"
               placeholder="Email"
               fitContainer
-              ref={register(rules.email)}
+              {...register('email', rules.email)}
             />
           </FormControl>
 
           <FormControl label="Password" errorMessage={errors.password?.message}>
             <InputPassword
-              name="password"
               placeholder="Password"
               fitContainer
-              ref={register(rules.password)}
+              {...register('password', rules.password)}
             />
           </FormControl>
 
           <FormControl label="Konfirmasi Password" errorMessage={errors.password_confirmation?.message}>
             <InputPassword
-              name="password_confirmation"
               placeholder="Konfirmasi Password"
               fitContainer
-              ref={register(rules.password_confirmation)}
+              {...register('password_confirmation', rules.password_confirmation)}
             />
           </FormControl>
 

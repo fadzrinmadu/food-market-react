@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import { useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button, ErrorState, LayoutOne, Table, Text } from '../../components/ui';
 import BounceLoader from 'react-spinners/BounceLoader';
 
@@ -14,7 +14,7 @@ export default function Invoice() {
 	let [invoice, setInvoice] = React.useState(null);
   let [error, setError] = React.useState(''); 
   let [status, setStatus] = React.useState('process');
-  let { params } = useRouteMatch();
+  let params = useParams();
 
   const fetchInvoice = React.useCallback(() => {
     setStatus('process');

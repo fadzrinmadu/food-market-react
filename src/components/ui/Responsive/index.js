@@ -18,7 +18,14 @@ function getFlexClass(breakpoint, prefix = '') {
   return `${prefix}flex flex-wrap`;
 }
 
-export default function Responsive({ children, desktop, tablet, mobile, justify, items }) {
+export default function Responsive({
+  children,
+  desktop = 3,
+  tablet = 2,
+  mobile = 1,
+  justify = '',
+  items = 'center',
+}) {
   const gridClasses = classNames(
     getFlexClass(mobile),
     getFlexClass(tablet, 'md:'),
@@ -49,14 +56,6 @@ export default function Responsive({ children, desktop, tablet, mobile, justify,
     </div>
   );
 }
-
-Responsive.defaultProps = {
-  desktop: 3,
-  tablet: 2,
-  mobile: 1,
-  items: 'center',
-  justify: '',
-};
 
 Responsive.propTypes = {
   /** jumlah kolom di layar desktop */

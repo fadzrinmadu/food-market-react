@@ -1,6 +1,30 @@
+const path = require('path');
+
+// Tailwind v1-era theme functions dulu menerima helper `negative` sebagai
+// argumen kedua (theme, { negative }) => {...}. Tailwind v4 tidak lagi
+// menyediakan helper ini lewat @config (compat layer untuk JS config lama),
+// jadi diimplementasikan ulang manual di sini agar hasilnya identik.
+function negative(scale) {
+  return Object.entries(scale).reduce((acc, [key, value]) => {
+    acc[`-${key}`] = value === '0' ? '0' : `-${value}`;
+    return acc;
+  }, {});
+}
+
+// Sama seperti `negative`, helper `breakpoints` dulu disuntik otomatis oleh
+// Tailwind v1 sebagai argumen kedua theme function. Diimplementasikan ulang
+// manual karena Tailwind v4 tidak lagi menyediakannya lewat @config.
+function breakpoints(screens) {
+  return Object.entries(screens).reduce((acc, [key, value]) => {
+    acc[`screen-${key}`] = value;
+    return acc;
+  }, {});
+}
+
 module.exports = {
-  purge: ['src/**/*.js'],
-  target: 'relaxed',
+  // Path absolut (bukan relatif) supaya konsisten dikenali baik saat
+  // diproses via @config dari src/styles/index.css maupun langsung.
+  content: [path.join(__dirname, 'src/**/*.js')],
   prefix: '',
   important: false,
   separator: ':',
@@ -312,7 +336,7 @@ module.exports = {
       disc: 'disc',
       decimal: 'decimal',
     },
-    margin: (theme, { negative }) => ({
+    margin: theme => ({
       auto: 'auto',
       ...theme('spacing'),
       ...negative(theme('spacing')),
@@ -321,7 +345,7 @@ module.exports = {
       full: '100%',
       screen: '100vh',
     },
-    maxWidth: (theme, { breakpoints }) => ({
+    maxWidth: theme => ({
       none: 'none',
       xs: '20rem',
       sm: '24rem',
@@ -383,7 +407,7 @@ module.exports = {
     padding: theme => theme('spacing'),
     placeholderColor: theme => theme('colors'),
     placeholderOpacity: theme => theme('opacity'),
-    space: (theme, { negative }) => ({
+    space: theme => ({
       ...theme('spacing'),
       ...negative(theme('spacing')),
     }),
@@ -571,7 +595,7 @@ module.exports = {
       '90': '90deg',
       '180': '180deg',
     },
-    translate: (theme, { negative }) => ({
+    translate: theme => ({
       ...theme('spacing'),
       ...negative(theme('spacing')),
       '-full': '-100%',

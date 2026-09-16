@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LayoutOne, Text } from '../../../components/ui';
 
 import TopBar from '../../../components/TopBar';
@@ -8,12 +8,12 @@ import ProductForm from './ProductForm';
 import { createProduct } from '../../../api/product';
 
 export default function AdminProductAdd() {
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const handleSubmit = async payload => {
     let { data } = await createProduct(payload);
     if (data.error) return;
-    history.push('/admin/products');
+    navigate('/admin/products');
   };
 
   return (

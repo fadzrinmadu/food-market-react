@@ -9,7 +9,7 @@ const basePillClasses =
 const baseIconClasses =
   'w-8 h-8 bg-white rounded-full text-gray-700 items-center inline-flex justify-center mr-2';
 
-export default function Pill({ text, icon, isActive, onClick }) {
+export default function Pill({ text, icon, isActive = false, onClick }) {
   const pillClasses = classNames(
     basePillClasses,
     isActive ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700'
@@ -41,10 +41,6 @@ export default function Pill({ text, icon, isActive, onClick }) {
     </div>
   );
 }
-
-Pill.defaultProps = {
-  isActive: false,
-};
 
 Pill.propTypes = {
   /** label pill */

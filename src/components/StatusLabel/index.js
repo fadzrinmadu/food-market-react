@@ -39,8 +39,6 @@ export default function StatusLabel({ status }) {
   }
 }
 
-StatusLabel.defaultProps = {}
-
 StatusLabel.propTypes = {
   status: string.isRequired
 }

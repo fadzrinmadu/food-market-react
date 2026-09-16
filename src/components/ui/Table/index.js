@@ -33,18 +33,18 @@ function resolveCellValue(column, item, index) {
 }
 
 export default function Table({
-  items,
-  columns,
-  onPageChange,
+  items = [],
+  columns = [],
+  onPageChange = () => null,
   page,
-  perPage,
+  perPage = 10,
   totalItems,
-  showPagination,
+  showPagination = true,
   selectable,
   onSelectRow,
   selectedRow,
-  primaryField,
-  isLoading,
+  primaryField = '_id',
+  isLoading = false,
 }) {
   const builtColumns = React.useMemo(() => {
     if (!selectable) return columns;
@@ -148,16 +148,6 @@ export default function Table({
     </div>
   );
 }
-
-Table.defaultProps = {
-  items: [],
-  columns: [],
-  showPagination: true,
-  perPage: 10,
-  isLoading: false,
-  primaryField: '_id',
-  onPageChange: () => null,
-};
 
 Table.propTypes = {
   /** data yang ingin ditampilkan */

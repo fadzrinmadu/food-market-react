@@ -5,7 +5,7 @@ import FaExclamationTriangle from '@meronex/icons/fa/FaExclamationTriangle';
 import { classNames } from '../utils/class-names';
 import { colors, getTextColor } from '../utils/colors';
 
-export default function FormControl({ label, errorMessage, color, children }) {
+export default function FormControl({ label = '', errorMessage = '', color, children }) {
   const hasError = Boolean(errorMessage && errorMessage.length);
 
   return (
@@ -24,11 +24,6 @@ export default function FormControl({ label, errorMessage, color, children }) {
     </div>
   );
 }
-
-FormControl.defaultProps = {
-  label: '',
-  errorMessage: '',
-};
 
 FormControl.propTypes = {
   /** label untuk input di dalamnya */

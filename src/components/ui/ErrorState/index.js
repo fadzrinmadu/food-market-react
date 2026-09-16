@@ -9,7 +9,7 @@ import Text from '../Text';
  * Tampilan standar saat pengambilan data gagal, supaya bisa dibedakan dari
  * empty state (data memang kosong) dan menawarkan opsi coba lagi.
  */
-export default function ErrorState({ message, onRetry }) {
+export default function ErrorState({ message = 'Terjadi kesalahan saat memuat data.', onRetry }) {
   return (
     <div className="text-center py-10" role="alert">
       <div className="text-5xl text-red-600 flex justify-center mb-4" aria-hidden="true">
@@ -26,10 +26,6 @@ export default function ErrorState({ message, onRetry }) {
     </div>
   );
 }
-
-ErrorState.defaultProps = {
-  message: 'Terjadi kesalahan saat memuat data.',
-};
 
 ErrorState.propTypes = {
   /** pesan error yang ditampilkan */

@@ -5,7 +5,7 @@ import InputNumber from '../InputNumber';
 import { classNames } from '../utils/class-names';
 import { colors, getBgColor, getTextColor } from '../utils/colors';
 
-export default function CardItem({ name, imgUrl, qty, color, onInc, onDec }) {
+export default function CardItem({ name, imgUrl, qty, color = 'red', onInc = () => null, onDec = () => null }) {
   const cardClasses = classNames(
     getBgColor(color, 400),
     getTextColor(color, 900),
@@ -28,12 +28,6 @@ export default function CardItem({ name, imgUrl, qty, color, onInc, onDec }) {
     </div>
   );
 }
-
-CardItem.defaultProps = {
-  color: 'red',
-  onInc: () => null,
-  onDec: () => null,
-};
 
 CardItem.propTypes = {
   /** nama item */

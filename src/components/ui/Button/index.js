@@ -18,10 +18,10 @@ export default function Button({
   iconBefore,
   iconAfter,
   onClick,
-  color,
-  size,
-  variant,
-  fitContainer,
+  color = 'red',
+  size = 'medium',
+  variant = 'solid',
+  fitContainer = false,
   disabled,
   children,
   ...props
@@ -65,13 +65,6 @@ export default function Button({
     </button>
   );
 }
-
-Button.defaultProps = {
-  color: 'red',
-  size: 'medium',
-  variant: 'solid',
-  fitContainer: false,
-};
 
 Button.propTypes = {
   /** label tombol; alternatif dari `children` */

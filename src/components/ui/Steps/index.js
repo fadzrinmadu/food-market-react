@@ -5,7 +5,7 @@ import { classNames } from '../utils/class-names';
 
 const baseStepClasses = 'p-4 mx-4 text-center shadow rounded cursor-pointer w-40';
 
-export default function Steps({ steps, active, onChange }) {
+export default function Steps({ steps = [], active = 0, onChange }) {
   const isInteractive = typeof onChange === 'function';
 
   const handleKeyDown = (event, index) => {
@@ -48,11 +48,6 @@ export default function Steps({ steps, active, onChange }) {
     </div>
   );
 }
-
-Steps.defaultProps = {
-  steps: [],
-  active: 0,
-};
 
 Steps.propTypes = {
   /** daftar langkah yang ingin ditampilkan */

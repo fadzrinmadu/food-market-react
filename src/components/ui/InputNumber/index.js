@@ -12,7 +12,17 @@ const inputSizes = {
 };
 
 const InputNumber = React.forwardRef(function InputNumber(
-  { value, onInc, onDec, onSetValue, textColor, buttonColor, size, fullRound, ...props },
+  {
+    value,
+    onInc,
+    onDec,
+    onSetValue = () => null,
+    textColor = 'white',
+    buttonColor = 'red',
+    size = 'medium',
+    fullRound = false,
+    ...props
+  },
   ref
 ) {
   const roundedClass = fullRound ? 'rounded-full' : 'rounded';
@@ -58,14 +68,6 @@ const InputNumber = React.forwardRef(function InputNumber(
     </div>
   );
 });
-
-InputNumber.defaultProps = {
-  textColor: 'white',
-  buttonColor: 'red',
-  size: 'medium',
-  fullRound: false,
-  onSetValue: () => null,
-};
 
 InputNumber.propTypes = {
   value: oneOfType([string, number]),

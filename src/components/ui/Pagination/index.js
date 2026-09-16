@@ -13,7 +13,7 @@ import {
   getTextColorHover,
 } from '../utils/colors';
 
-function PaginationButton({ page, isActive, onClick, color, disabled, label }) {
+function PaginationButton({ page, isActive, onClick, color = 'red', disabled = false, label }) {
   const active = isActive && !disabled;
 
   const classes = classNames(
@@ -62,11 +62,6 @@ function PaginationButton({ page, isActive, onClick, color, disabled, label }) {
   );
 }
 
-PaginationButton.defaultProps = {
-  color: 'red',
-  disabled: false,
-};
-
 PaginationButton.propTypes = {
   page: node,
   isActive: bool,
@@ -76,7 +71,15 @@ PaginationButton.propTypes = {
   label: node,
 };
 
-export default function Pagination({ totalItems, perPage, page, onChange, color, onPrev, onNext }) {
+export default function Pagination({
+  totalItems,
+  perPage = 10,
+  page = 1,
+  onChange = () => null,
+  color = 'red',
+  onPrev = () => null,
+  onNext = () => null,
+}) {
   const totalPages = Math.ceil(totalItems / perPage);
   const numbers = Array.from({ length: totalPages }).map((_, index) => index + 1);
   const relativeNumbers = numbers.slice(
@@ -158,15 +161,6 @@ export default function Pagination({ totalItems, perPage, page, onChange, color,
     </div>
   );
 }
-
-Pagination.defaultProps = {
-  page: 1,
-  perPage: 10,
-  onChange: () => null,
-  onPrev: () => null,
-  onNext: () => null,
-  color: 'red',
-};
 
 Pagination.propTypes = {
   /** total seluruh item */

@@ -7,7 +7,7 @@ import FaInfoCircle from '@meronex/icons/fa/FaInfoCircle';
 import FaArrowRight from '@meronex/icons/fa/FaArrowRight';
 import FaArrowLeft from '@meronex/icons/fa/FaArrowLeft';
 import FaRegCheckCircle from '@meronex/icons/fa/FaRegCheckCircle';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
 import { config } from '../../config';
@@ -92,7 +92,7 @@ export default function Checkout() {
     refetch,
   } = useAddressData();
 
-  let history = useHistory(); 
+  let navigate = useNavigate();
   let dispatch = useDispatch();
 
   async function handleCreateOrder() {
@@ -105,12 +105,12 @@ export default function Checkout() {
   
     if (data?.error) return; 
 
-    history.push(`/invoice/${data._id}`);
+    navigate(`/invoice/${data._id}`);
     dispatch(clearItems());
   }
 
   if (!cart.length) {
-    return <Redirect to="/" />
+    return <Navigate to="/" />
   }
 
   return <LayoutOne>

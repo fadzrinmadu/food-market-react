@@ -5,7 +5,17 @@ import { classNames } from '../utils/class-names';
 import { focusWithinRingClasses } from '../utils/a11y';
 
 const InputText = React.forwardRef(function InputText(
-  { placeholder, value, onChange, iconBefore, iconAfter, fitContainer, fullRound, type, ...props },
+  {
+    placeholder,
+    value,
+    onChange,
+    iconBefore,
+    iconAfter,
+    fitContainer = false,
+    fullRound,
+    type = 'text',
+    ...props
+  },
   ref
 ) {
   const hasIcon = Boolean(iconBefore || iconAfter);
@@ -43,11 +53,6 @@ const InputText = React.forwardRef(function InputText(
     </div>
   );
 });
-
-InputText.defaultProps = {
-  fitContainer: false,
-  type: 'text',
-};
 
 InputText.propTypes = {
   placeholder: string,

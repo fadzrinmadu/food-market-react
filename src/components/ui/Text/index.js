@@ -23,10 +23,12 @@ const semanticColorVariants = ['info', 'warning', 'error'];
 
 const headingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-export default function Text({ as, color, bold, className, children }) {
+const DEFAULT_COLOR = 'black';
+
+export default function Text({ as = 'body', color = DEFAULT_COLOR, bold = false, className, children }) {
   const Tag = headingTags.includes(as) ? as : 'div';
 
-  const hasImpliedColor = semanticColorVariants.includes(as) && color === Text.defaultProps.color;
+  const hasImpliedColor = semanticColorVariants.includes(as) && color === DEFAULT_COLOR;
   const colorClass = hasImpliedColor ? null : getTextColor(color);
 
   return (
@@ -35,12 +37,6 @@ export default function Text({ as, color, bold, className, children }) {
     </Tag>
   );
 }
-
-Text.defaultProps = {
-  as: 'body',
-  color: 'black',
-  bold: false,
-};
 
 Text.propTypes = {
   /** varian ukuran atau makna teks */

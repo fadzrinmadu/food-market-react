@@ -16,7 +16,7 @@ const buttonStyles = {
   large: {},
 };
 
-export default function ButtonCircle({ icon, onClick, size, color, textColor, ...props }) {
+export default function ButtonCircle({ icon, onClick, size = 'medium', color = 'red', textColor = 'white', ...props }) {
   const buttonClasses = classNames(
     buttonSizes[size],
     getBgColor(color),
@@ -38,12 +38,6 @@ export default function ButtonCircle({ icon, onClick, size, color, textColor, ..
     </button>
   );
 }
-
-ButtonCircle.defaultProps = {
-  size: 'medium',
-  color: 'red',
-  textColor: 'white',
-};
 
 ButtonCircle.propTypes = {
   /** isi tombol, biasanya berupa ikon */

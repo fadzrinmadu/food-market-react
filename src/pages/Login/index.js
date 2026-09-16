@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import { Button, Card, FormControl, InputPassword, InputText, LayoutOne } from '../../components/ui';
 import { useForm } from 'react-hook-form';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import StoreLogo from '../../components/StoreLogo';
@@ -11,10 +11,10 @@ import { login } from '../../api/auth';
 import { asyncStatus } from '../../constants/asyncStatus';
 
 export default function Login() {
-  const { register, handleSubmit, errors, setError } = useForm(); 
+  const { register, handleSubmit, formState: { errors }, setError } = useForm();
   const [status, setStatus] = React.useState(asyncStatus.idle);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onSubmit = async ({email, password}) => {
     setStatus(asyncStatus.process);
@@ -27,7 +27,7 @@ export default function Login() {
     } else {
       let {user, token} = data;
       dispatch(userLogin(user, token));
-      history.push('/');
+      navigate('/');
     }
 
     setStatus(asyncStatus.success);
@@ -46,17 +46,15 @@ export default function Login() {
             <InputText
               placeholder="email"
               fitContainer
-              name="email"
-              ref={register(rules.email)}
+              {...register('email', rules.email)}
             />
           </FormControl>
 
           <FormControl label="Password" errorMessage={errors.password?.message}>
             <InputPassword
               placeholder="password"
-              name="password"
               fitContainer
-              ref={register(rules.password)}
+              {...register('password', rules.password)}
             />
           </FormControl>
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, FormControl, InputText, LayoutOne, Text, Textarea } from '../../components/ui';
 import {useForm} from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
 import BackButton from '../../components/BackButton';
 import SelectWilayah from '../../components/SelectWilayah';
@@ -10,17 +10,17 @@ import { rules } from './validation';
 import { createAddress } from '../../api/address';
 
 export default function UserAddressAdd() {
-  let history = useHistory();
-  let { handleSubmit, register, errors, setValue, watch, getValues } = useForm();
+  let navigate = useNavigate();
+  let { handleSubmit, register, formState: { errors }, setValue, watch, getValues } = useForm();
   let [location, setLocation] = React.useState(null);
 
   let allFields = watch();
 
 	React.useEffect(() => {
-		register({name: 'provinsi'}, rules.provinsi);
-		register({name: 'kabupaten'}, rules.kabupaten);
-		register({name: 'kecamatan'}, rules.kecamatan);
-		register({name: 'kelurahan'}, rules.kelurahan);
+		register('provinsi', rules.provinsi);
+		register('kabupaten', rules.kabupaten);
+		register('kecamatan', rules.kecamatan);
+		register('kelurahan', rules.kelurahan);
 	}, [register])
   
   React.useEffect(() => {
@@ -56,7 +56,7 @@ export default function UserAddressAdd() {
 
     if (data.error) return;
 
-    history.push('/alamat-pengiriman');
+    navigate('/alamat-pengiriman');
   }
 
   return (
@@ -74,8 +74,7 @@ export default function UserAddressAdd() {
             <InputText
               placeholder="Nama alamat"
               fitContainer
-              name="nama_alamat"
-              ref={register(rules.nama_alamat)}
+              {...register('nama_alamat', rules.nama_alamat)}
             />
           </FormControl>
           <FormControl label="Provinsi" errorMessage={errors.provinsi?.message} color="black">
@@ -113,8 +112,7 @@ export default function UserAddressAdd() {
             <Textarea
               placeholder="Detail alamat"
               fitContainer
-              name="detail_alamat"
-              ref={register(rules.detail_alamat)}
+              {...register('detail_alamat', rules.detail_alamat)}
             />
           </FormControl>
 
