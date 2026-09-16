@@ -1,7 +1,6 @@
 import * as React from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { CardProduct, InputText, LayoutSidebar, Pagination, Pill, Responsive, SideNav } from '../../components/ui';
-import BounceLoader from 'react-spinners/BounceLoader';
+import { CardProduct, CardProductSkeleton, InputText, LayoutSidebar, Pagination, Pill, Responsive, SideNav } from '../../components/ui';
 import { useHistory } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
@@ -71,24 +70,28 @@ export default function Home() {
               })}
               </div>
               
-              {products.status === 'process' && !products.data.length ? 
-                <div className="flex justify-center">
-                  <BounceLoader color="red"/> 
-                </div>
-              : null}
-
-              <Responsive desktop={3} items="stretch">
-                {products.data.map((product, index) => {
-                  return <div key={index} className="p-2">
-                    <CardProduct
-                      title={product.name}
-                      imgUrl={getImageUrl(product.image_url)}
-                      price={product.price}
-                      onAddToCart={_ => dispatch(addItem(product))}
-                    />
-                  </div>
-                })}
-              </Responsive>
+              {products.status === 'process' && !products.data.length ?
+                <Responsive desktop={3} items="stretch">
+                  {Array.from({ length: 9 }).map((_, index) => (
+                    <div key={index} className="p-2">
+                      <CardProductSkeleton />
+                    </div>
+                  ))}
+                </Responsive>
+              :
+                <Responsive desktop={3} items="stretch">
+                  {products.data.map((product, index) => {
+                    return <div key={index} className="p-2">
+                      <CardProduct
+                        title={product.name}
+                        imgUrl={getImageUrl(product.image_url)}
+                        price={product.price}
+                        onAddToCart={_ => dispatch(addItem(product))}
+                      />
+                    </div>
+                  })}
+                </Responsive>
+              }
 
               <div className="text-center my-10">
                 <Pagination 

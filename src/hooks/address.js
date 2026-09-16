@@ -30,12 +30,13 @@ export function useAddressData() {
   }, [fetchAddress]);
 
   return {
-    data, 
-    count, 
-    status, 
-    page, 
-    limit, 
-    setPage, 
-    setLimit
+    data,
+    count,
+    status,
+    page,
+    limit,
+    setPage,
+    setLimit,
+    refetch: fetchAddress,
   }
 }

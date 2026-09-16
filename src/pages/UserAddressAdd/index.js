@@ -1,15 +1,18 @@
-import * as React from 'react'; 
-import { Button, FormControl, InputText, LayoutOne, Textarea } from '../../components/ui';
+import * as React from 'react';
+import { Button, FormControl, InputText, LayoutOne, Text, Textarea } from '../../components/ui';
 import {useForm} from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
+import BackButton from '../../components/BackButton';
 import SelectWilayah from '../../components/SelectWilayah';
+import LocationPicker from '../../components/LocationPicker';
 import { rules } from './validation';
 import { createAddress } from '../../api/address';
 
 export default function UserAddressAdd() {
-  let history = useHistory(); 
+  let history = useHistory();
   let { handleSubmit, register, errors, setValue, watch, getValues } = useForm();
+  let [location, setLocation] = React.useState(null);
 
   let allFields = watch();
 
@@ -43,8 +46,10 @@ export default function UserAddressAdd() {
       detail: formData.detail_alamat,
       provinsi: formData.provinsi.label, 
       kabupaten: formData.kabupaten.label, 
-      kecamatan: formData.kecamatan.label, 
-      kelurahan: formData.kelurahan.label
+      kecamatan: formData.kecamatan.label,
+      kelurahan: formData.kelurahan.label,
+      lat: location?.lat,
+      lng: location?.lng,
     }
 
     let { data } = await createAddress(payload);
@@ -57,6 +62,12 @@ export default function UserAddressAdd() {
   return (
     <LayoutOne>
       <TopBar/>
+      <div className="flex items-center">
+        <BackButton to="/alamat-pengiriman" />
+        <div className="ml-3">
+          <Text as="h3">Tambah alamat</Text>
+        </div>
+      </div>
       <br />
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -106,6 +117,10 @@ export default function UserAddressAdd() {
               name="detail_alamat"
               ref={register(rules.detail_alamat)}
             />
+          </FormControl>
+
+          <FormControl label="Pilih lokasi di peta (opsional)" color="black">
+            <LocationPicker value={location} onChange={setLocation} />
           </FormControl>
 
           <Button fitContainer>
