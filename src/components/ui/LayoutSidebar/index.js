@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { node, number, oneOf } from 'prop-types';
+import { bool, node, number, oneOf } from 'prop-types';
 
 import { classNames } from '../utils/class-names';
 
@@ -9,6 +9,7 @@ export default function LayoutSidebar({
   sidebarSize,
   sidebarPosition,
   contentOverflow,
+  hideSidebarOnMobile,
 }) {
   const baseClasses = classNames(
     'flex',
@@ -18,7 +19,10 @@ export default function LayoutSidebar({
 
   return (
     <div className={baseClasses}>
-      <div className="flex-none" style={{ width: sidebarSize }}>
+      <div
+        className={classNames('flex-none', hideSidebarOnMobile && 'hidden md:block')}
+        style={{ width: sidebarSize }}
+      >
         {sidebar}
       </div>
       <div className={classNames('flex-1', `overflow-${contentOverflow}`)}>{content}</div>
@@ -30,6 +34,7 @@ LayoutSidebar.defaultProps = {
   sidebarSize: 300,
   sidebarPosition: 'left',
   contentOverflow: 'hidden',
+  hideSidebarOnMobile: false,
 };
 
 LayoutSidebar.propTypes = {
@@ -41,4 +46,6 @@ LayoutSidebar.propTypes = {
   sidebarSize: number,
   sidebarPosition: oneOf(['left', 'right']),
   contentOverflow: oneOf(['hidden', 'auto', 'visible']),
+  /** sembunyikan sidebar di layar < md; dipakai saat kontennya dipindah ke tempat lain untuk mobile */
+  hideSidebarOnMobile: bool,
 };
