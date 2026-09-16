@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { CardProduct, CardProductSkeleton, InputText, LayoutSidebar, Pagination, Pill, Responsive, SideNav } from '../../components/ui';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
 import menus from './menus';
@@ -23,7 +23,7 @@ export default function Home() {
   let dispatch = useDispatch();
   let products = useSelector(state => state.products);
 	let cart  = useSelector(state => state.cart);
-	let history = useHistory();
+	let navigate = useNavigate();
 
 	React.useEffect(() => {
 		dispatch(fetchProducts());
@@ -124,7 +124,7 @@ export default function Home() {
                 items={cart}
                 onItemInc={item => dispatch(addItem(item))}
                 onItemDec={item => dispatch(removeItem(item))}
-                onCheckout={_ => history.push('/checkout')}
+                onCheckout={_ => navigate('/checkout')}
               />
             </div>
           </div>

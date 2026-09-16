@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import { useHistory} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LayoutOne } from '../../components/ui';
 import { useDispatch } from 'react-redux';
 import BounceLoader from 'react-spinners/BounceLoader';
@@ -7,15 +7,15 @@ import { userLogout } from '../../features/Auth/actions';
 import { logout } from '../../api/auth';
 
 export default function Logout() {
-  let history = useHistory();
+  let navigate = useNavigate();
   let dispatch = useDispatch();
 
   React.useEffect(() => {
     logout()
       .then(() => dispatch(userLogout()))
-      .then(() => history.push('/'));
+      .then(() => navigate('/'));
 
-  }, [history, dispatch]);
+  }, [navigate, dispatch]);
 
   return (
     <LayoutOne size="small">

@@ -1,12 +1,10 @@
 import * as React from 'react'
-import { Route, Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-const GuardRoute = ({ children,  ...rest }) => {
+const GuardRoute = ({ children }) => {
   let { user } = useSelector(state => state.auth);
-  return <Route {...rest}>
-    {user ? children : <Redirect to="/login" />}
-  </Route>
+  return user ? children : <Navigate to="/login" />;
 };
 
 export default GuardRoute;

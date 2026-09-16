@@ -1,13 +1,11 @@
 import * as React from 'react'
-import { Route, Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-const AdminGuardRoute = ({ children, ...rest }) => {
+const AdminGuardRoute = ({ children }) => {
   let { user } = useSelector(state => state.auth);
 
-  return <Route {...rest}>
-    {user && user.role === 'admin' ? children : <Redirect to={user ? '/' : '/login'} />}
-  </Route>
+  return user && user.role === 'admin' ? children : <Navigate to={user ? '/' : '/login'} />;
 };
 
 export default AdminGuardRoute;

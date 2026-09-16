@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, FormControl, InputText, LayoutOne, Text, Textarea } from '../../components/ui';
 import {useForm} from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
 import BackButton from '../../components/BackButton';
 import SelectWilayah from '../../components/SelectWilayah';
@@ -10,7 +10,7 @@ import { rules } from './validation';
 import { createAddress } from '../../api/address';
 
 export default function UserAddressAdd() {
-  let history = useHistory();
+  let navigate = useNavigate();
   let { handleSubmit, register, formState: { errors }, setValue, watch, getValues } = useForm();
   let [location, setLocation] = React.useState(null);
 
@@ -56,7 +56,7 @@ export default function UserAddressAdd() {
 
     if (data.error) return;
 
-    history.push('/alamat-pengiriman');
+    navigate('/alamat-pengiriman');
   }
 
   return (

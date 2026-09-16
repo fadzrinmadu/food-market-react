@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import { Button, Card, FormControl, InputPassword, InputText, LayoutOne } from '../../components/ui';
 import { useForm } from 'react-hook-form';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import StoreLogo from '../../components/StoreLogo';
@@ -14,7 +14,7 @@ export default function Login() {
   const { register, handleSubmit, formState: { errors }, setError } = useForm();
   const [status, setStatus] = React.useState(asyncStatus.idle);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onSubmit = async ({email, password}) => {
     setStatus(asyncStatus.process);
@@ -27,7 +27,7 @@ export default function Login() {
     } else {
       let {user, token} = data;
       dispatch(userLogin(user, token));
-      history.push('/');
+      navigate('/');
     }
 
     setStatus(asyncStatus.success);

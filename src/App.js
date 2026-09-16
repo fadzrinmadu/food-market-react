@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import { listen } from './app/listener';
 import { Provider } from 'react-redux';
@@ -34,53 +34,23 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Switch>
-          <GuardRoute path="/logout">
-            <Logout/>
-          </GuardRoute>
-          <GuardRoute path="/pesanan">
-            <UserOrders/>
-          </GuardRoute>
-          <GuardRoute path="/account">
-            <UserAccount/>
-          </GuardRoute>
-          <GuardRoute path="/invoice/:order_id">
-            <Invoice/>
-          </GuardRoute>
-          <GuardRoute path="/checkout">
-            <Checkout/>
-          </GuardRoute>
-          <GuardRoute path="/alamat-pengiriman/tambah">
-            <UserAddressAdd/>
-          </GuardRoute>
-          <GuardRoute path="/alamat-pengiriman/:id/ubah">
-            <UserAddressEdit/>
-          </GuardRoute>
-          <GuardRoute path="/alamat-pengiriman">
-            <UserAddress/>
-          </GuardRoute>
-          <AdminGuardRoute path="/admin/products/tambah">
-            <AdminProductAdd/>
-          </AdminGuardRoute>
-          <AdminGuardRoute path="/admin/products/:id/ubah">
-            <AdminProductEdit/>
-          </AdminGuardRoute>
-          <AdminGuardRoute path="/admin/products">
-            <AdminProducts/>
-          </AdminGuardRoute>
-          <GuestOnlyRoute path="/register/berhasil">
-            <RegisterSuccess/>
-          </GuestOnlyRoute>
-          <GuestOnlyRoute path="/register">
-            <Register/>
-          </GuestOnlyRoute>
-          <GuestOnlyRoute path="/login">
-            <Login/>
-          </GuestOnlyRoute>
-          <Route path="/">
-            <Home/>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/logout" element={<GuardRoute><Logout/></GuardRoute>} />
+          <Route path="/pesanan" element={<GuardRoute><UserOrders/></GuardRoute>} />
+          <Route path="/account" element={<GuardRoute><UserAccount/></GuardRoute>} />
+          <Route path="/invoice/:order_id" element={<GuardRoute><Invoice/></GuardRoute>} />
+          <Route path="/checkout" element={<GuardRoute><Checkout/></GuardRoute>} />
+          <Route path="/alamat-pengiriman/tambah" element={<GuardRoute><UserAddressAdd/></GuardRoute>} />
+          <Route path="/alamat-pengiriman/:id/ubah" element={<GuardRoute><UserAddressEdit/></GuardRoute>} />
+          <Route path="/alamat-pengiriman" element={<GuardRoute><UserAddress/></GuardRoute>} />
+          <Route path="/admin/products/tambah" element={<AdminGuardRoute><AdminProductAdd/></AdminGuardRoute>} />
+          <Route path="/admin/products/:id/ubah" element={<AdminGuardRoute><AdminProductEdit/></AdminGuardRoute>} />
+          <Route path="/admin/products" element={<AdminGuardRoute><AdminProducts/></AdminGuardRoute>} />
+          <Route path="/register/berhasil" element={<GuestOnlyRoute><RegisterSuccess/></GuestOnlyRoute>} />
+          <Route path="/register" element={<GuestOnlyRoute><Register/></GuestOnlyRoute>} />
+          <Route path="/login" element={<GuestOnlyRoute><Login/></GuestOnlyRoute>} />
+          <Route path="*" element={<Home/>} />
+        </Routes>
       </Router>
     </Provider>
   );

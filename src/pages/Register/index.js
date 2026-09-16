@@ -1,7 +1,7 @@
 import * as React from 'react'; 
 import { Button, Card, FormControl, InputPassword, InputText, LayoutOne } from '../../components/ui';
 import { useForm } from 'react-hook-form';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import StoreLogo from '../../components/StoreLogo';
 import { rules } from './validation';
@@ -11,7 +11,7 @@ import { asyncStatus } from '../../constants/asyncStatus';
 export default function Register() {
   let { register, handleSubmit, formState: { errors }, setError } = useForm();
 	let [ status, setStatus ] = React.useState(asyncStatus.idle);
-	let history = useHistory();
+	let navigate = useNavigate();
 
   const onSubmit = async formData => {
 		let { password, password_confirmation } = formData; 
@@ -34,7 +34,7 @@ export default function Register() {
 		}
 
 		setStatus(asyncStatus.success)
-		history.push('/register/berhasil');
+		navigate('/register/berhasil');
   }
 
   return (
