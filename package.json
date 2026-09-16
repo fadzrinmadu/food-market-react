@@ -5,9 +5,9 @@
   "dependencies": {
     "@meronex/icons": "^4.0.0",
     "autoprefixer": "^10.6.1",
-    "axios": "^0.19.2",
+    "axios": "^1.20.0",
     "debounce-promise": "^3.1.2",
-    "dotenv": "^8.6.0",
+    "dotenv": "^17.4.2",
     "leaflet": "^1.9.4",
     "postcss": "^8.5.28",
     "react": "^19.3.0",
