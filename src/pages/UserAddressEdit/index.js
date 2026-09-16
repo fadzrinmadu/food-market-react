@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Button, FormControl, InputText, LayoutOne, Text, Textarea } from '../../components/ui';
+import { Button, ErrorState, FormControl, InputText, LayoutOne, Skeleton, Text, Textarea } from '../../components/ui';
 
 import TopBar from '../../components/TopBar';
 import BackButton from '../../components/BackButton';
@@ -19,24 +19,26 @@ export default function UserAddressEdit() {
   let [location, setLocation] = React.useState(null);
   let [isPrimary, setIsPrimary] = React.useState(false);
 
-  React.useEffect(() => {
-    (async () => {
-      setStatus(asyncStatus.process);
-      let { data } = await getAddressById(id);
+  const fetchAlamat = React.useCallback(async () => {
+    setStatus(asyncStatus.process);
+    let { data } = await getAddressById(id);
 
-      if (data.error) {
-        setStatus(asyncStatus.error);
-        return;
-      }
+    if (data.error) {
+      setStatus(asyncStatus.error);
+      return;
+    }
 
-      setAlamat(data);
-      setIsPrimary(Boolean(data.isPrimary));
-      if (data.lat && data.lng) setLocation({ lat: data.lat, lng: data.lng });
-      setValue('nama_alamat', data.nama);
-      setValue('detail_alamat', data.detail);
-      setStatus(asyncStatus.success);
-    })();
+    setAlamat(data);
+    setIsPrimary(Boolean(data.isPrimary));
+    if (data.lat && data.lng) setLocation({ lat: data.lat, lng: data.lng });
+    setValue('nama_alamat', data.nama);
+    setValue('detail_alamat', data.detail);
+    setStatus(asyncStatus.success);
   }, [id, setValue]);
+
+  React.useEffect(() => {
+    fetchAlamat();
+  }, [fetchAlamat]);
 
   const onSubmit = async formData => {
     let payload = {
@@ -54,12 +56,41 @@ export default function UserAddressEdit() {
     history.push('/alamat-pengiriman');
   };
 
+  if (status === asyncStatus.error) {
+    return (
+      <LayoutOne>
+        <TopBar/>
+        <div className="flex items-center">
+          <BackButton to="/alamat-pengiriman" />
+          <div className="ml-3">
+            <Text as="h3">Ubah alamat</Text>
+          </div>
+        </div>
+        <br />
+        <ErrorState message="Gagal memuat data alamat." onRetry={fetchAlamat} />
+      </LayoutOne>
+    );
+  }
+
   if (status !== asyncStatus.success || !alamat) {
     return (
       <LayoutOne>
         <TopBar/>
+        <div className="flex items-center">
+          <BackButton to="/alamat-pengiriman" />
+          <div className="ml-3">
+            <Text as="h3">Ubah alamat</Text>
+          </div>
+        </div>
         <br />
-        <Text as="h3">Memuat data alamat...</Text>
+        <div>
+          <Skeleton height="1.25rem" width="8rem" className="mb-2" />
+          <Skeleton height="2.5rem" className="mb-6" />
+          <Skeleton height="1.25rem" width="6rem" className="mb-2" />
+          <Skeleton height="1.5rem" width="16rem" className="mb-6" />
+          <Skeleton height="1.25rem" width="8rem" className="mb-2" />
+          <Skeleton height="5rem" className="mb-6" />
+        </div>
       </LayoutOne>
     );
   }

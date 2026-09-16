@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import { Button, LayoutOne, Responsive, Steps, Table, Text } from '../../components/ui';
+import { Button, ErrorState, LayoutOne, Responsive, Steps, Table, Text } from '../../components/ui';
 import { useSelector, useDispatch } from 'react-redux';
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 import FaAddressCard from '@meronex/icons/fa/FaAddressCard';
@@ -83,13 +83,14 @@ export default function Checkout() {
   let [ selectedAddress, setSelectedAddress ] = React.useState(null);
 
   let {
-    data, 
+    data,
     status,
-    limit, 
-    page, 
-    count, 
-    setPage
-  } = useAddressData(); 
+    limit,
+    page,
+    count,
+    setPage,
+    refetch,
+  } = useAddressData();
 
   let history = useHistory(); 
   let dispatch = useDispatch();
@@ -150,21 +151,25 @@ export default function Checkout() {
     {activeStep === 1 ?
       <div>
         <br/><br/>
-        <Table
-        items={data}
-        columns={addressColumns}
-        perPage={limit}
-        page={page}
-        onPageChange={page => setPage(page)}
-        totalItems={count}
-        isLoading={status === 'process'}
-        selectable
-        primaryField="_id"
-        selectedRow={selectedAddress}
-        onSelectRow={ item => setSelectedAddress(item)}
-        />
+        {status === 'error' ? (
+          <ErrorState message="Gagal memuat daftar alamat." onRetry={refetch} />
+        ) : (
+          <Table
+          items={data}
+          columns={addressColumns}
+          perPage={limit}
+          page={page}
+          onPageChange={page => setPage(page)}
+          totalItems={count}
+          isLoading={status === 'process'}
+          selectable
+          primaryField="_id"
+          selectedRow={selectedAddress}
+          onSelectRow={ item => setSelectedAddress(item)}
+          />
+        )}
 
-      {!data.length && status === 'success' ? 
+      {!data.length && status === 'success' ?
         <div className="text-center my-10">
           <Link to="/alamat-pengiriman/tambah">
             Kamu belum memiliki alamat pengiriman <br/> <br />

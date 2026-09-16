@@ -1,6 +1,6 @@
 import * as React from 'react'; 
 import { useRouteMatch } from 'react-router-dom';
-import { Button, LayoutOne, Table, Text } from '../../components/ui';
+import { Button, ErrorState, LayoutOne, Table, Text } from '../../components/ui';
 import BounceLoader from 'react-spinners/BounceLoader';
 
 import TopBar from '../../components/TopBar';
@@ -16,17 +16,24 @@ export default function Invoice() {
   let [status, setStatus] = React.useState('process');
   let { params } = useRouteMatch();
 
-  React.useEffect(() => {
+  const fetchInvoice = React.useCallback(() => {
+    setStatus('process');
+    setError('');
+
     getInvoiceByOrderId(params?.order_id)
       .then(({data}) => {
         if(data?.error){
           setError(data.message || "Terjadi keslahan yang tidak diketahui");
-        } 
+        }
 
         setInvoice(data);
       })
       .finally(() => setStatus('idle'));
   }, [params]);
+
+  React.useEffect(() => {
+    fetchInvoice();
+  }, [fetchInvoice]);
 
   let [initiatingPayment, setInitiating] = React.useState(false);
   let [requestError, setRequestError] = React.useState(false);
@@ -35,8 +42,8 @@ export default function Invoice() {
     return (
       <LayoutOne>
         <TopBar/>
-        <Text as="h3"> Terjadi Kesalahan </Text> 
-        {error}
+        <Text as="h3"> Terjadi Kesalahan </Text>
+        <ErrorState message={error} onRetry={fetchInvoice} />
       </LayoutOne>
     )
   }

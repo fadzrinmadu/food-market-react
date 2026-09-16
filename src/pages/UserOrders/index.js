@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, InputText, LayoutOne, Table, Text } from '../../components/ui';
+import { Button, ErrorState, InputText, LayoutOne, Table, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
@@ -120,14 +120,21 @@ export default function UserOrders() {
         </div>
       </div>
 
-      <Table
-        items={pesanan}
-        totalItems={count}
-        columns={columns}
-        onPageChange={ page => setPage(page)}
-        page={page}
-        isLoading={status === asyncStatus.process}
-      />
+      {status === asyncStatus.error ? (
+        <ErrorState
+          message="Gagal memuat daftar pesanan."
+          onRetry={fetchPesanan}
+        />
+      ) : (
+        <Table
+          items={pesanan}
+          totalItems={count}
+          columns={columns}
+          onPageChange={ page => setPage(page)}
+          page={page}
+          isLoading={status === asyncStatus.process}
+        />
+      )}
     </LayoutOne>
   )
 }

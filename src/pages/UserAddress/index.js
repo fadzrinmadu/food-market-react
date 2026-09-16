@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Badge, Button, LayoutOne, Table, Text } from '../../components/ui';
+import { Badge, Button, ErrorState, LayoutOne, Table, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
 import BackButton from '../../components/BackButton';
@@ -81,15 +81,19 @@ export default function UserAddress() {
           </Link>
           <br />
           <br />
-          <Table 
-            items={data}
-            columns={columns}
-            totalItems={count}
-            page={page}
-            perPage={limit}
-            isLoading={status === 'process'}
-            onPageChange={page => setPage(page)}
-          />
+          {status === 'error' ? (
+            <ErrorState message="Gagal memuat daftar alamat." onRetry={refetch} />
+          ) : (
+            <Table
+              items={data}
+              columns={columns}
+              totalItems={count}
+              page={page}
+              perPage={limit}
+              isLoading={status === 'process'}
+              onPageChange={page => setPage(page)}
+            />
+          )}
         </div>
 
         {status === 'success' && !data.length ? <div className="text-center p-10">
