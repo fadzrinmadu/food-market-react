@@ -2,6 +2,7 @@ import * as React from 'react';
 import { bool, func, node, oneOfType, number, string } from 'prop-types';
 
 import { classNames } from '../utils/class-names';
+import { focusWithinRingClasses } from '../utils/a11y';
 
 const InputText = React.forwardRef(function InputText(
   { placeholder, value, onChange, iconBefore, iconAfter, fitContainer, fullRound, type, ...props },
@@ -15,7 +16,8 @@ const InputText = React.forwardRef(function InputText(
     iconBefore ? 'pl-1' : 'pl-5',
     iconAfter ? 'pr-1' : 'pr-3',
     'border',
-    fullRound ? 'rounded-full' : 'rounded'
+    fullRound ? 'rounded-full' : 'rounded',
+    focusWithinRingClasses
   );
 
   const iconClasses = icon =>

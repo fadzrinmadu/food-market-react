@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Badge, Button, LayoutOne, Table, Text } from '../../components/ui';
+import { Badge, Button, ErrorState, LayoutOne, Table, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
 import BackButton from '../../components/BackButton';
@@ -54,7 +54,7 @@ export default function UserAddress() {
             </Button>
           </div>
         ) : null}
-        <Button size="small" color="red" onClick={() => handleDelete(alamat)}>
+        <Button size="small" color="red" variant="outline" onClick={() => handleDelete(alamat)}>
           Hapus
         </Button>
       </div>
@@ -65,35 +65,38 @@ export default function UserAddress() {
     <LayoutOne size="large">
       <div>
         <TopBar/>
-        <div className="flex items-center">
+        <div className="flex items-center mb-6">
           <BackButton to="/" />
           <div className="ml-3">
             <Text as="h3"> Alamat pengiriman </Text>
           </div>
         </div>
-        <br />
 
         <div>
-          <Link to="alamat-pengiriman/tambah">
-            <Button>
-              Tambah baru
-            </Button>
-          </Link>
-          <br />
-          <br />
-          <Table 
-            items={data}
-            columns={columns}
-            totalItems={count}
-            page={page}
-            perPage={limit}
-            isLoading={status === 'process'}
-            onPageChange={page => setPage(page)}
-          />
+          <div className="mb-6">
+            <Link to="alamat-pengiriman/tambah">
+              <Button>
+                Tambah baru
+              </Button>
+            </Link>
+          </div>
+          {status === 'error' ? (
+            <ErrorState message="Gagal memuat daftar alamat." onRetry={refetch} />
+          ) : (
+            <Table
+              items={data}
+              columns={columns}
+              totalItems={count}
+              page={page}
+              perPage={limit}
+              isLoading={status === 'process'}
+              onPageChange={page => setPage(page)}
+            />
+          )}
         </div>
 
         {status === 'success' && !data.length ? <div className="text-center p-10">
-          Kamu belum menambahkan alamat pengiriman. <br/>
+          <div className="mb-4">Kamu belum menambahkan alamat pengiriman.</div>
           <Link to="/alamat-pengiriman/tambah">
             <Button> Tambah Baru </Button>
           </Link>

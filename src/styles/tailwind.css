@@ -17339,6 +17339,10 @@ video {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
+.shadow-focus-ring {
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+}
+
 .shadow-none {
   box-shadow: none;
 }
@@ -17377,6 +17381,10 @@ video {
 
 .hover\:shadow-outline:hover {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.hover\:shadow-focus-ring:hover {
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
 }
 
 .hover\:shadow-none:hover {
@@ -17419,7 +17427,55 @@ video {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
+.focus\:shadow-focus-ring:focus {
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+}
+
 .focus\:shadow-none:focus {
+  box-shadow: none;
+}
+
+.focus-within\:shadow-xs:focus-within {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.focus-within\:shadow-sm:focus-within {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.focus-within\:shadow:focus-within {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.focus-within\:shadow-md:focus-within {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.focus-within\:shadow-lg:focus-within {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.focus-within\:shadow-xl:focus-within {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.focus-within\:shadow-2xl:focus-within {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.focus-within\:shadow-inner:focus-within {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.focus-within\:shadow-outline:focus-within {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.focus-within\:shadow-focus-ring:focus-within {
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+}
+
+.focus-within\:shadow-none:focus-within {
   box-shadow: none;
 }
 
@@ -39220,6 +39276,10 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .sm\:shadow-focus-ring {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .sm\:shadow-none {
     box-shadow: none;
   }
@@ -39258,6 +39318,10 @@ video {
 
   .sm\:hover\:shadow-outline:hover {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .sm\:hover\:shadow-focus-ring:hover {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
   }
 
   .sm\:hover\:shadow-none:hover {
@@ -39300,7 +39364,55 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .sm\:focus\:shadow-focus-ring:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .sm\:focus\:shadow-none:focus {
+    box-shadow: none;
+  }
+
+  .sm\:focus-within\:shadow-xs:focus-within {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .sm\:focus-within\:shadow-sm:focus-within {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .sm\:focus-within\:shadow:focus-within {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .sm\:focus-within\:shadow-md:focus-within {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .sm\:focus-within\:shadow-lg:focus-within {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .sm\:focus-within\:shadow-xl:focus-within {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .sm\:focus-within\:shadow-2xl:focus-within {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .sm\:focus-within\:shadow-inner:focus-within {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .sm\:focus-within\:shadow-outline:focus-within {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .sm\:focus-within\:shadow-focus-ring:focus-within {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
+  .sm\:focus-within\:shadow-none:focus-within {
     box-shadow: none;
   }
 
@@ -61010,6 +61122,10 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .md\:shadow-focus-ring {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .md\:shadow-none {
     box-shadow: none;
   }
@@ -61048,6 +61164,10 @@ video {
 
   .md\:hover\:shadow-outline:hover {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .md\:hover\:shadow-focus-ring:hover {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
   }
 
   .md\:hover\:shadow-none:hover {
@@ -61090,7 +61210,55 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .md\:focus\:shadow-focus-ring:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .md\:focus\:shadow-none:focus {
+    box-shadow: none;
+  }
+
+  .md\:focus-within\:shadow-xs:focus-within {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .md\:focus-within\:shadow-sm:focus-within {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .md\:focus-within\:shadow:focus-within {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .md\:focus-within\:shadow-md:focus-within {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .md\:focus-within\:shadow-lg:focus-within {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .md\:focus-within\:shadow-xl:focus-within {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .md\:focus-within\:shadow-2xl:focus-within {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .md\:focus-within\:shadow-inner:focus-within {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .md\:focus-within\:shadow-outline:focus-within {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .md\:focus-within\:shadow-focus-ring:focus-within {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
+  .md\:focus-within\:shadow-none:focus-within {
     box-shadow: none;
   }
 
@@ -82800,6 +82968,10 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .lg\:shadow-focus-ring {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .lg\:shadow-none {
     box-shadow: none;
   }
@@ -82838,6 +83010,10 @@ video {
 
   .lg\:hover\:shadow-outline:hover {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .lg\:hover\:shadow-focus-ring:hover {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
   }
 
   .lg\:hover\:shadow-none:hover {
@@ -82880,7 +83056,55 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .lg\:focus\:shadow-focus-ring:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .lg\:focus\:shadow-none:focus {
+    box-shadow: none;
+  }
+
+  .lg\:focus-within\:shadow-xs:focus-within {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .lg\:focus-within\:shadow-sm:focus-within {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .lg\:focus-within\:shadow:focus-within {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .lg\:focus-within\:shadow-md:focus-within {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .lg\:focus-within\:shadow-lg:focus-within {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .lg\:focus-within\:shadow-xl:focus-within {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .lg\:focus-within\:shadow-2xl:focus-within {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .lg\:focus-within\:shadow-inner:focus-within {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .lg\:focus-within\:shadow-outline:focus-within {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .lg\:focus-within\:shadow-focus-ring:focus-within {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
+  .lg\:focus-within\:shadow-none:focus-within {
     box-shadow: none;
   }
 
@@ -104590,6 +104814,10 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .xl\:shadow-focus-ring {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .xl\:shadow-none {
     box-shadow: none;
   }
@@ -104628,6 +104856,10 @@ video {
 
   .xl\:hover\:shadow-outline:hover {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .xl\:hover\:shadow-focus-ring:hover {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
   }
 
   .xl\:hover\:shadow-none:hover {
@@ -104670,7 +104902,55 @@ video {
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   }
 
+  .xl\:focus\:shadow-focus-ring:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
   .xl\:focus\:shadow-none:focus {
+    box-shadow: none;
+  }
+
+  .xl\:focus-within\:shadow-xs:focus-within {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .xl\:focus-within\:shadow-sm:focus-within {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .xl\:focus-within\:shadow:focus-within {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .xl\:focus-within\:shadow-md:focus-within {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .xl\:focus-within\:shadow-lg:focus-within {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .xl\:focus-within\:shadow-xl:focus-within {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .xl\:focus-within\:shadow-2xl:focus-within {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .xl\:focus-within\:shadow-inner:focus-within {
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .xl\:focus-within\:shadow-outline:focus-within {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  .xl\:focus-within\:shadow-focus-ring:focus-within {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+  }
+
+  .xl\:focus-within\:shadow-none:focus-within {
     box-shadow: none;
   }
 

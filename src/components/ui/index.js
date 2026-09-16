@@ -11,6 +11,7 @@ export { default as Card } from './Card';
 export { default as CardItem } from './CardItem';
 export { default as CardProduct } from './CardProduct';
 export { default as CardProductSkeleton } from './CardProductSkeleton';
+export { default as ErrorState } from './ErrorState';
 export { default as FormControl } from './FormControl';
 export { default as InputNumber } from './InputNumber';
 export { default as InputPassword } from './InputPassword';

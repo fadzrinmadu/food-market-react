@@ -115,7 +115,13 @@ export default function ProductForm({ defaultValues, submitLabel, onSubmit }) {
             alt={defaultValues.name}
           />
         ) : null}
-        <input type="file" accept="image/*" name="image" ref={imageInputRef} />
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          ref={imageInputRef}
+          className="block w-full text-sm border rounded px-3 py-2"
+        />
       </FormControl>
 
       <Button fitContainer>

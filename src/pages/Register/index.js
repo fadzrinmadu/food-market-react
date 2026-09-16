@@ -44,17 +44,17 @@ export default function Register() {
           <StoreLogo/>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl errorMessage={errors.full_name?.message}>
+          <FormControl label="Nama Lengkap" errorMessage={errors.full_name?.message}>
             <InputText
               name="full_name"
               placeholder="Nama Lengkap"
-              fitContainer 
+              fitContainer
               ref={register(rules.full_name)}
             />
           </FormControl>
 
-          <FormControl errorMessage={errors.email?.message}>
-            <InputText 
+          <FormControl label="Email" errorMessage={errors.email?.message}>
+            <InputText
               name="email"
               placeholder="Email"
               fitContainer
@@ -62,7 +62,7 @@ export default function Register() {
             />
           </FormControl>
 
-          <FormControl errorMessage={errors.password?.message}>
+          <FormControl label="Password" errorMessage={errors.password?.message}>
             <InputPassword
               name="password"
               placeholder="Password"
@@ -71,8 +71,8 @@ export default function Register() {
             />
           </FormControl>
 
-          <FormControl errorMessage={errors.password_confirmation?.message}>
-            <InputPassword 
+          <FormControl label="Konfirmasi Password" errorMessage={errors.password_confirmation?.message}>
+            <InputPassword
               name="password_confirmation"
               placeholder="Konfirmasi Password"
               fitContainer

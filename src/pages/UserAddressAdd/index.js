@@ -62,13 +62,12 @@ export default function UserAddressAdd() {
   return (
     <LayoutOne>
       <TopBar/>
-      <div className="flex items-center">
+      <div className="flex items-center mb-6">
         <BackButton to="/alamat-pengiriman" />
         <div className="ml-3">
           <Text as="h3">Tambah alamat</Text>
         </div>
       </div>
-      <br />
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl label="Nama alamat" errorMessage={errors.nama_alamat?.message} color="black">

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, InputText, LayoutOne, Table, Text } from '../../components/ui';
+import { Button, ErrorState, InputText, LayoutOne, Table, Text } from '../../components/ui';
 import { Link } from 'react-router-dom';
 
 import TopBar from '../../components/TopBar';
@@ -93,13 +93,12 @@ export default function UserOrders() {
 	return (
     <LayoutOne>
       <TopBar/>
-      <div className="flex items-center">
+      <div className="flex items-center mb-6">
         <BackButton to="/" />
         <div className="ml-3">
           <Text as="h3">Pesanan Anda</Text>
         </div>
       </div>
-      <br />
 
       <div className="flex items-center mb-5">
         <div className="mr-2">
@@ -120,14 +119,21 @@ export default function UserOrders() {
         </div>
       </div>
 
-      <Table
-        items={pesanan}
-        totalItems={count}
-        columns={columns}
-        onPageChange={ page => setPage(page)}
-        page={page}
-        isLoading={status === asyncStatus.process}
-      />
+      {status === asyncStatus.error ? (
+        <ErrorState
+          message="Gagal memuat daftar pesanan."
+          onRetry={fetchPesanan}
+        />
+      ) : (
+        <Table
+          items={pesanan}
+          totalItems={count}
+          columns={columns}
+          onPageChange={ page => setPage(page)}
+          page={page}
+          isLoading={status === asyncStatus.process}
+        />
+      )}
     </LayoutOne>
   )
 }

@@ -19,13 +19,12 @@ export default function AdminProductAdd() {
   return (
     <LayoutOne>
       <TopBar/>
-      <div className="flex items-center">
+      <div className="flex items-center mb-6">
         <BackButton to="/admin/products" />
         <div className="ml-3">
           <Text as="h3">Tambah produk</Text>
         </div>
       </div>
-      <br />
 
       <ProductForm onSubmit={handleSubmit} submitLabel="Simpan produk" />
     </LayoutOne>

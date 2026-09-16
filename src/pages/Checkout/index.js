@@ -1,5 +1,5 @@
 import * as React from 'react'; 
-import { Button, LayoutOne, Responsive, Steps, Table, Text } from '../../components/ui';
+import { Button, ErrorState, LayoutOne, Responsive, Steps, Table, Text } from '../../components/ui';
 import { useSelector, useDispatch } from 'react-redux';
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 import FaAddressCard from '@meronex/icons/fa/FaAddressCard';
@@ -83,13 +83,14 @@ export default function Checkout() {
   let [ selectedAddress, setSelectedAddress ] = React.useState(null);
 
   let {
-    data, 
+    data,
     status,
-    limit, 
-    page, 
-    count, 
-    setPage
-  } = useAddressData(); 
+    limit,
+    page,
+    count,
+    setPage,
+    refetch,
+  } = useAddressData();
 
   let history = useHistory(); 
   let dispatch = useDispatch();
@@ -114,31 +115,30 @@ export default function Checkout() {
 
   return <LayoutOne>
     <TopBar/>
-    <Text as="h3"> Checkout </Text> 
+    <Text as="h3" className="mb-6"> Checkout </Text>
 
-    <Steps
-      steps={steps}
-      active={activeStep} 
-    />
+    <div className="mb-6">
+      <Steps
+        steps={steps}
+        active={activeStep}
+      />
+    </div>
 
     {activeStep === 0 ?
       <div>
-        <br/> <br/>
-        <Table 
+        <Table
           items={cart}
           columns={columns}
           perPage={cart.length}
           showPagination={false}
         />
 
-        <br/>
-        <div className="text-right">
-          <Text as="h4">
+        <div className="text-right mt-6">
+          <Text as="h4" className="mb-4">
             Subtotal: {formatRupiah(sumPrice(cart))}
-          </Text> 
+          </Text>
 
-          <br/>
-          <Button 
+          <Button
             onClick={_ => setActiveStep(activeStep + 1)}
             color="red"
             iconAfter={<FaArrowRight/>}
@@ -149,36 +149,39 @@ export default function Checkout() {
 
     {activeStep === 1 ?
       <div>
-        <br/><br/>
-        <Table
-        items={data}
-        columns={addressColumns}
-        perPage={limit}
-        page={page}
-        onPageChange={page => setPage(page)}
-        totalItems={count}
-        isLoading={status === 'process'}
-        selectable
-        primaryField="_id"
-        selectedRow={selectedAddress}
-        onSelectRow={ item => setSelectedAddress(item)}
-        />
+        {status === 'error' ? (
+          <ErrorState message="Gagal memuat daftar alamat." onRetry={refetch} />
+        ) : (
+          <Table
+          items={data}
+          columns={addressColumns}
+          perPage={limit}
+          page={page}
+          onPageChange={page => setPage(page)}
+          totalItems={count}
+          isLoading={status === 'process'}
+          selectable
+          primaryField="_id"
+          selectedRow={selectedAddress}
+          onSelectRow={ item => setSelectedAddress(item)}
+          />
+        )}
 
-      {!data.length && status === 'success' ? 
+      {!data.length && status === 'success' ?
         <div className="text-center my-10">
           <Link to="/alamat-pengiriman/tambah">
-            Kamu belum memiliki alamat pengiriman <br/> <br />
+            <div className="mb-4">Kamu belum memiliki alamat pengiriman</div>
             <Button> Tambah alamat </Button>
           </Link>
         </div>
       : null}
 
-      <br/> <br/>
+      <div className="mt-6">
       <Responsive desktop={2} tablet={2} mobile={2}>
         <div>
-          <Button 
-            onClick={_ =>  setActiveStep(activeStep - 1)} 
-            color="gray" 
+          <Button
+            onClick={_ =>  setActiveStep(activeStep - 1)}
+            color="gray"
             iconBefore={<FaArrowLeft/>}>
 
             Sebelumnya
@@ -186,15 +189,16 @@ export default function Checkout() {
         </div>
 
         <div className="text-right">
-          <Button 
-            onClick={_ => setActiveStep(activeStep + 1)} 
+          <Button
+            onClick={_ => setActiveStep(activeStep + 1)}
             disabled={!selectedAddress}
-            color="red" 
+            color="red"
             iconAfter={<FaArrowRight/>}>
             Selanjutnya
           </Button>
         </div>
       </Responsive>
+      </div>
       </div>
     : null }
 
@@ -224,18 +228,18 @@ export default function Checkout() {
           ]}
           showPagination={false}
         />
-      <br />
+      <div className="mt-6">
       <Responsive desktop={2} tablet={2} mobile={2}>
         <div>
-          <Button 
-            onClick={_ =>  setActiveStep(activeStep - 1)} 
-            color="gray" 
+          <Button
+            onClick={_ =>  setActiveStep(activeStep - 1)}
+            color="gray"
             iconBefore={<FaArrowLeft/>}>
             Sebelumnya
           </Button>
         </div>
         <div className="text-right">
-          <Button 
+          <Button
             onClick={handleCreateOrder}
             color="red"
             size="large"
@@ -246,7 +250,8 @@ export default function Checkout() {
         </div>
       </Responsive>
       </div>
-    : null}  
+      </div>
+    : null}
 
   </LayoutOne>
 }

@@ -32,10 +32,11 @@ export default function Home() {
   return (
     <div>
       <LayoutSidebar
+        hideSidebarOnMobile
         sidebar={
-          <SideNav 
-            items={menus} 
-            verticalAlign="top" 
+          <SideNav
+            items={menus}
+            verticalAlign="top"
             active={products.category}
             onChange={category => dispatch(setCategory(category))}
           />
@@ -44,7 +45,7 @@ export default function Home() {
           <div className="md:flex md:flex-row-reverse w-full mr-5 h-full min-h-screen">
             <div className="w-full md:w-3/4 pl-5 pb-10">
               <TopBar/>
-              
+
               <div className="w-full text-center mb-10 mt-5">
                 <InputText
                   fullRound
@@ -55,6 +56,19 @@ export default function Home() {
                     dispatch(setKeyword(e.target.value))
                   }}
                 />
+              </div>
+
+              <div className="mb-5 pl-2 flex md:hidden w-full overflow-auto pb-2" aria-label="Kategori">
+              {menus.map((menu, index) => {
+                return <div key={index}>
+                  <Pill
+                    text={menu.label}
+                    icon={<img src={menu.icon} alt="" className="w-4 h-4" />}
+                    isActive={products.category === menu.id}
+                    onClick={_ => dispatch(setCategory(menu.id))}
+                  />
+                </div>
+              })}
               </div>
 
               <div className="mb-5 pl-2 flex w-3/3 overflow-auto pb-5">
@@ -72,7 +86,7 @@ export default function Home() {
               
               {products.status === 'process' && !products.data.length ?
                 <Responsive desktop={3} items="stretch">
-                  {Array.from({ length: 9 }).map((_, index) => (
+                  {Array.from({ length: 6 }).map((_, index) => (
                     <div key={index} className="p-2">
                       <CardProductSkeleton />
                     </div>

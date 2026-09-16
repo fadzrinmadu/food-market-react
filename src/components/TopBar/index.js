@@ -20,6 +20,7 @@ export default function TopBar() {
         </div>
         <ButtonCircle
           icon={<FaUser/>}
+          aria-label={auth.user ? 'Akun saya' : 'Masuk'}
         />
       </Link>
     </div>

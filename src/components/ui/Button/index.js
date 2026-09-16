@@ -2,13 +2,16 @@ import * as React from 'react';
 import { bool, func, node, oneOf, string } from 'prop-types';
 
 import { classNames } from '../utils/class-names';
-import { colors, getBgColor, getBgColorHover } from '../utils/colors';
+import { colors, getBgColor, getBgColorHover, getBorderColor, getTextColor } from '../utils/colors';
+import { focusRingClasses } from '../utils/a11y';
 
 const buttonSizes = {
   small: 'h-6 text-sm',
   medium: 'h-8',
   large: 'h-10 text-xl',
 };
+
+const buttonVariants = ['solid', 'outline'];
 
 export default function Button({
   text,
@@ -17,26 +20,33 @@ export default function Button({
   onClick,
   color,
   size,
+  variant,
   fitContainer,
   disabled,
   children,
   ...props
 }) {
+  const isOutline = variant === 'outline';
+
+  const colorClasses = disabled
+    ? 'bg-gray-200 text-gray-500 border-gray-200'
+    : isOutline
+    ? classNames('bg-white', getTextColor(color), getBorderColor(color), getBgColorHover(color), 'hover:text-white')
+    : classNames(getBgColor(color), getBgColorHover(color), 'text-white', 'border-white');
+
   const buttonClasses = classNames(
     buttonSizes[size],
-    disabled
-      ? `cursor-not-allowed ${getBgColor(color, 300)} ${getBgColorHover(color, 300)}`
-      : `${getBgColor(color)} ${getBgColorHover(color)}`,
+    disabled && 'cursor-not-allowed',
+    colorClasses,
     fitContainer && 'w-full',
     'inline-flex',
     'items-center',
     'justify-center',
     'px-4',
-    'text-white',
     'rounded',
     'shadow-lg',
     'border',
-    'border-white'
+    focusRingClasses
   );
 
   return (
@@ -59,6 +69,7 @@ export default function Button({
 Button.defaultProps = {
   color: 'red',
   size: 'medium',
+  variant: 'solid',
   fitContainer: false,
 };
 
@@ -73,6 +84,8 @@ Button.propTypes = {
   /** warna tombol, mengikuti palet Tailwind project */
   color: oneOf(colors),
   size: oneOf(Object.keys(buttonSizes)),
+  /** gaya tombol: `solid` (default, aksi utama) atau `outline` (aksi sekunder/destruktif) */
+  variant: oneOf(buttonVariants),
   /** lebarkan tombol selebar container */
   fitContainer: bool,
   disabled: bool,

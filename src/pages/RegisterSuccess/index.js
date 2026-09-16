@@ -6,14 +6,12 @@ export default function RegisterSuccess() {
   return (
     <LayoutOne size="small">
       <Card color="white">
-        <Text as="h3">
+        <Text as="h3" className="mb-2">
           Pendaftaran Berhasil
         </Text>
-        <Text> 
+        <Text className="mb-6">
             Silahkan masuk ke aplikasi
         </Text>
-
-        <br/> 
 
         <Link to="/login">
           <Button fitContainer>
