@@ -86,7 +86,7 @@ export default function Home() {
               
               {products.status === 'process' && !products.data.length ?
                 <Responsive desktop={3} items="stretch">
-                  {Array.from({ length: 9 }).map((_, index) => (
+                  {Array.from({ length: 6 }).map((_, index) => (
                     <div key={index} className="p-2">
                       <CardProductSkeleton />
                     </div>
