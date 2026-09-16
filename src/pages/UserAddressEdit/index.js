@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Button, FormControl, LayoutOne, Text, Textarea } from '../../components/ui';
+import { Button, FormControl, InputText, LayoutOne, Text, Textarea } from '../../components/ui';
 
 import TopBar from '../../components/TopBar';
 import BackButton from '../../components/BackButton';
@@ -77,8 +77,9 @@ export default function UserAddressEdit() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl label="Nama alamat" errorMessage={errors.nama_alamat?.message} color="black">
-          <input
-            className="border rounded px-3 py-2 w-full outline-none"
+          <InputText
+            placeholder="Nama alamat"
+            fitContainer
             name="nama_alamat"
             ref={register(rules.nama_alamat)}
           />

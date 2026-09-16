@@ -2,6 +2,7 @@ import * as React from 'react';
 import { bool, func, number, oneOfType, string } from 'prop-types';
 
 import { classNames } from '../utils/class-names';
+import { focusRingClasses } from '../utils/a11y';
 
 const Textarea = React.forwardRef(function Textarea(
   { value, onChange, placeholder, fullRound, fitContainer, rows, ...props },
@@ -12,7 +13,8 @@ const Textarea = React.forwardRef(function Textarea(
     'px-5',
     'py-2',
     fullRound ? 'rounded-full' : 'rounded',
-    fitContainer && 'w-full'
+    fitContainer && 'w-full',
+    focusRingClasses
   );
 
   return (

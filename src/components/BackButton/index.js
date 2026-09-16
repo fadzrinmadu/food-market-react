@@ -7,7 +7,7 @@ import { ButtonCircle } from '../ui';
 export default function BackButton({ to }) {
   return (
     <Link to={to}>
-      <ButtonCircle icon={<FaArrowLeft />} />
+      <ButtonCircle icon={<FaArrowLeft />} aria-label="Kembali" />
     </Link>
   );
 }
