@@ -2,6 +2,27 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
 
+/*
+ * PENTING: safelist manual untuk seluruh kombinasi warna yang mungkin
+ * dihasilkan oleh `src/components/ui/utils/colors.js` (getBgColor,
+ * getTextColor, getBorderColor, getBgColorHover, getTextColorHover).
+ *
+ * Fungsi-fungsi itu membangun nama class lewat template literal
+ * (`` `bg-${color}-${accent}` ``) saat runtime. Tailwind v4 hanya men-scan
+ * teks LITERAL di file yang match `content` (lihat tailwind.config.js) —
+ * ia tidak bisa "menjalankan" JS untuk tahu hasil interpolasi tsb, jadi
+ * kombinasi warna yang tidak juga muncul sebagai string literal di tempat
+ * lain (mis. `bg-black`, tidak dipakai literal di mana pun sebelum ini)
+ * akan diam-diam tidak menghasilkan CSS sama sekali — elemen tetap dapat
+ * class-nya di DOM, tapi tanpa rule apa pun (jadi terlihat transparan/
+ * invisible). Sudah ditemukan nyata: `SideNav` aktif jadi teks putih tanpa
+ * background (bg-black tidak pernah ter-generate) sebelum baris ini
+ * ditambahkan. Baris ini memastikan SEMUA kombinasi warna project selalu
+ * tersedia, apa pun cara pemanggilannya.
+ */
+@source inline("{hover:,}{bg,text,border}-{red,yellow,gray,purple,indigo,orange,green,blue}-{100,200,300,400,500,600,700,800,900}");
+@source inline("{hover:,}{bg,text,border}-{white,black}");
+
 body {
   @apply bg-gray-100 text-black font-sans;
 }
