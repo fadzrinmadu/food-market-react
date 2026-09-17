@@ -9,7 +9,7 @@ const Textarea = React.forwardRef(function Textarea(
   ref
 ) {
   const textareaClasses = classNames(
-    'border',
+    'bg-white border border-gray-200 shadow-sm',
     'px-5',
     'py-2',
     fullRound ? 'rounded-full' : 'rounded',

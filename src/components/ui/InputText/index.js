@@ -25,7 +25,7 @@ const InputText = React.forwardRef(function InputText(
     hasIcon ? 'py-1' : 'py-2',
     iconBefore ? 'pl-1' : 'pl-5',
     iconAfter ? 'pr-1' : 'pr-3',
-    'border',
+    'bg-white border border-gray-200 shadow-sm',
     fullRound ? 'rounded-full' : 'rounded',
     focusWithinRingClasses
   );

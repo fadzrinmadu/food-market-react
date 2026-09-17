@@ -27,7 +27,7 @@ const InputNumber = React.forwardRef(function InputNumber(
 ) {
   const roundedClass = fullRound ? 'rounded-full' : 'rounded';
 
-  const wrapperClasses = classNames('border', 'inline-flex', roundedClass, 'py-1', 'px-2');
+  const wrapperClasses = classNames('border border-white', 'inline-flex', roundedClass, 'py-1', 'px-2');
 
   const inputClasses = classNames(
     'px-2',
