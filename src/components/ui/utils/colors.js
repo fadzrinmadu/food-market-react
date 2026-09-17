@@ -23,26 +23,26 @@ function withAccent(prefix, color, accent) {
 }
 
 /** Nama class Tailwind untuk warna background. */
-export function getBgColor(color = 'red', accent = 600) {
+export function getBgColor(color = 'orange', accent = 600) {
   return withAccent('bg', color, accent);
 }
 
 /** Nama class Tailwind untuk warna background saat hover. */
-export function getBgColorHover(color = 'red', accent = 700) {
+export function getBgColorHover(color = 'orange', accent = 700) {
   return withAccent('hover:bg', color, accent);
 }
 
 /** Nama class Tailwind untuk warna teks. */
-export function getTextColor(color = 'red', accent = 600) {
+export function getTextColor(color = 'orange', accent = 600) {
   return withAccent('text', color, accent);
 }
 
 /** Nama class Tailwind untuk warna teks saat hover. */
-export function getTextColorHover(color = 'red', accent = 700) {
+export function getTextColorHover(color = 'orange', accent = 700) {
   return withAccent('hover:text', color, accent);
 }
 
 /** Nama class Tailwind untuk warna border. */
-export function getBorderColor(color = 'red', accent = 600) {
+export function getBorderColor(color = 'orange', accent = 600) {
   return withAccent('border', color, accent);
 }

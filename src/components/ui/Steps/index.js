@@ -24,7 +24,7 @@ export default function Steps({ steps = [], active = 0, onChange }) {
         const item = (
           <div
             key={`step-${index}`}
-            className={classNames(baseStepClasses, isActive && 'bg-red-600 text-white font-bold')}
+            className={classNames(baseStepClasses, isActive && 'bg-orange-600 text-white font-bold')}
             onClick={isInteractive ? () => onChange(index) : undefined}
             onKeyDown={isInteractive ? event => handleKeyDown(event, index) : undefined}
             role={isInteractive ? 'button' : undefined}
@@ -43,7 +43,7 @@ export default function Steps({ steps = [], active = 0, onChange }) {
 
         if (index === steps.length - 1) return item;
 
-        return [item, <div className="w-64 h-1 bg-red-600" key={`separator-${index}`} />];
+        return [item, <div className="w-64 h-1 bg-orange-600" key={`separator-${index}`} />];
       })}
     </div>
   );

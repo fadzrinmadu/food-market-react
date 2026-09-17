@@ -29,129 +29,149 @@ module.exports = {
   important: false,
   separator: ':',
   theme: {
+    // PENTING: palet warna HARUS didefinisikan di `extend.colors`, bukan
+    // `colors` di top-level `theme`. Tailwind v4 (diakses lewat @config)
+    // mengabaikan penggantian penuh (`theme.colors`) untuk nama warna yang
+    // sudah ada di palet bawaannya (red, gray, orange, dst) — kelas seperti
+    // `bg-red-600` akan diam-diam tetap memakai warna default Tailwind v4,
+    // bukan hex di file ini. Sudah diverifikasi: hanya `extend.colors` yang
+    // benar-benar override nilai warna pada hasil build. Baru dikonfirmasi
+    // saat mengadopsi gaya desain referensi (2026-09) — sebelumnya bug ini
+    // laten sejak migrasi ke Tailwind v4 (lihat commit 815f531), seluruh
+    // palet custom project tidak pernah benar-benar terpakai.
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+
+        // `black` & `gray` sengaja dihangatkan (bukan abu-abu dingin bawaan
+        // Tailwind v1) untuk mengikuti nuansa krem-hangat referensi desain:
+        // `gray-100` dipakai sebagai warna latar halaman, `black` sebagai
+        // warna teks utama.
+        black: '#201a17',
+        white: '#fff',
+
+        gray: {
+          100: '#f3eee7',
+          200: '#ede7df',
+          300: '#ded6c9',
+          400: '#c3b8a8',
+          500: '#a69a87',
+          600: '#767066',
+          700: '#574f45',
+          800: '#382f27',
+          900: '#201a17',
+        },
+        // `red` kini dipakai sebagai warna semantik "error" (brand pindah ke
+        // `orange`), bukan lagi warna brand utama.
+        red: {
+          100: '#fbe6e2',
+          200: '#f6c7bf',
+          300: '#efa095',
+          400: '#e5766a',
+          500: '#dc5546',
+          600: '#d33b2c',
+          700: '#b22f22',
+          800: '#8a2419',
+          900: '#5e1810',
+        },
+        // `orange` adalah warna brand/primary utama, diambil dari palet
+        // gambar referensi desain (oranye hangat).
+        orange: {
+          100: '#fdecd8',
+          200: '#fbdcb8',
+          300: '#f8c18a',
+          400: '#f4a35c',
+          500: '#f1873a',
+          600: '#f0790e',
+          700: '#d96a0a',
+          800: '#a8530a',
+          900: '#7a3b06',
+        },
+        yellow: {
+          100: '#fcf3df',
+          200: '#f8e3b4',
+          300: '#f2ce7e',
+          400: '#ecb854',
+          500: '#e6ac3d',
+          600: '#e0a32e',
+          700: '#bd8623',
+          800: '#8f6419',
+          900: '#61440f',
+        },
+        green: {
+          100: '#e4f3e4',
+          200: '#c3e4c4',
+          300: '#9bd09d',
+          400: '#71bb74',
+          500: '#55a758',
+          600: '#3f9142',
+          700: '#327335',
+          800: '#265728',
+          900: '#1a3b1c',
+        },
+        teal: {
+          100: '#e6fffa',
+          200: '#b2f5ea',
+          300: '#81e6d9',
+          400: '#4fd1c5',
+          500: '#38b2ac',
+          600: '#319795',
+          700: '#2c7a7b',
+          800: '#285e61',
+          900: '#234e52',
+        },
+        blue: {
+          100: '#e3ecfb',
+          200: '#bcd3f4',
+          300: '#8fb4ea',
+          400: '#6299e1',
+          500: '#4a89db',
+          600: '#3b7dd8',
+          700: '#2e64b0',
+          800: '#234c86',
+          900: '#18335a',
+        },
+        indigo: {
+          100: '#ebf4ff',
+          200: '#c3dafe',
+          300: '#a3bffa',
+          400: '#7f9cf5',
+          500: '#667eea',
+          600: '#5a67d8',
+          700: '#4c51bf',
+          800: '#434190',
+          900: '#3c366b',
+        },
+        purple: {
+          100: '#faf5ff',
+          200: '#e9d8fd',
+          300: '#d6bcfa',
+          400: '#b794f4',
+          500: '#9f7aea',
+          600: '#805ad5',
+          700: '#6b46c1',
+          800: '#553c9a',
+          900: '#44337a',
+        },
+        pink: {
+          100: '#fff5f7',
+          200: '#fed7e2',
+          300: '#fbb6ce',
+          400: '#f687b3',
+          500: '#ed64a6',
+          600: '#d53f8c',
+          700: '#b83280',
+          800: '#97266d',
+          900: '#702459',
+        },
+      },
+    },
     screens: {
       sm: '640px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-    },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-
-      black: '#000',
-      white: '#fff',
-
-      gray: {
-        100: '#f7fafc',
-        200: '#edf2f7',
-        300: '#e2e8f0',
-        400: '#cbd5e0',
-        500: '#a0aec0',
-        600: '#718096',
-        700: '#4a5568',
-        800: '#2d3748',
-        900: '#1a202c',
-      },
-      red: {
-        100: '#fff5f5',
-        200: '#fed7d7',
-        300: '#feb2b2',
-        400: '#fc8181',
-        500: '#f56565',
-        600: '#e53e3e',
-        700: '#c53030',
-        800: '#9b2c2c',
-        900: '#742a2a',
-      },
-      orange: {
-        100: '#fffaf0',
-        200: '#feebc8',
-        300: '#fbd38d',
-        400: '#f6ad55',
-        500: '#ed8936',
-        600: '#dd6b20',
-        700: '#c05621',
-        800: '#9c4221',
-        900: '#7b341e',
-      },
-      yellow: {
-        100: '#fffff0',
-        200: '#fefcbf',
-        300: '#faf089',
-        400: '#f6e05e',
-        500: '#ecc94b',
-        600: '#d69e2e',
-        700: '#b7791f',
-        800: '#975a16',
-        900: '#744210',
-      },
-      green: {
-        100: '#f0fff4',
-        200: '#c6f6d5',
-        300: '#9ae6b4',
-        400: '#68d391',
-        500: '#48bb78',
-        600: '#38a169',
-        700: '#2f855a',
-        800: '#276749',
-        900: '#22543d',
-      },
-      teal: {
-        100: '#e6fffa',
-        200: '#b2f5ea',
-        300: '#81e6d9',
-        400: '#4fd1c5',
-        500: '#38b2ac',
-        600: '#319795',
-        700: '#2c7a7b',
-        800: '#285e61',
-        900: '#234e52',
-      },
-      blue: {
-        100: '#ebf8ff',
-        200: '#bee3f8',
-        300: '#90cdf4',
-        400: '#63b3ed',
-        500: '#4299e1',
-        600: '#3182ce',
-        700: '#2b6cb0',
-        800: '#2c5282',
-        900: '#2a4365',
-      },
-      indigo: {
-        100: '#ebf4ff',
-        200: '#c3dafe',
-        300: '#a3bffa',
-        400: '#7f9cf5',
-        500: '#667eea',
-        600: '#5a67d8',
-        700: '#4c51bf',
-        800: '#434190',
-        900: '#3c366b',
-      },
-      purple: {
-        100: '#faf5ff',
-        200: '#e9d8fd',
-        300: '#d6bcfa',
-        400: '#b794f4',
-        500: '#9f7aea',
-        600: '#805ad5',
-        700: '#6b46c1',
-        800: '#553c9a',
-        900: '#44337a',
-      },
-      pink: {
-        100: '#fff5f7',
-        200: '#fed7e2',
-        300: '#fbb6ce',
-        400: '#f687b3',
-        500: '#ed64a6',
-        600: '#d53f8c',
-        700: '#b83280',
-        800: '#97266d',
-        900: '#702459',
-      },
     },
     spacing: {
       px: '1px',
@@ -164,6 +184,9 @@ module.exports = {
       '6': '1.5rem',
       '8': '2rem',
       '10': '2.5rem',
+      // Ditambahkan agar tombol/elemen interaktif bisa mencapai target
+      // sentuh minimal 44px (WCAG) tanpa harus lompat ke `12` (48px).
+      '11': '2.75rem',
       '12': '3rem',
       '16': '4rem',
       '20': '5rem',
@@ -174,7 +197,13 @@ module.exports = {
       '56': '14rem',
       '64': '16rem',
     },
-    backgroundColor: theme => theme('colors'),
+    // `backgroundColor` sengaja TIDAK di-override lagi (dulu `theme =>
+    // theme('colors')`). Fungsi ini sudah tidak perlu di Tailwind v4: nilai
+    // baliknya bukan hasil merge `extend.colors`, jadi bg-* yang dihasilkan
+    // diam-diam memakai palet default Tailwind, bukan warna custom project.
+    // Tailwind v4 memang menghasilkan utilitas bg-*/text-*/border-* untuk
+    // seluruh warna di tema secara default, jadi override ini memang sudah
+    // redundan.
     backgroundOpacity: theme => theme('opacity'),
     backgroundPosition: {
       bottom: 'bottom',
@@ -192,17 +221,22 @@ module.exports = {
       cover: 'cover',
       contain: 'contain',
     },
-    borderColor: theme => ({
-      ...theme('colors'),
-      default: theme('colors.gray.300', 'currentColor'),
-    }),
+    // `borderColor` juga sengaja tidak di-override, dengan alasan sama
+    // seperti `backgroundColor` di atas. Catatan: sejak Tailwind v4, class
+    // `border` polos (tanpa akhiran warna) sudah tidak lagi otomatis
+    // memakai warna default (dulu `gray-300` lewat key `default` di sini) —
+    // ini perubahan bawaan Tailwind v4 sendiri, bukan akibat perubahan ini.
     borderOpacity: theme => theme('opacity'),
+    // Skala radius dinaikkan cukup drastis dari default Tailwind v1 untuk
+    // mengikuti gaya referensi (radius besar & konsisten adalah ciri paling
+    // ikonik dari desainnya).
     borderRadius: {
       none: '0',
-      sm: '0.125rem',
-      default: '0.25rem',
-      md: '0.375rem',
-      lg: '0.5rem',
+      sm: '0.5rem',
+      default: '0.75rem',
+      md: '1rem',
+      lg: '1.25rem',
+      xl: '1.5rem',
       full: '9999px',
     },
     borderWidth: {
@@ -212,17 +246,24 @@ module.exports = {
       '4': '4px',
       '8': '8px',
     },
+    // Shadow dihangatkan (warna dasar rgba(32,26,23,*), bukan hitam pekat)
+    // dan dibuat lebih lembut/menyebar (blur besar, offset besar, opacity
+    // rendah) mengikuti gaya referensi. `lg` sengaja jadi fokus utama karena
+    // itulah shade yang paling banyak dipakai (`shadow-lg`) di komponen
+    // bersama saat ini (Card, Button, Pill, ButtonCircle, dst).
     boxShadow: {
-      xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
-      sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-      default: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-      md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-      lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-      xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-      '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-      inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+      xs: '0 1px 2px 0 rgba(32, 26, 23, 0.04)',
+      sm: '0 2px 6px -1px rgba(32, 26, 23, 0.06)',
+      default: '0 4px 12px -2px rgba(32, 26, 23, 0.08)',
+      md: '0 8px 20px -4px rgba(32, 26, 23, 0.10)',
+      lg: '0 16px 32px -8px rgba(32, 26, 23, 0.12)',
+      xl: '0 24px 48px -12px rgba(32, 26, 23, 0.16)',
+      '2xl': '0 32px 64px -16px rgba(32, 26, 23, 0.22)',
+      inner: 'inset 0 2px 4px 0 rgba(32, 26, 23, 0.06)',
       outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
-      'focus-ring': '0 0 0 3px rgba(229, 62, 62, 0.5)',
+      // Dicocokkan dengan warna brand baru (`orange-600`); lihat catatan di
+      // `components/ui/utils/a11y.js`.
+      'focus-ring': '0 0 0 3px rgba(240, 121, 14, 0.5)',
       none: 'none',
     },
     container: {},
@@ -257,6 +298,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        '"Plus Jakarta Sans"',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -405,7 +447,8 @@ module.exports = {
       '12': '12',
     },
     padding: theme => theme('spacing'),
-    placeholderColor: theme => theme('colors'),
+    // `placeholderColor` tidak di-override, alasan sama seperti
+    // `backgroundColor`.
     placeholderOpacity: theme => theme('opacity'),
     space: theme => ({
       ...theme('spacing'),
@@ -419,7 +462,7 @@ module.exports = {
       '1': '1',
       '2': '2',
     },
-    textColor: theme => theme('colors'),
+    // `textColor` tidak di-override, alasan sama seperti `backgroundColor`.
     textOpacity: theme => theme('opacity'),
     width: theme => ({
       auto: 'auto',

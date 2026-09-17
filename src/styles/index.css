@@ -1,2 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @config "../../tailwind.config.js";
+
+/*
+ * PENTING: safelist manual untuk seluruh kombinasi warna yang mungkin
+ * dihasilkan oleh `src/components/ui/utils/colors.js` (getBgColor,
+ * getTextColor, getBorderColor, getBgColorHover, getTextColorHover).
+ *
+ * Fungsi-fungsi itu membangun nama class lewat template literal
+ * (`` `bg-${color}-${accent}` ``) saat runtime. Tailwind v4 hanya men-scan
+ * teks LITERAL di file yang match `content` (lihat tailwind.config.js) —
+ * ia tidak bisa "menjalankan" JS untuk tahu hasil interpolasi tsb, jadi
+ * kombinasi warna yang tidak juga muncul sebagai string literal di tempat
+ * lain (mis. `bg-black`, tidak dipakai literal di mana pun sebelum ini)
+ * akan diam-diam tidak menghasilkan CSS sama sekali — elemen tetap dapat
+ * class-nya di DOM, tapi tanpa rule apa pun (jadi terlihat transparan/
+ * invisible). Sudah ditemukan nyata: `SideNav` aktif jadi teks putih tanpa
+ * background (bg-black tidak pernah ter-generate) sebelum baris ini
+ * ditambahkan. Baris ini memastikan SEMUA kombinasi warna project selalu
+ * tersedia, apa pun cara pemanggilannya.
+ */
+@source inline("{hover:,}{bg,text,border}-{red,yellow,gray,purple,indigo,orange,green,blue}-{100,200,300,400,500,600,700,800,900}");
+@source inline("{hover:,}{bg,text,border}-{white,black}");
+
+/*
+ * Sama seperti safelist warna di atas: `src/components/ui/Responsive/index.js`
+ * membangun class grid/flex lewat template literal (`` `${prefix}flex` ``,
+ * `` `w-1/${breakpoint}` ``, `` `justify-${justify}` ``, dst) — jadi class
+ * seperti `lg:w-1/3` atau `items-center` tidak pernah ter-generate tanpa
+ * safelist ini. Sebelumnya ini menyebabkan grid produk di Home selalu 1
+ * kolom penuh (bukan grid multi-kolom) dan baris TopBar tidak center
+ * (items-center tidak pernah aktif).
+ */
+@source inline("{md:,lg:,}{flex}");
+@source inline("flex-wrap");
+@source inline("{md:,lg:,}w-{full,1/2,1/3,1/4,1/5,1/6}");
+@source inline("justify-{start,end,center,between,around,evenly}");
+@source inline("items-{start,end,center,stretch,baseline}");
+
+body {
+  @apply bg-gray-100 text-black font-sans;
+}

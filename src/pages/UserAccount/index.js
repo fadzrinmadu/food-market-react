@@ -12,15 +12,15 @@ import TopBar from '../../components/TopBar';
 import IconWrapper from '../../components/IconWrapper';
 
 const menus = [
-  {label: 'Beranda', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaHome/></IconWrapper>, url: '/'},
-  {label: 'Alamat', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaAddressBook/></IconWrapper>, url: '/alamat-pengiriman'},
-  {label: 'Pesanan', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaFileInvoice/></IconWrapper>, url: '/pesanan'},
-  {label: 'Logout', icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaArrowRight/></IconWrapper>, url: '/logout'}
+  {label: 'Beranda', icon: <IconWrapper className="text-orange-600 text-5xl flex justify-center mb-5"><FaHome/></IconWrapper>, url: '/'},
+  {label: 'Alamat', icon: <IconWrapper className="text-orange-600 text-5xl flex justify-center mb-5"><FaAddressBook/></IconWrapper>, url: '/alamat-pengiriman'},
+  {label: 'Pesanan', icon: <IconWrapper className="text-orange-600 text-5xl flex justify-center mb-5"><FaFileInvoice/></IconWrapper>, url: '/pesanan'},
+  {label: 'Logout', icon: <IconWrapper className="text-orange-600 text-5xl flex justify-center mb-5"><FaArrowRight/></IconWrapper>, url: '/logout'}
 ];
 
 const adminMenu = {
   label: 'Kelola Produk',
-  icon: <IconWrapper className="text-white text-5xl flex justify-center mb-5"><FaBoxes/></IconWrapper>,
+  icon: <IconWrapper className="text-orange-600 text-5xl flex justify-center mb-5"><FaBoxes/></IconWrapper>,
   url: '/admin/products',
 };
 
@@ -38,7 +38,7 @@ export default function UserAccount() {
             <Link to={menu.url}>
               <Card
                 header={menu.icon}
-                body={<div className="text-center font-bold text-white">
+                body={<div className="text-center font-bold">
                   {menu.label}
                 </div>}
               />

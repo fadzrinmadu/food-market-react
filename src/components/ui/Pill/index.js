@@ -12,10 +12,10 @@ const baseIconClasses =
 export default function Pill({ text, icon, isActive = false, onClick }) {
   const pillClasses = classNames(
     basePillClasses,
-    isActive ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700'
+    isActive ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-700'
   );
 
-  const iconClasses = classNames(baseIconClasses, isActive ? 'border border-red-600' : 'border');
+  const iconClasses = classNames(baseIconClasses, isActive ? 'border border-orange-600' : 'border');
 
   const handleKeyDown = event => {
     if (!onClick) return;

@@ -13,7 +13,7 @@ import {
   getTextColorHover,
 } from '../utils/colors';
 
-function PaginationButton({ page, isActive, onClick, color = 'red', disabled = false, label }) {
+function PaginationButton({ page, isActive, onClick, color = 'orange', disabled = false, label }) {
   const active = isActive && !disabled;
 
   const classes = classNames(
@@ -76,7 +76,7 @@ export default function Pagination({
   perPage = 10,
   page = 1,
   onChange = () => null,
-  color = 'red',
+  color = 'orange',
   onPrev = () => null,
   onNext = () => null,
 }) {

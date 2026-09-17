@@ -4,15 +4,21 @@ import { func, node, oneOf } from 'prop-types';
 import { classNames } from '../utils/class-names';
 import { colors, getBgColor } from '../utils/colors';
 
-export default function Card({ header, body, footer, color = 'red', onClick, children }) {
+// Default kartu kini bersurface putih netral (bukan bg warna solid penuh)
+// mengikuti gaya referensi: kartu "mengambang" di atas latar krem lewat
+// shadow lembut, nyaris tanpa border. `color` lain (mis. `orange`) tetap
+// bisa dipakai untuk kartu aksen bg solid seperti sebelumnya (masih
+// diberi border putih tipis sebagai ring, konsisten dgn perilaku lama).
+export default function Card({ header, body, footer, color = 'white', onClick, children }) {
+  const isFilled = color !== 'white';
+
   const cardClasses = classNames(
     getBgColor(color),
     onClick && 'cursor-pointer',
     'shadow-lg',
     'rounded-lg',
-    'p-4',
-    'border',
-    color === 'white' ? 'border-gray-100' : 'border-white'
+    'p-6',
+    isFilled && 'border border-white'
   );
 
   const handleKeyDown = event => {

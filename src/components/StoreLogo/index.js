@@ -5,7 +5,7 @@ import { config } from '../../config';
 export default function StoreLogo() {
   return (
     <Link to="/">
-      <div className="text-red-600 font-bold text-4xl">{config.site_title}</div>
+      <div className="text-orange-600 font-extrabold text-4xl">{config.site_title}</div>
     </Link>
   )
 }

@@ -68,8 +68,8 @@ export default function Table({
     return [selectColumn, ...columns];
   }, [columns, selectable, selectedRow, primaryField, onSelectRow]);
 
-  const tableClasses = 'border-white shadow-lg w-full rounded overflow-hidden';
-  const trClasses = classNames('border-b', selectable && 'cursor-pointer');
+  const tableClasses = 'bg-white shadow-lg w-full rounded-lg overflow-hidden';
+  const trClasses = classNames('border-b border-gray-200', selectable && 'cursor-pointer');
   const cellClasses = 'p-4 text-left p-2';
 
   const handleRowClick = item => {
@@ -81,7 +81,7 @@ export default function Table({
     <div className="relative">
       <table className={tableClasses}>
         <thead>
-          <tr className="bg-red-600 text-white">
+          <tr className="bg-orange-600 text-white">
             {builtColumns.map((column, index) => {
               const id = resolveColumnId(column, index);
 
@@ -131,7 +131,7 @@ export default function Table({
         {showPagination ? (
           <tfoot>
             <tr>
-              <td className="p-4 text-center border" colSpan={10}>
+              <td className="p-4 text-center border-t border-gray-200" colSpan={10}>
                 <Pagination
                   totalItems={totalItems}
                   perPage={perPage}

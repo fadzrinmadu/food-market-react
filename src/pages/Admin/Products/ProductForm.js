@@ -117,7 +117,7 @@ export default function ProductForm({ defaultValues, submitLabel = 'Simpan', onS
           accept="image/*"
           name="image"
           ref={imageInputRef}
-          className="block w-full text-sm border rounded px-3 py-2"
+          className="block w-full text-sm bg-white border border-gray-200 rounded px-3 py-2"
         />
       </FormControl>
 

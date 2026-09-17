@@ -3,9 +3,9 @@ import { func, number, oneOf, oneOfType, string } from 'prop-types';
 import FaCartPlus from '@meronex/icons/fa/FaCartPlus';
 
 import Card from '../Card';
+import ButtonCircle from '../ButtonCircle';
 import Text from '../Text';
-import { classNames } from '../utils/class-names';
-import { colors, getTextColor } from '../utils/colors';
+import { colors } from '../utils/colors';
 
 /**
  * Format harga produk.
@@ -22,54 +22,30 @@ function toRupiah(number) {
   }).format(number);
 }
 
-export default function CardProduct({ title, imgUrl, price, color, onAddToCart = () => null }) {
-  const addToCartClasses = classNames(
-    'px-2 py-2 ml-2 inline-block self-end rounded',
-    getTextColor(color),
-    'cursor-pointer text-center hover:bg-white bg-gray-100 shadow-sm'
-  );
-
-  const handleKeyDown = event => {
-    if (event.key !== 'Enter' && event.key !== ' ') return;
-
-    event.preventDefault();
-    onAddToCart(event);
-  };
-
+export default function CardProduct({ title, imgUrl, price, color = 'orange', onAddToCart = () => null }) {
   return (
     <Card
-      color={color}
-      header={<div />}
       body={
-        <div className="flex justify-between">
-          {/* slot kosong; menjaga gambar tetap rata kanan karena `justify-between` */}
-          <div />
-          <div>
-            <img className="h-24" src={imgUrl} alt={title} />
+        <div>
+          <div className="bg-gray-100 rounded-md h-32 mb-4 flex items-center justify-center overflow-hidden">
+            <img className="h-24 object-contain" src={imgUrl} alt={title} />
           </div>
-        </div>
-      }
-      footer={
-        <div className="flex justify-between items-end">
-          <div>
-            <Text as="h5" color="white">
-              {title}
-            </Text>
-          </div>
-          <div className="flex items-center">
-            <Text as="h6" color="white">
-              {toRupiah(price)}
-            </Text>
-            <div
-              className={addToCartClasses}
-              onClick={onAddToCart}
-              onKeyDown={handleKeyDown}
-              role="button"
-              tabIndex={0}
-              aria-label={`Tambah ${title} ke keranjang`}
-            >
-              <FaCartPlus className="mx-auto" />
+          <div className="flex justify-between items-end">
+            <div className="pr-2">
+              <Text as="h6" className="mb-1">
+                {title}
+              </Text>
+              <Text as="small" color={color} bold>
+                {toRupiah(price)}
+              </Text>
             </div>
+            <ButtonCircle
+              icon={<FaCartPlus />}
+              size="small"
+              color={color}
+              onClick={onAddToCart}
+              aria-label={`Tambah ${title} ke keranjang`}
+            />
           </div>
         </div>
       }
@@ -84,7 +60,7 @@ CardProduct.propTypes = {
   imgUrl: string,
   /** harga produk */
   price: oneOfType([string, number]),
-  /** warna kartu */
+  /** warna aksen (harga & tombol tambah ke keranjang) */
   color: oneOf(colors),
   /** dipanggil saat tombol tambah ke keranjang diklik */
   onAddToCart: func,
