@@ -140,7 +140,7 @@ export default function Checkout() {
 
           <Button
             onClick={_ => setActiveStep(activeStep + 1)}
-            color="red"
+            color="orange"
             iconAfter={<FaArrowRight/>}
           > Selanjutnya </Button>
         </div>
@@ -192,7 +192,7 @@ export default function Checkout() {
           <Button
             onClick={_ => setActiveStep(activeStep + 1)}
             disabled={!selectedAddress}
-            color="red"
+            color="orange"
             iconAfter={<FaArrowRight/>}>
             Selanjutnya
           </Button>
@@ -241,7 +241,7 @@ export default function Checkout() {
         <div className="text-right">
           <Button
             onClick={handleCreateOrder}
-            color="red"
+            color="orange"
             size="large"
             iconBefore={<FaRegCheckCircle/>}
           >

@@ -20,7 +20,7 @@ export default function Logout() {
   return (
     <LayoutOne size="small">
       <div className="text-center flex flex-col justify-center items-center">
-        <BounceLoader color="red"/>
+        <BounceLoader color="#f0790e"/>
         <div className="mt-4">Logging out ...</div>
       </div>
     </LayoutOne>

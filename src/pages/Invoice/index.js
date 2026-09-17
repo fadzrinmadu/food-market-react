@@ -52,7 +52,7 @@ export default function Invoice() {
     return <LayoutOne>
       <div className="text-center py-10">
         <div className="inline-block">
-          <BounceLoader color="red"/>
+          <BounceLoader color="#f0790e"/>
         </div>
       </div>
     </LayoutOne> 
