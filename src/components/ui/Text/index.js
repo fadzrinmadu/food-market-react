@@ -4,13 +4,16 @@ import { node, oneOf, bool, string } from 'prop-types';
 import { classNames } from '../utils/class-names';
 import { colors, getTextColor } from '../utils/colors';
 
+// Heading memakai bobot tebal secara default (extrabold utk h1/h2, bold utk
+// h3/h4, semibold utk h5/h6) mengikuti gaya referensi; `bold` tetap bisa
+// dipakai utk menebalkan varian non-heading (mis. `body`/`small`).
 const variantClasses = {
-  h1: 'text-5xl',
-  h2: 'text-4xl',
-  h3: 'text-3xl',
-  h4: 'text-2xl',
-  h5: 'text-xl',
-  h6: '',
+  h1: 'text-5xl font-extrabold',
+  h2: 'text-4xl font-extrabold',
+  h3: 'text-3xl font-bold',
+  h4: 'text-2xl font-bold',
+  h5: 'text-xl font-semibold',
+  h6: 'font-semibold',
   info: 'text-blue-600',
   warning: 'text-yellow-600',
   error: 'text-red-600',

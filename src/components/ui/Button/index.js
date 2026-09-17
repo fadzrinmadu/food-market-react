@@ -5,10 +5,13 @@ import { classNames } from '../utils/class-names';
 import { colors, getBgColor, getBgColorHover, getBorderColor, getTextColor } from '../utils/colors';
 import { focusRingClasses } from '../utils/a11y';
 
+// Tinggi dinaikkan dari default lama (h-6/h-8/h-10) agar `medium` (ukuran
+// bawaan) memenuhi target sentuh minimal 44px (WCAG); `small` tetap di bawah
+// itu karena dipakai untuk konteks padat/opsional, bukan aksi utama.
 const buttonSizes = {
-  small: 'h-6 text-sm',
-  medium: 'h-8',
-  large: 'h-10 text-xl',
+  small: 'h-8 text-sm',
+  medium: 'h-11',
+  large: 'h-12 text-xl',
 };
 
 const buttonVariants = ['solid', 'outline'];
@@ -18,7 +21,7 @@ export default function Button({
   iconBefore,
   iconAfter,
   onClick,
-  color = 'red',
+  color = 'orange',
   size = 'medium',
   variant = 'solid',
   fitContainer = false,
@@ -42,8 +45,8 @@ export default function Button({
     'inline-flex',
     'items-center',
     'justify-center',
-    'px-4',
-    'rounded',
+    'px-6',
+    'rounded-full',
     'shadow-lg',
     'border',
     focusRingClasses

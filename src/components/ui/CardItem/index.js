@@ -5,13 +5,13 @@ import InputNumber from '../InputNumber';
 import { classNames } from '../utils/class-names';
 import { colors, getBgColor, getTextColor } from '../utils/colors';
 
-export default function CardItem({ name, imgUrl, qty, color = 'red', onInc = () => null, onDec = () => null }) {
+export default function CardItem({ name, imgUrl, qty, color = 'orange', onInc = () => null, onDec = () => null }) {
   const cardClasses = classNames(
     getBgColor(color, 400),
     getTextColor(color, 900),
     'flex',
-    'p-2',
-    'rounded'
+    'p-3',
+    'rounded-lg'
   );
 
   return (

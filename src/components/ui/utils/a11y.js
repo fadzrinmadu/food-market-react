@@ -4,7 +4,7 @@
  * langsung (button, input, textarea). Memakai `shadow-focus-ring` (bukan
  * util `ring-*` bawaan Tailwind 2+) karena project ini masih di Tailwind 1.x
  * yang belum punya plugin ring; warnanya dicocokkan dengan warna brand
- * (`red-600`) lewat token `boxShadow.focus-ring` di `tailwind.config.js`.
+ * (`orange-600`) lewat token `boxShadow.focus-ring` di `tailwind.config.js`.
  */
 export const focusRingClasses = 'focus:outline-none focus:shadow-focus-ring';
 

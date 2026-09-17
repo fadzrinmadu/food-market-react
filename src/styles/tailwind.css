@@ -274,8 +274,8 @@
   .h-8 {
     height: 2rem;
   }
-  .h-10 {
-    height: 2.5rem;
+  .h-11 {
+    height: 2.75rem;
   }
   .h-12 {
     height: 3rem;
@@ -301,8 +301,8 @@
   .w-8 {
     width: 2rem;
   }
-  .w-10 {
-    width: 2.5rem;
+  .w-11 {
+    width: 2.75rem;
   }
   .w-12 {
     width: 3rem;
@@ -440,6 +440,9 @@
   .bg-gray-300 {
     background-color: #ded6c9;
   }
+  .bg-orange-600 {
+    background-color: #f0790e;
+  }
   .bg-red-600 {
     background-color: #d33b2c;
   }
@@ -458,14 +461,14 @@
   .p-2 {
     padding: 0.5rem;
   }
+  .p-3 {
+    padding: 0.75rem;
+  }
   .p-4 {
     padding: 1rem;
   }
   .p-10 {
     padding: 2.5rem;
-  }
-  .px-1 {
-    padding-inline: 0.25rem;
   }
   .px-2 {
     padding-inline: 0.5rem;
@@ -473,11 +476,11 @@
   .px-3 {
     padding-inline: 0.75rem;
   }
-  .px-4 {
-    padding-inline: 1rem;
-  }
   .px-5 {
     padding-inline: 1.25rem;
+  }
+  .px-6 {
+    padding-inline: 1.5rem;
   }
   .py-1 {
     padding-block: 0.25rem;
@@ -558,6 +561,18 @@
   .font-bold {
     --tw-font-weight: 700;
     font-weight: 700;
+  }
+  .font-extrabold {
+    --tw-font-weight: 800;
+    font-weight: 800;
+  }
+  .font-medium {
+    --tw-font-weight: 500;
+    font-weight: 500;
+  }
+  .font-semibold {
+    --tw-font-weight: 600;
+    font-weight: 600;
   }
   .text-blue-600 {
     color: #3b7dd8;

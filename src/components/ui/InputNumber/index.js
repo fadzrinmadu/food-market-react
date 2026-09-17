@@ -18,7 +18,7 @@ const InputNumber = React.forwardRef(function InputNumber(
     onDec,
     onSetValue = () => null,
     textColor = 'white',
-    buttonColor = 'red',
+    buttonColor = 'orange',
     size = 'medium',
     fullRound = false,
     ...props

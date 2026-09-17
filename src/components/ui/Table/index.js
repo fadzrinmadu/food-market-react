@@ -81,7 +81,7 @@ export default function Table({
     <div className="relative">
       <table className={tableClasses}>
         <thead>
-          <tr className="bg-red-600 text-white">
+          <tr className="bg-orange-600 text-white">
             {builtColumns.map((column, index) => {
               const id = resolveColumnId(column, index);
 

@@ -184,6 +184,9 @@ module.exports = {
       '6': '1.5rem',
       '8': '2rem',
       '10': '2.5rem',
+      // Ditambahkan agar tombol/elemen interaktif bisa mencapai target
+      // sentuh minimal 44px (WCAG) tanpa harus lompat ke `12` (48px).
+      '11': '2.75rem',
       '12': '3rem',
       '16': '4rem',
       '20': '5rem',

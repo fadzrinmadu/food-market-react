@@ -4,19 +4,15 @@ import { func, node, oneOf } from 'prop-types';
 import { classNames } from '../utils/class-names';
 import { colors, getBgColor, getBgColorHover, getTextColor } from '../utils/colors';
 
+// Ukuran dinaikkan agar `medium` (bawaan) memenuhi target sentuh minimal
+// 44px (WCAG); `small` tetap lebih kecil untuk konteks padat/opsional.
 const buttonSizes = {
-  small: 'w-6 h-6',
-  medium: 'w-8 h-8',
-  large: 'w-10 h-10 text-lg',
+  small: 'w-8 h-8',
+  medium: 'w-11 h-11',
+  large: 'w-12 h-12 text-lg',
 };
 
-const buttonStyles = {
-  small: { width: '1.7rem', height: '1.7rem' },
-  medium: {},
-  large: {},
-};
-
-export default function ButtonCircle({ icon, onClick, size = 'medium', color = 'red', textColor = 'white', ...props }) {
+export default function ButtonCircle({ icon, onClick, size = 'medium', color = 'orange', textColor = 'white', ...props }) {
   const buttonClasses = classNames(
     buttonSizes[size],
     getBgColor(color),
@@ -33,7 +29,7 @@ export default function ButtonCircle({ icon, onClick, size = 'medium', color = '
   );
 
   return (
-    <button {...props} onClick={onClick} className={buttonClasses} style={buttonStyles[size]}>
+    <button {...props} onClick={onClick} className={buttonClasses}>
       {icon}
     </button>
   );
