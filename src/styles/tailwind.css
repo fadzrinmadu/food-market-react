@@ -1,4 +1,5 @@
 /*! tailwindcss v4.3.3 | MIT License | https://tailwindcss.com */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @layer properties;
 @layer theme, base, components, utilities;
 @layer base {
@@ -12,7 +13,7 @@
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     tab-size: 4;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-feature-settings: normal;
     font-variation-settings: normal;
     -webkit-tap-highlight-color: transparent;
@@ -400,7 +401,7 @@
     border-radius: 9999px;
   }
   .rounded-lg {
-    border-radius: 0.5rem;
+    border-radius: 1.25rem;
   }
   .border {
     border-style: var(--tw-border-style);
@@ -419,28 +420,28 @@
     border-bottom-width: 1px;
   }
   .border-gray-100 {
-    border-color: oklch(96.7% 0.003 264.542);
+    border-color: #f3eee7;
   }
   .border-gray-200 {
-    border-color: oklch(92.8% 0.006 264.531);
+    border-color: #ede7df;
   }
   .border-red-600 {
-    border-color: oklch(57.7% 0.245 27.325);
+    border-color: #d33b2c;
   }
   .border-white {
     border-color: #fff;
   }
   .bg-gray-100 {
-    background-color: oklch(96.7% 0.003 264.542);
+    background-color: #f3eee7;
   }
   .bg-gray-200 {
-    background-color: oklch(92.8% 0.006 264.531);
+    background-color: #ede7df;
   }
   .bg-gray-300 {
-    background-color: oklch(87.2% 0.01 258.338);
+    background-color: #ded6c9;
   }
   .bg-red-600 {
-    background-color: oklch(57.7% 0.245 27.325);
+    background-color: #d33b2c;
   }
   .bg-transparent {
     background-color: transparent;
@@ -559,45 +560,45 @@
     font-weight: 700;
   }
   .text-blue-600 {
-    color: oklch(54.6% 0.245 262.881);
+    color: #3b7dd8;
   }
   .text-gray-300 {
-    color: oklch(87.2% 0.01 258.338);
+    color: #ded6c9;
   }
   .text-gray-500 {
-    color: oklch(55.1% 0.027 264.364);
+    color: #a69a87;
   }
   .text-gray-700 {
-    color: oklch(37.3% 0.034 259.733);
+    color: #574f45;
   }
   .text-red-400 {
-    color: oklch(70.4% 0.191 22.216);
+    color: #e5766a;
   }
   .text-red-600 {
-    color: oklch(57.7% 0.245 27.325);
+    color: #d33b2c;
   }
   .text-red-700 {
-    color: oklch(50.5% 0.213 27.518);
+    color: #b22f22;
   }
   .text-red-900 {
-    color: oklch(39.6% 0.141 25.723);
+    color: #5e1810;
   }
   .text-white {
     color: #fff;
   }
   .text-yellow-600 {
-    color: oklch(68.1% 0.162 75.834);
+    color: #e0a32e;
   }
   .shadow-focus-ring {
-    --tw-shadow: 0 0 0 3px var(--tw-shadow-color, rgba(229, 62, 62, 0.5));
+    --tw-shadow: 0 0 0 3px var(--tw-shadow-color, rgba(240, 121, 14, 0.5));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-lg {
-    --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgba(0, 0, 0, 0.1)), 0 4px 6px -2px var(--tw-shadow-color, rgba(0, 0, 0, 0.05));
+    --tw-shadow: 0 16px 32px -8px var(--tw-shadow-color, rgba(32, 26, 23, 0.12));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-sm {
-    --tw-shadow: 0 1px 2px 0 var(--tw-shadow-color, rgba(0, 0, 0, 0.05));
+    --tw-shadow: 0 2px 6px -1px var(--tw-shadow-color, rgba(32, 26, 23, 0.06));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .outline {
@@ -612,7 +613,7 @@
     outline-style: none;
   }
   .focus-within\:shadow-focus-ring:focus-within {
-    --tw-shadow: 0 0 0 3px var(--tw-shadow-color, rgba(229, 62, 62, 0.5));
+    --tw-shadow: 0 0 0 3px var(--tw-shadow-color, rgba(240, 121, 14, 0.5));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   @media (hover: hover) {
@@ -620,14 +621,14 @@
       background-color: #fff;
     }
     .hover\:text-gray-300:hover {
-      color: oklch(87.2% 0.01 258.338);
+      color: #ded6c9;
     }
     .hover\:text-white:hover {
       color: #fff;
     }
   }
   .focus\:shadow-focus-ring:focus {
-    --tw-shadow: 0 0 0 3px var(--tw-shadow-color, rgba(229, 62, 62, 0.5));
+    --tw-shadow: 0 0 0 3px var(--tw-shadow-color, rgba(240, 121, 14, 0.5));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .focus\:outline-none:focus {
@@ -677,6 +678,11 @@
       justify-content: flex-start;
     }
   }
+}
+body {
+  background-color: #f3eee7;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #201a17;
 }
 @property --tw-rotate-x {
   syntax: "*";
