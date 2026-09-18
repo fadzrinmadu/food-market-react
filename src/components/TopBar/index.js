@@ -1,28 +1,24 @@
-import * as React from 'react'; 
+import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { ButtonCircle, Responsive } from '../ui';
+import { ButtonCircle } from '../ui';
 import { Link } from 'react-router-dom';
 import FaUser from '@meronex/icons/fa/FaUser';
 import StoreLogo from '../StoreLogo';
 
 export default function TopBar() {
   let auth = useSelector(state => state.auth);
-  
-  return <Responsive desktop={2} justify="between" items="center">
-    <div>
-      <StoreLogo/>
-    </div>
 
-    <div className="mr-5 text-right">
-      <Link to={auth.user ? '/account' : '/login'}>
-        <div className="mr-2 inline-block font-bold">
-          {auth?.user?.full_name}
-        </div>
-        <ButtonCircle
-          icon={<FaUser/>}
-          aria-label={auth.user ? 'Akun saya' : 'Masuk'}
-        />
-      </Link>
-    </div>
-  </Responsive>
+  return <div className="flex items-center justify-between gap-3">
+    <StoreLogo/>
+
+    <Link to={auth.user ? '/account' : '/login'} className="flex items-center gap-2 shrink-0">
+      <div className="hidden sm:inline-block font-bold text-right">
+        {auth?.user?.full_name}
+      </div>
+      <ButtonCircle
+        icon={<FaUser/>}
+        aria-label={auth.user ? 'Akun saya' : 'Masuk'}
+      />
+    </Link>
+  </div>
 }
