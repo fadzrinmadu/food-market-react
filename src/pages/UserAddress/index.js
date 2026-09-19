@@ -74,7 +74,7 @@ export default function UserAddress() {
 
         <div>
           <div className="mb-6">
-            <Link to="alamat-pengiriman/tambah">
+            <Link to="/alamat-pengiriman/tambah">
               <Button>
                 Tambah baru
               </Button>
