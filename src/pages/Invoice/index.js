@@ -4,6 +4,7 @@ import { Button, ErrorState, LayoutOne, Table, Text } from '../../components/ui'
 import BounceLoader from 'react-spinners/BounceLoader';
 
 import TopBar from '../../components/TopBar';
+import BackButton from '../../components/BackButton';
 import { getInvoiceByOrderId } from '../../api/invoice';
 import { formatRupiah } from '../../utils/formatRupiah';
 import StatusLabel from '../../components/StatusLabel';
@@ -42,7 +43,12 @@ export default function Invoice() {
     return (
       <LayoutOne>
         <TopBar/>
-        <Text as="h3" className="mb-6"> Terjadi Kesalahan </Text>
+        <div className="flex items-center mb-6">
+          <BackButton to="/pesanan" />
+          <div className="ml-3">
+            <Text as="h3">Terjadi Kesalahan</Text>
+          </div>
+        </div>
         <ErrorState message={error} onRetry={fetchInvoice} />
       </LayoutOne>
     )
@@ -50,12 +56,19 @@ export default function Invoice() {
 
   if (status === 'process') {
     return <LayoutOne>
+      <TopBar/>
+      <div className="flex items-center mb-6">
+        <BackButton to="/pesanan" />
+        <div className="ml-3">
+          <Text as="h3">Invoice</Text>
+        </div>
+      </div>
       <div className="text-center py-10">
         <div className="inline-block">
           <BounceLoader color="#f0790e"/>
         </div>
       </div>
-    </LayoutOne> 
+    </LayoutOne>
   }
 
   let handlePayment = async function() {
@@ -76,7 +89,12 @@ export default function Invoice() {
   return (
 		<LayoutOne>
       <TopBar/>
-      <Text as="h3" className="mb-6"> Invoice </Text>
+      <div className="flex items-center mb-6">
+        <BackButton to="/pesanan" />
+        <div className="ml-3">
+          <Text as="h3">Invoice</Text>
+        </div>
+      </div>
 
       <Table
         showPagination={false}
